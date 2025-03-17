@@ -1,0 +1,308 @@
+[gd_scene load_steps=15 format=3 uid="uid://cgdwc4g3km056"]
+
+[ext_resource type="Texture2D" uid="uid://brege0teei77a" path="res://a.png" id="1_0f027"]
+[ext_resource type="Script" uid="uid://bhxok8tyjnr65" path="res://text_display.gd" id="1_66tet"]
+[ext_resource type="Texture2D" uid="uid://crqul5n3ew2wn" path="res://b.png" id="2_2c62f"]
+[ext_resource type="Texture2D" uid="uid://3ijaqkcsc2dm" path="res://c.png" id="2_gyfs4"]
+[ext_resource type="Script" uid="uid://doo01jcpo12bp" path="res://selected_button.gd" id="4_d5x1h"]
+[ext_resource type="Texture2D" uid="uid://3r7mh8mix6hj" path="res://b2.png" id="5_8mm7a"]
+[ext_resource type="Script" uid="uid://jk1pg5org6db" path="res://polygon_spawner.gd" id="6_hq1ik"]
+[ext_resource type="Script" uid="uid://botgewcecp4jj" path="res://clockhand.gd" id="6_nfk4m"]
+
+[sub_resource type="GDScript" id="GDScript_d5x1h"]
+script/source = "extends TextureRect
+
+@export var but_node: Node
+
+func _process(_delta):
+	var id=WhatSelected.selected_id
+	for i in but_node.get_children():
+		if (id==i.id):
+			#print(id)
+			#print(global_position.angle_to_point(i.global_position))
+			rotation=global_position.angle_to_point(i.global_position)
+			#print(mouse_hover)
+			#print(direction_to)
+			
+"
+
+[sub_resource type="Curve2D" id="Curve2D_gyfs4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 286, 320, 0, 0, 0, 0, 355, 240, 0, 0, 0, 0, 352, 105, 0, 0, 0, 0, 297, 12, 0, 0, 0, 0, 216, -1, 0, 0, 0, 0, 316, 49)
+}
+point_count = 6
+
+[sub_resource type="GDScript" id="GDScript_8mm7a"]
+script/source = "extends RichTextLabel
+
+func _process(delta):
+	#print(WhatSelected.color.to_html())
+	text=(\"[color=#\"+WhatSelected.color.to_html()+\"]\")+String.num(WhatSelected.freq)
+"
+
+[sub_resource type="GDScript" id="GDScript_hq1ik"]
+script/source = "extends Button
+@export var change:float
+
+
+
+func _pressed():
+	WhatSelected.freq+=change
+"
+
+[sub_resource type="GDScript" id="GDScript_66tet"]
+script/source = "extends Polygon2D
+
+func _enter_tree():
+	$Area2D/CollisionPolygon2D.polygon=polygon
+"
+
+[sub_resource type="Curve2D" id="Curve2D_8mm7a"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 326, 247, 0, 0, 0, 0, 360, 164, 0, 0, 0, 0, 359, 88, 0, 0, 0, 0, 321, 34, 0, 0, 0, 0, 238, 13)
+}
+point_count = 5
+
+[node name="MainScene" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.824074
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -101.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.393086, 0.393086, 0.393085, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/ColorRect"]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 30.0
+offset_right = 791.0
+offset_bottom = 196.0
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+script = ExtResource("1_66tet")
+t = "<red>sometext sometext<blue> someothertext"
+color_dict = Dictionary[String, Color]({
+"blue": Color(0, 0, 1, 1),
+"red": Color(1, 0, 0, 1)
+})
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -472.0
+offset_right = 356.0
+grow_vertical = 0
+texture = ExtResource("1_0f027")
+
+[node name="Control2" type="Control" parent="."]
+process_mode = 4
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -414.0
+offset_top = -344.0
+offset_right = -78.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = -32.0
+offset_right = 27.0
+offset_bottom = 34.8601
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gyfs4")
+expand_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Control2/TextureRect" node_paths=PackedStringArray("but_node")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -43.0
+offset_right = 174.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 40)
+texture = ExtResource("2_2c62f")
+script = SubResource("GDScript_d5x1h")
+but_node = NodePath("../../Path2D")
+
+[node name="Path2D" type="Path2D" parent="Control2"]
+curve = SubResource("Curve2D_gyfs4")
+
+[node name="Button" type="Button" parent="Control2/Path2D"]
+offset_left = 315.0
+offset_top = 249.0
+offset_right = 373.0
+offset_bottom = 301.0
+script = ExtResource("4_d5x1h")
+id = 1
+
+[node name="Button2" type="Button" parent="Control2/Path2D"]
+offset_left = 339.0
+offset_top = 154.0
+offset_right = 397.0
+offset_bottom = 206.0
+script = ExtResource("4_d5x1h")
+id = 2
+
+[node name="Control3" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.955729
+anchor_top = 1.0
+anchor_right = 0.955729
+anchor_bottom = 1.0
+offset_left = -336.0
+offset_top = -344.0
+grow_horizontal = 0
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Control3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = -32.0
+offset_right = 27.0
+offset_bottom = 34.8601
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gyfs4")
+expand_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Control3/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -43.4301
+offset_right = 59.0
+offset_bottom = 33.5699
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(30, 40)
+texture = ExtResource("5_8mm7a")
+script = ExtResource("6_nfk4m")
+
+[node name="RayCast2D" type="RayCast2D" parent="Control3/TextureRect/TextureRect2"]
+position = Vector2(0, 43)
+target_position = Vector2(200, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -55.0
+offset_right = 49.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "123"
+script = SubResource("GDScript_8mm7a")
+
+[node name="Button" type="Button" parent="Control3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = -54.0
+offset_right = 67.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "+"
+script = SubResource("GDScript_hq1ik")
+change = 0.5
+
+[node name="Button2" type="Button" parent="Control3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -59.0
+offset_top = -60.0
+offset_right = -27.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "-"
+script = SubResource("GDScript_hq1ik")
+change = -0.5
+
+[node name="Polygon2D" type="Polygon2D" parent="Control3"]
+process_mode = 4
+visible = false
+position = Vector2(347, 189)
+polygon = PackedVector2Array(-31, 12, -2, -41, 44, -9, 18, 40)
+script = SubResource("GDScript_66tet")
+
+[node name="Area2D" type="Area2D" parent="Control3/Polygon2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Control3/Polygon2D/Area2D"]
+
+[node name="Path2D" type="Path2D" parent="Control3"]
+curve = SubResource("Curve2D_8mm7a")
+script = ExtResource("6_hq1ik")
+colors = Array[Color]([Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)])
+
+[connection signal="mouse_entered" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_exited"]
