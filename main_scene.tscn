@@ -106,13 +106,14 @@ offset_bottom = 196.0
 bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 script = ExtResource("1_66tet")
-t = "<label:B><red>ще <blue>якийсь <none>текст, <jump:aA>
-<choice:A><jump:B>
-<choice:B>
-<label:A>
-ЇЇ"
+t = "<blue>\"Нормально.\"
+<label:A><red>\"Повернулася, бо було складно роботу знову знайти, <green>да і дома давно не була.\"
+<blue>\"Їдять різне,<green> мені сподобалося це і оце…”
+<blue>“Люди інші, <red>але відмінності всередині групи більші, ніж відмінності між групами.<green>Ну, тобто різні траплялися.”
+<jump:A>"
 color_dict = Dictionary[String, Color]({
 "blue": Color(0, 0, 1, 1),
+"green": Color(0, 1, 0, 1),
 "red": Color(1, 0, 0, 1)
 })
 

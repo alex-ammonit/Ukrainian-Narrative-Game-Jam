@@ -151,6 +151,7 @@ func _process(delta):
 		#text=str(line)
 		text=""
 		for l in line:
+			#print(l["type"])
 			if l["type"]=="text":
 				var app_text=""
 				var color=l["color"]
@@ -175,6 +176,8 @@ func _process(delta):
 				if (l["color"]!="none"):
 					app_text+="[/color]"
 				text+=app_text
+	if (cur["type"]=="jump"):
+		script_pickup=script_labels[cur["to"]]
 	#print(parse(t))
 	#var elements=parse(t)
 	#var new_text=""
