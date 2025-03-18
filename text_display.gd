@@ -63,13 +63,9 @@ func _process(delta):
 				new_text=new_text+"[color=#"+color_dict[el["data"]].to_html()+"]"
 				activeColor=el["data"]
 		if el["type"]=="text":
-<<<<<<< HEAD
 			if (activeColor!="none" and color_dict[activeColor]==WhatSelected.color):
 				new_text=new_text+el["text"]
 			elif (activeColor=="none"):
-=======
-			if (color_dict[activeColor]==WhatSelected.color or activeColor=="none"):
->>>>>>> 423b1918010e15a7018f539beb536b8ed144056f
 				new_text=new_text+el["text"]
 			else:
 				new_text=new_text+( String("#") )
