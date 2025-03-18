@@ -1,0 +1,132 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgdwc4g3km056"]
+
+[ext_resource type="Texture2D" uid="uid://brege0teei77a" path="res://a.png" id="1_0f027"]
+[ext_resource type="Texture2D" uid="uid://crqul5n3ew2wn" path="res://b.png" id="2_2c62f"]
+[ext_resource type="Texture2D" uid="uid://3ijaqkcsc2dm" path="res://c.png" id="2_gyfs4"]
+[ext_resource type="Script" uid="uid://doo01jcpo12bp" path="res://selected_button.gd" id="4_d5x1h"]
+
+[sub_resource type="GDScript" id="GDScript_d5x1h"]
+script/source = "extends TextureRect
+
+@export var but_node: Node
+
+func _process(delta):
+	var id=WhatSelected.selected_id
+	for i in but_node.get_children():
+		print(i.get_script())
+		if i.get_script().get_path()==\"res://selected_button.gd\":
+			print(i.id)
+		#if i is selected_button:
+			
+"
+
+[sub_resource type="Curve2D" id="Curve2D_gyfs4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 286, 320, 0, 0, 0, 0, 355, 240, 0, 0, 0, 0, 352, 105, 0, 0, 0, 0, 297, 12, 0, 0, 0, 0, 216, -1, 0, 0, 0, 0, 316, 49)
+}
+point_count = 6
+
+[node name="MainScene" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.824074
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -101.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.393086, 0.393086, 0.393085, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/ColorRect"]
+layout_mode = 0
+offset_left = 298.0
+offset_top = 30.0
+offset_right = 871.0
+offset_bottom = 157.0
+text = "LOREM IPSUM"
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -472.0
+offset_right = 356.0
+grow_vertical = 0
+texture = ExtResource("1_0f027")
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -414.0
+offset_top = -344.0
+offset_right = -78.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gyfs4")
+expand_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Control2/TextureRect" node_paths=PackedStringArray("but_node")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -43.0
+offset_right = 174.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 40)
+texture = ExtResource("2_2c62f")
+script = SubResource("GDScript_d5x1h")
+but_node = NodePath("../..")
+
+[node name="Path2D" type="Path2D" parent="Control2"]
+curve = SubResource("Curve2D_gyfs4")
+
+[node name="Button" type="Button" parent="Control2"]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 249.0
+offset_right = 373.0
+offset_bottom = 301.0
+script = ExtResource("4_d5x1h")
+id = 1
