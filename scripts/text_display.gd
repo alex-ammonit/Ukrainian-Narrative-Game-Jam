@@ -8,6 +8,9 @@ var script_labels:Dictionary[String, int]
 var script_pickup:int=-1
 var theme_attention:Dictionary[String, Array ]
 var cur_theme="none"
+##change expression
+signal change_expression(new_expression)
+signal change_background(new_background)
 
 func tokenize(string:String):
 	#print(string)
@@ -103,27 +106,15 @@ func parse(string: String):
 				line_buffer.append({"type":"speed", "speed":data.to_float()})
 			if (type=="theme"):
 				line_buffer.append({"type":"theme", "theme":data})
+			if (type=="expression"):
+				line_buffer.append({"type":"expression", "expression":data})
+			if (type=="background"):
+				line_buffer.append({"type":"background", "background":data})
 			if (type=="choice"):
 				append_line.call()
 				choice_buffer.append({"type":"choice", "text":data, "to":-1})
 			if (type=="check_attention"):
 				append_line.call()
-				'''if (i+1>=el_length or elements[i+1]["type"]!="control"):
-					#print(elements[i+1]["type"])
-					OS.alert("Element check requires jump as the next element")
-					#OS.alert("No jump after check?")
-				else:
-					var j_el=elements[i+1]
-					var j_type=j_el["data"]
-					var j_data=""
-					var j_colon=j_type.find(':')
-					if (colon!=-1):
-						j_data=j_type.substr(j_colon+1)
-						j_type=j_type.substr(0, j_colon)
-					#print(j_el)
-					if (j_type!="jump"):
-						OS.alert("Element check requires jump as the next element")
-						continue'''
 				dictar.append({"type":"check_attention", "data":data, "to":""})
 				#i=i+1
 				continue
@@ -135,13 +126,7 @@ func parse(string: String):
 			var text={"type":"text","color":activeColor, "text":el["text"]}
 			line_buffer.append(text)
 		if el["type"]=="new_line":
-			#pass
-			#if (len(line_buffer)>0):
-			#print(line_buffer)
-			#dictar.append({"type":"line", "line":line_buffer})
-			#line_buffer=[]
 			append_line.call()
-	#print(text_buffer)
 	return {"script":dictar, "labels":labels}
 
 func _ready():
@@ -296,6 +281,12 @@ func exec_line():
 				cur_command+=1
 			if l["type"]=="theme":
 				cur_theme=(l["theme"])
+				cur_command+=1
+			if l["type"]=="expression":
+				change_expression.emit(l["expression"])
+				cur_command+=1
+			if l["type"]=="background":
+				change_expression.emit(l["background"])
 				cur_command+=1
 		else:
 			text=dis_text	
