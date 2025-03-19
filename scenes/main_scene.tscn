@@ -1,13 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=16 format=3 uid="uid://cgdwc4g3km056"]
 
-[ext_resource type="Texture2D" uid="uid://brege0teei77a" path="res://a.png" id="1_0f027"]
-[ext_resource type="Script" uid="uid://bhxok8tyjnr65" path="res://text_display.gd" id="1_66tet"]
-[ext_resource type="Texture2D" uid="uid://crqul5n3ew2wn" path="res://b.png" id="2_2c62f"]
-[ext_resource type="Texture2D" uid="uid://3ijaqkcsc2dm" path="res://c.png" id="2_gyfs4"]
-[ext_resource type="Script" uid="uid://doo01jcpo12bp" path="res://selected_button.gd" id="4_d5x1h"]
-[ext_resource type="Texture2D" uid="uid://3r7mh8mix6hj" path="res://b2.png" id="5_8mm7a"]
-[ext_resource type="Script" uid="uid://jk1pg5org6db" path="res://polygon_spawner.gd" id="6_hq1ik"]
-[ext_resource type="Script" uid="uid://botgewcecp4jj" path="res://clockhand.gd" id="6_nfk4m"]
+[ext_resource type="FontFile" uid="uid://k04ofg0wl727" path="res://fonts/NotoSansMono-VariableFont_wdth,wght.ttf" id="1_c1pb6"]
+[ext_resource type="Script" uid="uid://bhxok8tyjnr65" path="res://scripts/text_display.gd" id="2_6wevv"]
+[ext_resource type="Texture2D" uid="uid://brege0teei77a" path="res://sprites/a.png" id="3_e1cbu"]
+[ext_resource type="Texture2D" uid="uid://3ijaqkcsc2dm" path="res://sprites/c.png" id="4_mngbo"]
+[ext_resource type="Texture2D" uid="uid://crqul5n3ew2wn" path="res://sprites/b.png" id="5_4w45t"]
+[ext_resource type="Script" uid="uid://doo01jcpo12bp" path="res://scripts/selected_button.gd" id="6_r6p65"]
+[ext_resource type="Texture2D" uid="uid://3r7mh8mix6hj" path="res://sprites/b2.png" id="7_si52b"]
+[ext_resource type="Script" uid="uid://botgewcecp4jj" path="res://scripts/clockhand.gd" id="8_01n6w"]
+[ext_resource type="Script" uid="uid://jk1pg5org6db" path="res://scripts/polygon_spawner.gd" id="9_6u1mn"]
 
 [sub_resource type="GDScript" id="GDScript_d5x1h"]
 script/source = "extends TextureRect
@@ -103,9 +104,10 @@ offset_left = 263.0
 offset_top = 30.0
 offset_right = 791.0
 offset_bottom = 196.0
+theme_override_fonts/normal_font = ExtResource("1_c1pb6")
 bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-script = ExtResource("1_66tet")
+script = ExtResource("2_6wevv")
 file_path = "res://dialogue/text.txt"
 t = "<blue>\"Нормально.\"
 <label:A><red>\"Повернулася, бо було складно роботу знову знайти, <green>да і дома давно не була.\"
@@ -126,7 +128,7 @@ anchor_bottom = 1.0
 offset_top = -472.0
 offset_right = 356.0
 grow_vertical = 0
-texture = ExtResource("1_0f027")
+texture = ExtResource("3_e1cbu")
 
 [node name="Control2" type="Control" parent="."]
 process_mode = 4
@@ -154,7 +156,7 @@ offset_right = 27.0
 offset_bottom = 34.8601
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_gyfs4")
+texture = ExtResource("4_mngbo")
 expand_mode = 5
 
 [node name="TextureRect2" type="TextureRect" parent="Control2/TextureRect" node_paths=PackedStringArray("but_node")]
@@ -171,7 +173,7 @@ offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(0, 40)
-texture = ExtResource("2_2c62f")
+texture = ExtResource("5_4w45t")
 script = SubResource("GDScript_d5x1h")
 but_node = NodePath("../../Path2D")
 
@@ -183,7 +185,7 @@ offset_left = 315.0
 offset_top = 249.0
 offset_right = 373.0
 offset_bottom = 301.0
-script = ExtResource("4_d5x1h")
+script = ExtResource("6_r6p65")
 id = 1
 
 [node name="Button2" type="Button" parent="Control2/Path2D"]
@@ -191,7 +193,7 @@ offset_left = 339.0
 offset_top = 154.0
 offset_right = 397.0
 offset_bottom = 206.0
-script = ExtResource("4_d5x1h")
+script = ExtResource("6_r6p65")
 id = 2
 
 [node name="Control3" type="Control" parent="."]
@@ -217,7 +219,7 @@ offset_right = 27.0
 offset_bottom = 34.8601
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_gyfs4")
+texture = ExtResource("4_mngbo")
 expand_mode = 5
 
 [node name="TextureRect2" type="TextureRect" parent="Control3/TextureRect"]
@@ -234,8 +236,8 @@ offset_bottom = 33.5699
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(30, 40)
-texture = ExtResource("5_8mm7a")
-script = ExtResource("6_nfk4m")
+texture = ExtResource("7_si52b")
+script = ExtResource("8_01n6w")
 
 [node name="RayCast2D" type="RayCast2D" parent="Control3/TextureRect/TextureRect2"]
 position = Vector2(0, 43)
@@ -307,7 +309,7 @@ script = SubResource("GDScript_66tet")
 
 [node name="Path2D" type="Path2D" parent="Control3"]
 curve = SubResource("Curve2D_8mm7a")
-script = ExtResource("6_hq1ik")
+script = ExtResource("9_6u1mn")
 colors = Array[Color]([Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)])
 
 [connection signal="mouse_entered" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_entered"]
