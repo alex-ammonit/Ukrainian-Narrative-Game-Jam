@@ -6,6 +6,8 @@ extends RichTextLabel
 var script_play
 var script_labels:Dictionary[String, int]
 var script_pickup:int=-1
+var theme_attention:Dictionary[String, Array ]
+var cur_theme="none"
 
 func tokenize(string:String):
 	#print(string)
@@ -97,6 +99,8 @@ func parse(string: String):
 					dictar.append({"type":"jump", "to":data})
 			if (type=="speed"):
 				line_buffer.append({"type":"speed", "speed":data.to_float()})
+			if (type=="theme"):
+				line_buffer.append({"type":"theme", "theme":data})
 			if (type=="choice"):
 				append_line.call()
 				choice_buffer.append({"type":"choice", "text":data, "to":-1})
@@ -126,6 +130,7 @@ func _ready():
 	print(p["labels"])
 	script_labels=p["labels"]
 	script_play=p["script"]
+	cur_theme="none"
 	#script_pickup=0
 	#print(p, len(p))
 	for i in len(commands):
@@ -202,12 +207,12 @@ var cur_tween:Tween
 var speed_coef=0.2
 func set_speed(speed:float):
 	speed_coef=1/speed
-#var seen_char=0
-#var all_char=0
+var seen_char=0
+var all_char=0
 func exec_line():
 	var cur=script_play[script_pickup]
 	text=str(cur)
-	print(cur_command, "  ", cur_text_pos)
+	print(cur_command, "  ", cur_text_pos, "  ", speed_coef, "  ", all_char, "  ", seen_char, "  ", cur_theme)
 	if (cur["type"]=="line"):
 		var line=cur["line"]
 		#text=str(line)
@@ -240,8 +245,35 @@ func exec_line():
 				if (cur_text_pos==len(txt)):
 					cur_tween.kill()
 					dis_text+=app_text
+					print("AAA")
+					if (cur_theme!="none"):
+						var s_char=0
+						if (d["cipher"]==false):
+							s_char=len(txt)
+						var a_char=len(txt)
+						#print(theme_attention.has(cur_theme))
+						if (theme_attention.has(cur_theme)):
+							var th=theme_attention[cur_theme]
+							theme_attention[cur_theme]=[th[0]+a_char, th[1]+s_char]
+						else:
+							theme_attention[cur_theme]=[a_char, s_char]
+						'''theme_attention[cur_theme][0]+=len(txt)
+						if (d["cipher"]==false):
+							theme_attention[cur_theme][1]+=len(txt)'''
+						pass
+						print(theme_attention)
+						#theme_attention[cur_theme]
+					if (d["cipher"]==false):
+						seen_char+=len(txt)
+					all_char+=len(txt)
 					cur_text_pos=-1
 					cur_command+=1
+			if l["type"]=="speed":
+				set_speed(l["speed"])
+				cur_command+=1
+			if l["type"]=="theme":
+				cur_theme=(l["theme"])
+				cur_command+=1
 		else:
 			text=dis_text	
 	if (cur["type"]=="jump"):
