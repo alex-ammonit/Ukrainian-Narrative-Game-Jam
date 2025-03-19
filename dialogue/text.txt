@@ -1,5 +1,7 @@
 <blue>"Нормально."
 <label:A><speed:5><red>"Повернулася, бо було складно роботу знову знайти, <speed:3><green>да і дома давно не була."
-<theme:food><blue>"Їдять різне,<green> мені сподобалося це і оце…”
+<theme:food><speed:3><blue>"Їдять різне,<green> мені сподобалося це і оце…”
 <blue>“Люди інші, <red>але відмінності всередині групи більші, ніж відмінності між групами.<green>Ну, тобто різні траплялися.”
+<check_attention:food;less;0.4><jump:are_you_paying_attention>
 <jump:A>
+<label:are_you_paying_attention>Ти що, взагалі не звертаєшь на мене увагу?

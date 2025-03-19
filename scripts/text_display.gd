@@ -23,7 +23,7 @@ func tokenize(string:String):
 			shall_parse=true
 		else:
 			s=string[i]
-		if (s=='\n' and in_brackets==false):
+		if ( (s=='\n' or s=='\r') and in_brackets==false):
 			shall_parse=true
 		if (s=='<') or (s=='>'):
 			shall_parse=true
@@ -42,7 +42,7 @@ func tokenize(string:String):
 				in_brackets=true
 			if (s=='>'):
 				in_brackets=false
-			if (s=='\n'):
+			if (s=='\n' or s=='\r'):
 				dictar.append({"type":"new_line"})
 	return dictar
 	pass
@@ -94,6 +94,8 @@ func parse(string: String):
 			if (type=="jump"):
 				if (len(choice_buffer)>0):
 					choice_buffer[len(choice_buffer)-1]["to"]=data
+				elif (len(dictar)>0 and dictar[-1]["type"]=="check_attention" and dictar[-1]["to"]==""):
+					dictar[-1]["to"]=data
 				else:
 					append_line.call()
 					dictar.append({"type":"jump", "to":data})
@@ -104,6 +106,27 @@ func parse(string: String):
 			if (type=="choice"):
 				append_line.call()
 				choice_buffer.append({"type":"choice", "text":data, "to":-1})
+			if (type=="check_attention"):
+				append_line.call()
+				'''if (i+1>=el_length or elements[i+1]["type"]!="control"):
+					#print(elements[i+1]["type"])
+					OS.alert("Element check requires jump as the next element")
+					#OS.alert("No jump after check?")
+				else:
+					var j_el=elements[i+1]
+					var j_type=j_el["data"]
+					var j_data=""
+					var j_colon=j_type.find(':')
+					if (colon!=-1):
+						j_data=j_type.substr(j_colon+1)
+						j_type=j_type.substr(0, j_colon)
+					#print(j_el)
+					if (j_type!="jump"):
+						OS.alert("Element check requires jump as the next element")
+						continue'''
+				dictar.append({"type":"check_attention", "data":data, "to":""})
+				#i=i+1
+				continue
 			if (color_dict.has(type)):
 				activeColor=type
 			if (type=="none"):
@@ -277,8 +300,49 @@ func exec_line():
 		else:
 			text=dis_text	
 	if (cur["type"]=="jump"):
-		turn_to_line(cur["to"])
+		turn_to_line(script_labels[cur["to"]])
 		#script_pickup=script_labels[cur["to"]]
+	if (cur["type"]=="check_attention"):
+		#text=str(cur)
+		var data=cur["data"]
+		data=data.replace(";more;", ">")
+		data=data.replace(";less;", "<")
+		data=data.replace(";equal;", "==")
+		data=data.replace(";more_equal;", ">=")
+		data=data.replace(";less_equal;", "<=")
+		#text=data
+		var regex=RegEx.new()
+		regex.compile("[a-zA-Z\\_][a-z-A-Z\\_0-9]*")
+		var reg_result=regex.search_all(data)
+		var themes=[]
+		if (reg_result):
+			#print(result.get_string())
+			for r in reg_result:
+				themes.append(r.get_string())
+				#print(r.get_string())
+		var theme_values=[]
+		for th in themes:
+			if th=="global":
+				theme_values.append(float(seen_char)/float(all_char))
+			else:
+				if (theme_attention.has(th)):
+					var th_v=theme_attention[th]
+					theme_values.append( float(th_v[1])/float(th_v[0]) )
+				else:
+					OS.alert("there is no such theme in the list")
+		var expression=Expression.new()
+		expression.parse(data, themes)
+		var ex_result=expression.execute(theme_values)
+		#text=str(ex_result)
+		print(themes, theme_values)
+		#text=str(ex_result)
+		if (ex_result is bool):
+			if cur["to"]!="" and ex_result:
+				turn_to_line(script_labels[cur["to"]])
+			else:
+				next_line()
+		#evaluate()
+		#print(cur["type"])
 
 func _process(delta):
 	exec_line()
