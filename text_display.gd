@@ -1,5 +1,6 @@
 extends RichTextLabel
 
+@export_file() var file_path:String
 @export_multiline var t:String
 @export var color_dict:Dictionary[String, Color]
 var script_play
@@ -116,15 +117,37 @@ func parse(string: String):
 	return {"script":dictar, "labels":labels}
 
 func _ready():
+	if file_path!="":
+		var file=FileAccess.open(file_path, FileAccess.READ)
+		t=file.get_as_text()
 	var p=parse(t)
 	var commands=p["script"]
 	print(p["labels"])
 	script_labels=p["labels"]
 	script_play=p["script"]
-	script_pickup=0
+	#script_pickup=0
 	#print(p, len(p))
 	for i in len(commands):
 		print(i,":", commands[i])
+	#exec_line()
+	turn_to_line(0)
+
+func turn_to_line(line:int):
+	script_pickup=line
+	cur_command=-1
+	cur_text_pos=-1
+	cur_time=0
+	dis_text=""
+
+func back_line():
+	turn_to_line( clamp(script_pickup-1, 0, len(script_play)-1) )
+	#script_pickup=clamp(script_pickup-1, 0, len(script_play)-1)
+	#exec_line()
+
+func next_line():
+	turn_to_line( clamp(script_pickup+1, 0, len(script_play)-1) )
+	#script_pickup=clamp(script_pickup+1, 0, len(script_play)-1)
+	#exec_line()
 
 func _input(event):
 	if (script_pickup==-1):
@@ -132,75 +155,113 @@ func _input(event):
 	if (event is InputEventKey and event.is_pressed()):
 		#print(event.as_text_keycode())
 		if (event.as_text_keycode()=="Left"):
+			back_line()
 			#print("L")
-			script_pickup=clamp(script_pickup-1, 0, len(script_play)-1)
+			#script_pickup=clamp(script_pickup-1, 0, len(script_play)-1)
 		if (event.as_text_keycode()=="Right"):
-			script_pickup=clamp(script_pickup+1, 0, len(script_play)-1)
+			next_line()
+			#script_pickup=clamp(script_pickup+1, 0, len(script_play)-1)
 			#script_pickup+=1
 			#print("R")
 
-func _process(delta):
-	if (script_pickup==-1):
-		return
-	var cur=script_play[script_pickup]
-	#print(cur)
+func return_text(text:String, color:String="none"):
+	var d={"open":"", "text":"", "close":""}
+	if (color!="none"):
+		d["open"]="[color=#"+color_dict[color].to_html()+"]"
+		d["close"]="[/color]"
+		if (color_dict[color]!=WhatSelected.color):
+			var app_text=""
+			for i in range(len(text)):
+				#app_text+="#"
+				#app_text+="#@!&"[randi_range(0,3)]
+				var col_dif=(color_dict[color]-WhatSelected.color)
+				if (text[i]==' '):
+					app_text+=' '
+					continue
+				var buf=(text[i]).to_utf8_buffer()
+				var bif=buf[0]
+				for k in range(1, len(buf)):
+					bif+=buf[k]+int(col_dif.r*1+col_dif.g*2+col_dif.b*3)
+					#print(type_string(typeof(bif)))
+				#app_text+=String.chr((bif%4+35))
+				app_text+=String.chr( bif )
+			d["text"]=app_text
+	if (color=="none" or color_dict[color]==WhatSelected.color):
+		d["text"]=text
+	return d
 	
+var cur_command:int=-1
+var cur_text_pos:int=-1
+var cur_time=0
+var dis_text=""
+var cur_tween
+func exec_line():
+	var cur=script_play[script_pickup]
 	text=str(cur)
+	print(cur_command, "  ", cur_text_pos)
 	if (cur["type"]=="line"):
 		var line=cur["line"]
 		#text=str(line)
 		text=""
-		for l in line:
+		'''if (cur_command==-1):
+			var tween=create_tween()
+			cur_command=0
+			print(cur_command)
+			tween.tween_property(self, "cur_command", len(line)-1, 1)'''
+		var l;
+		if (cur_command==-1): cur_command=0
+		if (cur_command<len(line)):
+			l=line[cur_command]
+		#for l in line:
+		if (cur_command<len(line)):
 			#print(l["type"])
 			if l["type"]=="text":
+				var prev_text=text
 				var app_text=""
 				var color=l["color"]
 				var txt=l["text"]
-				if (color!="none"):
+				var d=return_text(txt, color)
+				#app_text=d["open"]+d["text"]+d["close"]
+				if (cur_text_pos==-1):
+					cur_text_pos=0
+					cur_tween=create_tween()
+					cur_tween.tween_property(self, "cur_text_pos", len(d["text"]), len(d["text"])*0.2)
+				app_text=d["open"]+d["text"].substr(0, cur_text_pos)+d["close"]
+				'''if (color!="none"):
 					app_text="[color=#"+color_dict[color].to_html()+"]"
 				if (color!="none" and color_dict[color]!=WhatSelected.color):
 					#app_text+="#"
 					for i in range(len(txt)):
 						#app_text+="#"
 						#app_text+="#@!&"[randi_range(0,3)]
+						var col_dif=(color_dict[color]-WhatSelected.color)
 						if (txt[i]==' '):
 							app_text+=' '
 							continue
 						var buf=(txt[i]).to_utf8_buffer()
 						var bif=buf[0]
 						for k in range(1, len(buf)):
-							bif+=buf[k]
-						app_text+=String.chr((bif%4+35))
+							bif+=buf[k]+int(col_dif.r*1+col_dif.g*2+col_dif.b*3)
+							#print(type_string(typeof(bif)))
+						#app_text+=String.chr((bif%4+35))
+						app_text+=String.chr( bif )
+						#await get_tree().create_timer(0.5).timeout
 				else:
 					app_text+=txt
 				if (l["color"]!="none"):
-					app_text+="[/color]"
-				text+=app_text
+					app_text+="[/color]"'''
+				text=dis_text+app_text
+				if (cur_text_pos==len(txt)):
+					cur_tween.kill()
+					dis_text+=app_text
+					cur_text_pos=-1
+					cur_command+=1
+		else:
+			text=dis_text	
 	if (cur["type"]=="jump"):
-		script_pickup=script_labels[cur["to"]]
-	#print(parse(t))
-	#var elements=parse(t)
-	#var new_text=""
-	#var activeColor="none"
-	'''for el in elements:
-		if el["type"]=="control":
-			if (el["data"]=="none"):
-				activeColor="none"
-			if (color_dict.has(el["data"])):
-				#new_text=new_text+"[color=#"+color_dict[el["data"]].to_html()+"]"
-				activeColor=el["data"]
-		if el["type"]=="text":
-			if (activeColor!="none" and color_dict[activeColor]==WhatSelected.color):
-				new_text=new_text+"[color=#"+color_dict[activeColor].to_html()+"]"
-				new_text=new_text+el["text"]
-				new_text=new_text+"[/color]"
-			elif (activeColor=="none"):
-				#new_text=new_text+"[/color]"
-				new_text=new_text+el["text"]
-			else:
-				new_text=new_text+"[color=#"+color_dict[activeColor].to_html()+"]"
-				new_text=new_text+( String("#") )
-				new_text=new_text+"[/color]"
-			#if el["data"]=="red":'''
-	#text=new_text
-	#pass
+		turn_to_line(cur["to"])
+		#script_pickup=script_labels[cur["to"]]
+
+func _process(delta):
+	exec_line()
+	pass
