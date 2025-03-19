@@ -95,7 +95,8 @@ func parse(string: String):
 				else:
 					append_line.call()
 					dictar.append({"type":"jump", "to":data})
-				
+			if (type=="speed"):
+				line_buffer.append({"type":"speed", "speed":data.to_float()})
 			if (type=="choice"):
 				append_line.call()
 				choice_buffer.append({"type":"choice", "text":data, "to":-1})
@@ -198,6 +199,11 @@ var cur_text_pos:int=-1
 var cur_time=0
 var dis_text=""
 var cur_tween:Tween
+var speed_coef=0.2
+func set_speed(speed:float):
+	speed_coef=1/speed
+#var seen_char=0
+#var all_char=0
 func exec_line():
 	var cur=script_play[script_pickup]
 	text=str(cur)
@@ -228,7 +234,7 @@ func exec_line():
 				if (cur_text_pos==-1):
 					cur_text_pos=0
 					cur_tween=create_tween()
-					cur_tween.tween_property(self, "cur_text_pos", len(d["text"]), len(d["text"])*0.2)
+					cur_tween.tween_property(self, "cur_text_pos", len(d["text"]), len(d["text"])*speed_coef)
 				app_text=d["open"]+d["text"].substr(0, cur_text_pos)+d["close"]
 				text=dis_text+app_text
 				if (cur_text_pos==len(txt)):
