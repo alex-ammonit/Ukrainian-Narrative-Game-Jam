@@ -138,6 +138,8 @@ func turn_to_line(line:int):
 	cur_text_pos=-1
 	cur_time=0
 	dis_text=""
+	if (cur_tween!=null):
+		cur_tween.kill()
 
 func back_line():
 	turn_to_line( clamp(script_pickup-1, 0, len(script_play)-1) )
@@ -165,11 +167,12 @@ func _input(event):
 			#print("R")
 
 func return_text(text:String, color:String="none"):
-	var d={"open":"", "text":"", "close":""}
+	var d={"open":"", "text":"", "close":"","cipher":false}
 	if (color!="none"):
 		d["open"]="[color=#"+color_dict[color].to_html()+"]"
 		d["close"]="[/color]"
 		if (color_dict[color]!=WhatSelected.color):
+			d["cipher"]=true
 			var app_text=""
 			for i in range(len(text)):
 				#app_text+="#"
@@ -194,7 +197,7 @@ var cur_command:int=-1
 var cur_text_pos:int=-1
 var cur_time=0
 var dis_text=""
-var cur_tween
+var cur_tween:Tween
 func exec_line():
 	var cur=script_play[script_pickup]
 	text=str(cur)
@@ -227,29 +230,6 @@ func exec_line():
 					cur_tween=create_tween()
 					cur_tween.tween_property(self, "cur_text_pos", len(d["text"]), len(d["text"])*0.2)
 				app_text=d["open"]+d["text"].substr(0, cur_text_pos)+d["close"]
-				'''if (color!="none"):
-					app_text="[color=#"+color_dict[color].to_html()+"]"
-				if (color!="none" and color_dict[color]!=WhatSelected.color):
-					#app_text+="#"
-					for i in range(len(txt)):
-						#app_text+="#"
-						#app_text+="#@!&"[randi_range(0,3)]
-						var col_dif=(color_dict[color]-WhatSelected.color)
-						if (txt[i]==' '):
-							app_text+=' '
-							continue
-						var buf=(txt[i]).to_utf8_buffer()
-						var bif=buf[0]
-						for k in range(1, len(buf)):
-							bif+=buf[k]+int(col_dif.r*1+col_dif.g*2+col_dif.b*3)
-							#print(type_string(typeof(bif)))
-						#app_text+=String.chr((bif%4+35))
-						app_text+=String.chr( bif )
-						#await get_tree().create_timer(0.5).timeout
-				else:
-					app_text+=txt
-				if (l["color"]!="none"):
-					app_text+="[/color]"'''
 				text=dis_text+app_text
 				if (cur_text_pos==len(txt)):
 					cur_tween.kill()
