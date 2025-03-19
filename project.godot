@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-WhatSelected="*res://what_selected.gd"
+WhatSelected="*res://scripts/what_selected.gd"
 
 [editor_plugins]
 
