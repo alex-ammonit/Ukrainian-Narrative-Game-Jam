@@ -317,9 +317,10 @@ script = SubResource("GDScript_66tet")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Control3/Polygon2D/Area2D"]
 
-[node name="Path2D" type="Path2D" parent="Control3"]
+[node name="Path2D" type="Path2D" parent="Control3" node_paths=PackedStringArray("clockhand")]
 curve = SubResource("Curve2D_8mm7a")
 script = ExtResource("9_6u1mn")
+clockhand = NodePath("../TextureRect/TextureRect2")
 colors = Array[Color]([Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)])
 
 [connection signal="change_expression" from="Control/ColorRect/RichTextLabel" to="Control/TextureRect" method="print_expression"]
