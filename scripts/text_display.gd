@@ -257,7 +257,10 @@ func exec_line():
 				text=dis_text+app_text
 				if (cur_text_pos==len(txt)):
 					cur_tween.kill()
-					dis_text+=app_text
+					if (d["cipher"]==false):
+						dis_text+=d["text"]
+					else:
+						dis_text+="[color=dark_gray]"+d["text"]+"[/color]"
 					#print("AAA")
 					if (cur_theme!="none"):
 						var s_char=0
