@@ -43,12 +43,18 @@ func points_to_polygon(in_points, color):
 	pol_col.polygon=points
 	return pol
 
+func clockhand_from_angle(angle):
+	var new_point=clockhand.global_position.from_angle( angle )*80
+	new_point=to_local(new_point+clockhand.global_position+clockhand.pivot_offset)
+	return new_point
+
 func generate_polygons():
 	curve.clear_points()
 	for i in range(10, -20, -5):
 		print(i)
-		var new_point=clockhand.global_position.from_angle( float(i)/10 )*80
-		new_point=to_local(new_point+clockhand.global_position+clockhand.pivot_offset)
+		var new_point=clockhand_from_angle(float(i)/10)
+		#var new_point=clockhand.global_position.from_angle( float(i)/10 )*80
+		#new_point=to_local(new_point+clockhand.global_position+clockhand.pivot_offset)
 		print(new_point)
 		curve.add_point(new_point)
 		#print(clockhand.global_position.from_angle( float(i)/10 )*10)
