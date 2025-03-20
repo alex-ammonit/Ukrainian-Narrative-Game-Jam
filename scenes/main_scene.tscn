@@ -322,6 +322,11 @@ curve = SubResource("Curve2D_8mm7a")
 script = ExtResource("9_6u1mn")
 clockhand = NodePath("../TextureRect/TextureRect2")
 colors = Array[Color]([Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)])
+color_dict = Dictionary[Vector2, Color]({
+Vector2(-0.7, -1.5): Color(0, 0, 1, 1),
+Vector2(0.1, -0.7): Color(0, 1, 0, 1),
+Vector2(1, 0.1): Color(1, 0, 0, 1)
+})
 
 [connection signal="change_expression" from="Control/ColorRect/RichTextLabel" to="Control/TextureRect" method="print_expression"]
 [connection signal="mouse_entered" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_entered"]

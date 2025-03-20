@@ -4,6 +4,7 @@ extends Path2D
 @export var clockhand:Node
 
 @export var colors: Array[Color]
+@export var color_dict:Dictionary[Vector2, Color]
 '''@export_tool_button("generate polygons")
 var generate_pols:
 	get: return func():
@@ -46,10 +47,23 @@ func points_to_polygon(in_points, color):
 func clockhand_from_angle(angle):
 	var new_point=clockhand.global_position.from_angle( angle )*80
 	new_point=to_local(new_point+clockhand.global_position+clockhand.pivot_offset)
+	#print(angle, "->", new_point)
 	return new_point
 
 func generate_polygons():
-	curve.clear_points()
+	var color_keys=color_dict.keys()
+	#print(color_keys)
+	for key in color_keys:
+		var point_ar=[]
+		var di=sign( (key.y-key.x) )
+		for i in range(key.x*10, key.y*10+di, di ):
+	#		print(key, "  ", i)
+			point_ar.append(clockhand_from_angle(float(i)/10))
+	#	print(key, "  ", point_ar)
+		var pol=points_to_polygon(point_ar, color_dict[key])
+		add_child(pol)
+		pass
+	'''curve.clear_points()
 	for i in range(10, -20, -5):
 		print(i)
 		var new_point=clockhand_from_angle(float(i)/10)
@@ -70,4 +84,14 @@ func generate_polygons():
 	#print(len(baked_points))
 	for i in col_len:
 		var pol=points_to_polygon(baked_points.slice(baked_div*i, baked_div*(i+1)+1), colors[i])
-		add_child(pol)
+		add_child(pol)'''
+
+func _process(delta):
+	var color_keys=color_dict.keys()
+	var freq=WhatSelected.freq
+	#print(freq)
+	for key in color_keys:
+		#var di=sign( (key.y-key.x) )
+		if (freq>=min(key.x, key.y) and freq<=max(key.x, key.y)):
+			#print(freq, color_dict[key])
+			WhatSelected.color=color_dict[key]

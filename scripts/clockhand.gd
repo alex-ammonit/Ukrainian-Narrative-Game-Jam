@@ -35,7 +35,8 @@ func _process(delta):
 		var col_col=col.get_parent().color
 		if (col_col!=null):
 			#print(col_col)
-			WhatSelected.color=col_col
+			#WhatSelected.color=col_col
+			pass
 
 func _input(event):
 	if event is InputEventMouseButton:
