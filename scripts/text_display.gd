@@ -130,6 +130,8 @@ func parse(string: String):
 	return {"script":dictar, "labels":labels}
 
 func _ready():
+	chars_arr = flicker_chars.split("")
+	flicker_arr = flicker_chars.split("")
 	if file_path!="":
 		var file=FileAccess.open(file_path, FileAccess.READ)
 		t=file.get_as_text()
@@ -191,17 +193,17 @@ func return_text(text:String, color:String="none"):
 			for i in range(len(text)):
 				#app_text+="#"
 				#app_text+="#@!&"[randi_range(0,3)]
-				var col_dif=(color_dict[color]-WhatSelected.color)
+				#var col_dif=(color_dict[color]-WhatSelected.color)
 				if (text[i]==' '):
 					app_text+=' '
 					continue
-				var buf=(text[i]).to_utf8_buffer()
-				var bif=buf[0]
-				for k in range(1, len(buf)):
-					bif+=buf[k]+int(col_dif.r*1+col_dif.g*2+col_dif.b*3)
-					#print(type_string(typeof(bif)))
-				#app_text+=String.chr((bif%4+35))
-				app_text+=String.chr( bif )
+				#var buf=(text[i]).to_utf8_buffer()
+				#var bif=buf[0]
+				#for k in range(1, len(buf)):
+					#bif+=buf[k]+int(col_dif.r*1+col_dif.g*2+col_dif.b*3)
+				#app_text+=String.chr( bif )
+				app_text += flicker_arr[i % flicker_arr.size()]
+				
 			d["text"]=app_text
 	if (color=="none" or color_dict[color]==WhatSelected.color):
 		d["text"]=text
@@ -220,7 +222,7 @@ var all_char=0
 func exec_line():
 	var cur=script_play[script_pickup]
 	text=str(cur)
-	print(cur_command, "  ", cur_text_pos, "  ", speed_coef, "  ", all_char, "  ", seen_char, "  ", cur_theme)
+	#print(cur_command, "  ", cur_text_pos, "  ", speed_coef, "  ", all_char, "  ", seen_char, "  ", cur_theme)
 	if (cur["type"]=="line"):
 		var line=cur["line"]
 		#text=str(line)
@@ -253,7 +255,7 @@ func exec_line():
 				if (cur_text_pos==len(txt)):
 					cur_tween.kill()
 					dis_text+=app_text
-					print("AAA")
+					#print("AAA")
 					if (cur_theme!="none"):
 						var s_char=0
 						if (d["cipher"]==false):
@@ -269,7 +271,7 @@ func exec_line():
 						if (d["cipher"]==false):
 							theme_attention[cur_theme][1]+=len(txt)'''
 						pass
-						print(theme_attention)
+						#print(theme_attention)
 						#theme_attention[cur_theme]
 					if (d["cipher"]==false):
 						seen_char+=len(txt)
@@ -336,5 +338,26 @@ func exec_line():
 		#print(cur["type"])
 
 func _process(delta):
+	flicker(delta)
 	exec_line()
 	pass
+	
+var flicker_timeout := 0.06
+var flicker_timer := 0.0
+var cur_flicker_rnd := 0
+@export var flicker_chars: String = "1234567890йцукенгшщзхїфівапролджєячсмитьбю"
+#"abcdefghijklmnopqrstuvwxyz1234567890!@#$^&*()…æ_+-=;[]/~`"
+ #"йцукенгшщзхїфівапролджєячсмитьбюЙЦУКЕНГШЩЗХЇФІВАПРОЛДЖЄЯЧСМИТЬБЮ"
+var chars_arr
+var flicker_arr
+
+func flicker(delta):
+	if flicker_timer > flicker_timeout:
+		flicker_timer = 0.0
+	flicker_timer += delta
+	for i in range(0, flicker_arr.size()):
+		var shift = flicker_timeout * (i+1) / flicker_arr.size()
+		var diff = shift - flicker_timer
+		if abs(diff) < delta:
+			var rnd = randi() % flicker_arr.size()
+			flicker_arr[i] = chars_arr[rnd] 

@@ -1,5 +1,7 @@
 extends TextureRect
 
+@export var wheelStep: float = 1.0
+
 var mouse_hover: bool
 var mouse_pressed: bool=false
 var mouse_pressed_position: Vector2
@@ -44,8 +46,15 @@ func _input(event):
 		if event.pressed==false:
 			mouse_pressed=false
 			#rotation=position.angle_to_point(event.position)
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			rotateHandle(-wheelStep)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			rotateHandle(wheelStep)
 
-
+func rotateHandle(amount):
+	WhatSelected.freq += amount
+	rotation = WhatSelected.freq
+	
 func _on_mouse_entered():
 	mouse_hover=true
 	pass # Replace with function body.

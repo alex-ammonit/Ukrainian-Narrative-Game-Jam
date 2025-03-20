@@ -112,6 +112,7 @@ offset_top = 30.0
 offset_right = 791.0
 offset_bottom = 196.0
 theme_override_fonts/normal_font = ExtResource("1_c1pb6")
+theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 script = ExtResource("2_6wevv")
@@ -246,6 +247,7 @@ grow_vertical = 2
 pivot_offset = Vector2(30, 40)
 texture = ExtResource("7_si52b")
 script = ExtResource("8_01n6w")
+wheelStep = 0.05
 
 [node name="RayCast2D" type="RayCast2D" parent="Control3/TextureRect/TextureRect2"]
 position = Vector2(0, 43)
