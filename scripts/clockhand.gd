@@ -29,14 +29,14 @@ func _process(delta):
 		#rotation=global_position.angle_to_point(mouse_position)
 		#rotate_toward(rotation, global_position.angle_to_point(mouse_position), delta)
 	rotation=WhatSelected.freq
-	var col=$RayCast2D.get_collider()
-	if col!=null:
-		#print(col.get_parent().color)
-		var col_col=col.get_parent().color
-		if (col_col!=null):
-			#print(col_col)
-			#WhatSelected.color=col_col
-			pass
+	#var col=$RayCast2D.get_collider()
+	#if col!=null:
+		##print(col.get_parent().color)
+		#var col_col=col.get_parent().color
+		#if (col_col!=null):
+			##print(col_col)
+			##WhatSelected.color=col_col
+			#pass
 
 func _input(event):
 	if event is InputEventMouseButton:

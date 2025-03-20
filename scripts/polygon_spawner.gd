@@ -1,10 +1,14 @@
 #@tool
+class_name PolygonSpawner
+
 extends Path2D
 
 @export var clockhand:Node
 
 @export var colors: Array[Color]
 @export var color_dict:Dictionary[Vector2, Color]
+
+var color_to_range_dict:Dictionary[Color, Vector2]
 '''@export_tool_button("generate polygons")
 var generate_pols:
 	get: return func():
@@ -13,6 +17,8 @@ var generate_pols:
 
 
 func _ready():
+	for key in color_dict:
+		color_to_range_dict.set(color_dict[key], key)
 	generate_polygons()
 	pass
 

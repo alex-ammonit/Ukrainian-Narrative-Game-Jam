@@ -105,7 +105,7 @@ grow_vertical = 0
 color = Color(0.393086, 0.393086, 0.393085, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/ColorRect"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/ColorRect" node_paths=PackedStringArray("polygon_spawner")]
 layout_mode = 0
 offset_left = 263.0
 offset_top = 30.0
@@ -127,6 +127,7 @@ color_dict = Dictionary[String, Color]({
 "green": Color(0, 1, 0, 1),
 "red": Color(1, 0, 0, 1)
 })
+polygon_spawner = NodePath("../../../Control3/Path2D")
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 1

@@ -3,6 +3,7 @@ extends RichTextLabel
 @export_file() var file_path:String
 @export_multiline var t:String
 @export var color_dict:Dictionary[String, Color]
+@export var polygon_spawner: PolygonSpawner
 var script_play
 var script_labels:Dictionary[String, int]
 var script_pickup:int=-1
@@ -187,8 +188,10 @@ func return_text(text:String, color:String="none"):
 	if (color!="none"):
 		d["open"]="[color=#"+color_dict[color].to_html()+"]"
 		d["close"]="[/color]"
+		is_cipher_shown = false
 		if (color_dict[color]!=WhatSelected.color):
 			d["cipher"]=true
+			is_cipher_shown = true
 			var app_text=""
 			for i in range(len(text)):
 				#app_text+="#"
@@ -202,13 +205,13 @@ func return_text(text:String, color:String="none"):
 				#for k in range(1, len(buf)):
 					#bif+=buf[k]+int(col_dif.r*1+col_dif.g*2+col_dif.b*3)
 				#app_text+=String.chr( bif )
-				app_text += flicker_arr[i % flicker_arr.size()]
+				app_text += flicker_text(text, i, color_dict[color])
 				
 			d["text"]=app_text
 	if (color=="none" or color_dict[color]==WhatSelected.color):
 		d["text"]=text
 	return d
-	
+
 var cur_command:int=-1
 var cur_text_pos:int=-1
 var cur_time=0
@@ -338,10 +341,12 @@ func exec_line():
 		#print(cur["type"])
 
 func _process(delta):
-	flicker(delta)
+	if is_cipher_shown:
+		update_flicker_chars(delta)
 	exec_line()
 	pass
 	
+var is_cipher_shown := false
 var flicker_timeout := 0.06
 var flicker_timer := 0.0
 var cur_flicker_rnd := 0
@@ -351,7 +356,7 @@ var cur_flicker_rnd := 0
 var chars_arr
 var flicker_arr
 
-func flicker(delta):
+func update_flicker_chars(delta):
 	if flicker_timer > flicker_timeout:
 		flicker_timer = 0.0
 	flicker_timer += delta
@@ -361,3 +366,12 @@ func flicker(delta):
 		if abs(diff) < delta:
 			var rnd = randi() % flicker_arr.size()
 			flicker_arr[i] = chars_arr[rnd] 
+
+func flicker_text(text: String, i: int, target_color: Color):
+	var cur_freq = WhatSelected.freq
+	var target_range: Vector2 = polygon_spawner.color_to_range_dict[target_color]
+	var dist_to_target = min(abs(target_range.x - cur_freq), abs(cur_freq - target_range.y))
+	if randf() < dist_to_target:
+		return flicker_arr[i % flicker_arr.size()]
+	else:
+		return text[i]
