@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=19 format=3 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="FontFile" uid="uid://k04ofg0wl727" path="res://fonts/NotoSansMono-VariableFont_wdth,wght.ttf" id="1_c1pb6"]
 [ext_resource type="Script" uid="uid://bhxok8tyjnr65" path="res://scripts/text_display.gd" id="2_6wevv"]
@@ -9,6 +9,52 @@
 [ext_resource type="Texture2D" uid="uid://3r7mh8mix6hj" path="res://sprites/b2.png" id="7_si52b"]
 [ext_resource type="Script" uid="uid://botgewcecp4jj" path="res://scripts/clockhand.gd" id="8_01n6w"]
 [ext_resource type="Script" uid="uid://jk1pg5org6db" path="res://scripts/polygon_spawner.gd" id="9_6u1mn"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_c1pb6"]
+buffer_length = 0.02
+
+[sub_resource type="GDScript" id="GDScript_6wevv"]
+script/source = "extends AudioStreamPlayer
+
+var sample_hz=22050.0
+var pulse_hz=440
+var phase=0
+
+var playback:AudioStreamPlayback
+
+func _ready():
+	stream.mix_rate=sample_hz
+	playback=get_stream_playback()
+	pass
+
+func _on_beep_signal(char, ciphered):
+	print(char, ciphered)
+	var increment=pulse_hz/sample_hz
+	var frames_available=playback.get_frames_available()
+	if (ciphered): pitch_scale=0.5
+	else: pitch_scale=2.0
+	for i in range(frames_available):
+		var bchar=char.to_utf8_buffer()
+		var bif=bchar[0]
+		#print(bif)
+		var new_frame=Vector2.ONE*sin(phase*TAU*(bif/50) )
+		#var new_frame=Vector2.ONE*sin(phase*TAU)
+		playback.push_frame(new_frame)
+		#playback.push_frame(Vector2.ONE*sin(phase*TAU))
+		phase=fmod(phase+increment, 1.0)
+	'''var increment=pulse_hz/sample_hz
+	
+	var to_fill=playback.get_frames_available()
+	while to_fill>0:
+		playback.push_frame(Vector2.ONE * sin(phase*TAU) )
+		phase=fmod(phase+increment, 1.0)
+		to_fill-=1'''
+	'''volume_db=-12
+	var audio_sample=AudioStream.new()
+	var data=PackedByteArray([])'''
+	
+	pass
+"
 
 [sub_resource type="GDScript" id="GDScript_c1pb6"]
 script/source = "extends TextureRect
@@ -128,6 +174,11 @@ color_dict = Dictionary[String, Color]({
 "red": Color(1, 0, 0, 1)
 })
 polygon_spawner = NodePath("../../../Control3/Path2D")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="Control/ColorRect/RichTextLabel"]
+stream = SubResource("AudioStreamGenerator_c1pb6")
+autoplay = true
+script = SubResource("GDScript_6wevv")
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 1
@@ -329,6 +380,7 @@ Vector2(0.1, -0.7): Color(0, 1, 0, 1),
 Vector2(1, 0.1): Color(1, 0, 0, 1)
 })
 
+[connection signal="beep_signal" from="Control/ColorRect/RichTextLabel" to="Control/ColorRect/RichTextLabel/AudioStreamPlayer2D" method="_on_beep_signal"]
 [connection signal="change_expression" from="Control/ColorRect/RichTextLabel" to="Control/TextureRect" method="print_expression"]
 [connection signal="mouse_entered" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_exited"]

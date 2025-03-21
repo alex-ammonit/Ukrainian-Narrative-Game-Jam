@@ -12,6 +12,7 @@ var cur_theme="none"
 ##change expression
 signal change_expression(new_expression)
 signal change_background(new_background)
+signal beep_signal(char, ciphered)
 
 func tokenize(string:String):
 	#print(string)
@@ -214,6 +215,7 @@ func return_text(text:String, color:String="none"):
 
 var cur_command:int=-1
 var cur_text_pos:int=-1
+var old_text_pos:int=-1
 var cur_time=0
 var dis_text=""
 var cur_tween:Tween
@@ -255,6 +257,9 @@ func exec_line():
 					cur_tween.tween_property(self, "cur_text_pos", len(d["text"]), len(d["text"])*speed_coef)
 				app_text=d["open"]+d["text"].substr(0, cur_text_pos)+d["close"]
 				text=dis_text+app_text
+				if (cur_text_pos!=-1 and cur_text_pos<len(txt) and cur_text_pos!=old_text_pos):
+					beep_signal.emit(d["text"][cur_text_pos], d["cipher"])
+					old_text_pos=cur_text_pos
 				if (cur_text_pos==len(txt)):
 					cur_tween.kill()
 					if (d["cipher"]==false):
