@@ -1,4 +1,4 @@
-<music:test><expression:neutral><blue>"Нормально."
+<name:Romana><music:test><expression:neutral><blue>"Нормально."
 <music:none><label:A><speed:5><red>"Повернулася, бо було складно роботу знову знайти, <speed:3><green>да і дома давно не була."
 <theme:food><speed:3><blue>"Їдять різне,<green> мені сподобалося це і оце…”
 <blue>“Люди інші, <red>але відмінності всередині групи більші, ніж відмінності між групами.<green>Ну, тобто різні траплялися.”

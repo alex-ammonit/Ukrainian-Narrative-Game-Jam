@@ -15,6 +15,9 @@ signal change_background(new_background)
 signal change_music(new_music)
 signal play_sound(sound)
 signal beep_signal(char, ciphered)
+signal tutorial(tutorial)
+signal effect(new_effect)
+signal change_name(new_name)
 
 func tokenize(string:String):
 	#print(string)
@@ -118,6 +121,12 @@ func parse(string: String):
 				line_buffer.append({"type":"music", "music":data})
 			if (type=="sound"):
 				line_buffer.append({"type":"sound", "sound":data})
+			if (type=="tutorial"):
+				line_buffer.append({"type":"tutorial", "tutorial":data})
+			if (type=="effect"):
+				line_buffer.append({"type":"sound", "effect":data})
+			if (type=="name"):
+				line_buffer.append({"type":"name", "name":data})
 			if (type=="choice"):
 				append_line.call()
 				choice_buffer.append({"type":"choice", "text":data, "to":-1})
@@ -312,6 +321,15 @@ func exec_line():
 				cur_command+=1
 			if l["type"]=="sound":
 				play_sound.emit(l["sound"])
+				cur_command+=1
+			if l["type"]=="tutorial":
+				tutorial.emit(l["tutorial"])
+				cur_command+=1
+			if l["type"]=="effect":
+				effect.emit(l["effect"])
+				cur_command+=1
+			if l["type"]=="name":
+				change_name.emit(l["name"])
 				cur_command+=1
 		else:
 			text=dis_text	

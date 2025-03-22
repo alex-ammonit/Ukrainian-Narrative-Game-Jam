@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=23 format=3 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="AudioStream" uid="uid://bgbclv2w3s0j7" path="res://music/biy.mp3" id="1_6wevv"]
 [ext_resource type="FontFile" uid="uid://k04ofg0wl727" path="res://fonts/NotoSansMono-VariableFont_wdth,wght.ttf" id="1_c1pb6"]
@@ -86,6 +86,13 @@ func _on_beep_signal(char, ciphered):
 	var data=PackedByteArray([])'''
 	
 	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_4w45t"]
+script/source = "extends RichTextLabel
+
+func change_name(new_name):
+	text=new_name
 "
 
 [sub_resource type="GDScript" id="GDScript_c1pb6"]
@@ -224,6 +231,15 @@ polygon_spawner = NodePath("../../../Control3/Path2D")
 stream = SubResource("AudioStreamGenerator_c1pb6")
 autoplay = true
 script = SubResource("GDScript_6wevv")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/ColorRect"]
+layout_mode = 0
+offset_left = 295.0
+offset_top = -1.0
+offset_right = 377.0
+offset_bottom = 39.0
+text = "NAME"
+script = SubResource("GDScript_4w45t")
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 1
@@ -428,5 +444,6 @@ Vector2(1, 0.1): Color(1, 0, 0, 1)
 [connection signal="beep_signal" from="Control/ColorRect/RichTextLabel" to="Control/ColorRect/RichTextLabel/beeper" method="_on_beep_signal"]
 [connection signal="change_expression" from="Control/ColorRect/RichTextLabel" to="Control/TextureRect" method="print_expression"]
 [connection signal="change_music" from="Control/ColorRect/RichTextLabel" to="MusicManager" method="change_music"]
+[connection signal="change_name" from="Control/ColorRect/RichTextLabel" to="Control/ColorRect/RichTextLabel2" method="change_name"]
 [connection signal="mouse_entered" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_exited"]
