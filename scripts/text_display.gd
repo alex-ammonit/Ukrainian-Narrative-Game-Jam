@@ -124,7 +124,7 @@ func parse(string: String):
 			if (type=="tutorial"):
 				line_buffer.append({"type":"tutorial", "tutorial":data})
 			if (type=="effect"):
-				line_buffer.append({"type":"sound", "effect":data})
+				line_buffer.append({"type":"effect", "effect":data})
 			if (type=="name"):
 				line_buffer.append({"type":"name", "name":data})
 			if (type=="choice"):
