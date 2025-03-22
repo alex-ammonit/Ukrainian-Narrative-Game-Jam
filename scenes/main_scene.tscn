@@ -175,7 +175,7 @@ color_dict = Dictionary[String, Color]({
 })
 polygon_spawner = NodePath("../../../Control3/Path2D")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="Control/ColorRect/RichTextLabel"]
+[node name="beeper" type="AudioStreamPlayer" parent="Control/ColorRect/RichTextLabel"]
 stream = SubResource("AudioStreamGenerator_c1pb6")
 autoplay = true
 script = SubResource("GDScript_6wevv")
@@ -380,7 +380,7 @@ Vector2(0.1, -0.7): Color(0, 1, 0, 1),
 Vector2(1, 0.1): Color(1, 0, 0, 1)
 })
 
-[connection signal="beep_signal" from="Control/ColorRect/RichTextLabel" to="Control/ColorRect/RichTextLabel/AudioStreamPlayer2D" method="_on_beep_signal"]
+[connection signal="beep_signal" from="Control/ColorRect/RichTextLabel" to="Control/ColorRect/RichTextLabel/beeper" method="_on_beep_signal"]
 [connection signal="change_expression" from="Control/ColorRect/RichTextLabel" to="Control/TextureRect" method="print_expression"]
 [connection signal="mouse_entered" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_exited"]

@@ -12,6 +12,8 @@ var cur_theme="none"
 ##change expression
 signal change_expression(new_expression)
 signal change_background(new_background)
+signal change_music(new_music)
+signal play_sound(sound)
 signal beep_signal(char, ciphered)
 
 func tokenize(string:String):
@@ -112,6 +114,10 @@ func parse(string: String):
 				line_buffer.append({"type":"expression", "expression":data})
 			if (type=="background"):
 				line_buffer.append({"type":"background", "background":data})
+			if (type=="music"):
+				line_buffer.append({"type":"music", "music":data})
+			if (type=="sound"):
+				line_buffer.append({"type":"sound", "sound":data})
 			if (type=="choice"):
 				append_line.call()
 				choice_buffer.append({"type":"choice", "text":data, "to":-1})
@@ -299,7 +305,13 @@ func exec_line():
 				change_expression.emit(l["expression"])
 				cur_command+=1
 			if l["type"]=="background":
-				change_expression.emit(l["background"])
+				change_background.emit(l["background"])
+				cur_command+=1
+			if l["type"]=="music":
+				change_music.emit(l["music"])
+				cur_command+=1
+			if l["type"]=="sound":
+				play_sound.emit(l["sound"])
 				cur_command+=1
 		else:
 			text=dis_text	
