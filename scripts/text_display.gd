@@ -127,6 +127,8 @@ func parse(string: String):
 				line_buffer.append({"type":"effect", "effect":data})
 			if (type=="name"):
 				line_buffer.append({"type":"name", "name":data})
+			if (type=="wait"):
+				line_buffer.append({"type":"wait", "wait":data})
 			if (type=="choice"):
 				append_line.call()
 				choice_buffer.append({"type":"choice", "text":data, "to":-1})
@@ -237,6 +239,7 @@ var cur_tween:Tween
 var speed_coef=0.2
 func set_speed(speed:float):
 	speed_coef=1/speed
+var cur_wait_time=-1
 var seen_char=0
 var all_char=0
 func exec_line():
@@ -307,6 +310,16 @@ func exec_line():
 			if l["type"]=="speed":
 				set_speed(l["speed"])
 				cur_command+=1
+			if l["type"]=="wait":
+				if (cur_wait_time==-1):
+					cur_tween=create_tween()
+					cur_wait_time=l["wait"].to_float()
+					cur_tween.tween_property(self, "cur_wait_time", 0, l["wait"].to_float())
+				elif (cur_wait_time==0):
+					cur_tween.kill()
+					cur_command+=1
+				else:
+					text=dis_text
 			if l["type"]=="theme":
 				cur_theme=(l["theme"])
 				cur_command+=1
