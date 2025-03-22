@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=21 format=3 uid="uid://cgdwc4g3km056"]
 
+[ext_resource type="AudioStream" uid="uid://bgbclv2w3s0j7" path="res://music/biy.mp3" id="1_6wevv"]
 [ext_resource type="FontFile" uid="uid://k04ofg0wl727" path="res://fonts/NotoSansMono-VariableFont_wdth,wght.ttf" id="1_c1pb6"]
 [ext_resource type="Script" uid="uid://bhxok8tyjnr65" path="res://scripts/text_display.gd" id="2_6wevv"]
 [ext_resource type="Texture2D" uid="uid://brege0teei77a" path="res://sprites/a.png" id="3_e1cbu"]
@@ -9,6 +10,22 @@
 [ext_resource type="Texture2D" uid="uid://3r7mh8mix6hj" path="res://sprites/b2.png" id="7_si52b"]
 [ext_resource type="Script" uid="uid://botgewcecp4jj" path="res://scripts/clockhand.gd" id="8_01n6w"]
 [ext_resource type="Script" uid="uid://jk1pg5org6db" path="res://scripts/polygon_spawner.gd" id="9_6u1mn"]
+
+[sub_resource type="GDScript" id="GDScript_e1cbu"]
+script/source = "extends Node
+
+@export var music_dic:Dictionary[String, AudioStream]
+
+func change_music(new_music):
+	
+	if (new_music==\"none\"):
+		$AudioStreamPlayer.stop()
+		return
+	$AudioStreamPlayer.stream=music_dic[new_music]
+	$AudioStreamPlayer.play()
+	#print(new_music)
+	#pass
+"
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_c1pb6"]
 buffer_length = 0.02
@@ -127,6 +144,14 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="MusicManager" type="Node" parent="."]
+script = SubResource("GDScript_e1cbu")
+music_dic = Dictionary[String, AudioStream]({
+"test": ExtResource("1_6wevv")
+})
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MusicManager"]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -382,5 +407,6 @@ Vector2(1, 0.1): Color(1, 0, 0, 1)
 
 [connection signal="beep_signal" from="Control/ColorRect/RichTextLabel" to="Control/ColorRect/RichTextLabel/beeper" method="_on_beep_signal"]
 [connection signal="change_expression" from="Control/ColorRect/RichTextLabel" to="Control/TextureRect" method="print_expression"]
+[connection signal="change_music" from="Control/ColorRect/RichTextLabel" to="MusicManager" method="change_music"]
 [connection signal="mouse_entered" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_exited"]
