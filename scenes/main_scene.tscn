@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=22 format=3 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="AudioStream" uid="uid://bgbclv2w3s0j7" path="res://music/biy.mp3" id="1_6wevv"]
 [ext_resource type="FontFile" uid="uid://k04ofg0wl727" path="res://fonts/NotoSansMono-VariableFont_wdth,wght.ttf" id="1_c1pb6"]
@@ -25,6 +25,21 @@ func change_music(new_music):
 	$AudioStreamPlayer.play()
 	#print(new_music)
 	#pass
+"
+
+[sub_resource type="GDScript" id="GDScript_mngbo"]
+script/source = "extends Node
+
+@export var sound_dic:Dictionary[String, AudioStream]
+
+func play_sound(sound):
+	
+	if (sound==\"none\"):
+		$AudioStreamPlayer.stop()
+		return
+	$AudioStreamPlayer.stream=sound_dic[sound]
+	$AudioStreamPlayer.play()
+	pass
 "
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_c1pb6"]
@@ -152,6 +167,11 @@ music_dic = Dictionary[String, AudioStream]({
 })
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MusicManager"]
+
+[node name="SoundManager" type="Node" parent="."]
+script = SubResource("GDScript_mngbo")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundManager"]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
