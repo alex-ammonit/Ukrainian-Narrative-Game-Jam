@@ -113,6 +113,8 @@ func parse(string: String):
 				line_buffer.append({"type":"speed", "speed":data.to_float()})
 			if (type=="theme"):
 				line_buffer.append({"type":"theme", "theme":data})
+			if (type=="theme_null"):
+				line_buffer.append({"type":"theme_null", "theme":data})
 			if (type=="expression"):
 				line_buffer.append({"type":"expression", "expression":data})
 			if (type=="background"):
@@ -134,7 +136,12 @@ func parse(string: String):
 				choice_buffer.append({"type":"choice", "text":data, "to":-1})
 			if (type=="check_attention"):
 				append_line.call()
-				dictar.append({"type":"check_attention", "data":data, "to":""})
+				dictar.append({"type":"check_attention", "data":data, "to":"", "null":false})
+				#i=i+1
+				continue
+			if (type=="check_attention_null"):
+				append_line.call()
+				dictar.append({"type":"check_attention", "data":data, "to":"", "null":true})
 				#i=i+1
 				continue
 			if (color_dict.has(type)):
@@ -262,6 +269,9 @@ func exec_line():
 		if (cur_command<len(line)):
 			l=line[cur_command]
 		#for l in line:
+		if (cur_command==len(line) and cur["no_text"]):
+			next_line()
+			return
 		if (cur_command<len(line)):
 			#print(l["type"])
 			if l["type"]=="text":
@@ -302,7 +312,7 @@ func exec_line():
 						if (d["cipher"]==false):
 							theme_attention[cur_theme][1]+=len(txt)'''
 						pass
-						#print(theme_attention)
+						print(theme_attention)
 						#theme_attention[cur_theme]
 					if (d["cipher"]==false):
 						seen_char+=len(txt)
@@ -324,6 +334,9 @@ func exec_line():
 					text=dis_text
 			if l["type"]=="theme":
 				cur_theme=(l["theme"])
+				cur_command+=1
+			if l["type"]=="theme_null":
+				theme_attention.erase(l["theme"])
 				cur_command+=1
 			if l["type"]=="expression":
 				change_expression.emit(l["expression"])
@@ -389,8 +402,9 @@ func exec_line():
 			if cur["to"]!="" and ex_result:
 				turn_to_line(script_labels[cur["to"]])
 				# reset attention for current themes
-				for th in themes:
-					theme_attention.erase(th)
+				if (cur["null"]):
+					for th in themes:
+						theme_attention.erase(th)
 			else:
 				
 				next_line()
