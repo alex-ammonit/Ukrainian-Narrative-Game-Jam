@@ -149,6 +149,7 @@ func parse(string: String):
 	return {"script":dictar, "labels":labels}
 
 func _ready():
+	set_speed(initial_speed)
 	chars_arr = flicker_chars.split("")
 	flicker_arr = flicker_chars.split("")
 	if file_path!="":
@@ -230,6 +231,7 @@ func return_text(text:String, color:String="none"):
 		d["text"]=text
 	return d
 
+@export var initial_speed = 20
 var cur_command:int=-1
 var cur_text_pos:int=-1
 var old_text_pos:int=-1
@@ -381,12 +383,16 @@ func exec_line():
 		expression.parse(data, themes)
 		var ex_result=expression.execute(theme_values)
 		#text=str(ex_result)
-		print(themes, theme_values)
+		#print(themes, theme_values)
 		#text=str(ex_result)
 		if (ex_result is bool):
 			if cur["to"]!="" and ex_result:
 				turn_to_line(script_labels[cur["to"]])
+				# reset attention for current themes
+				for th in themes:
+					theme_attention.erase(th)
 			else:
+				
 				next_line()
 		#evaluate()
 		#print(cur["type"])

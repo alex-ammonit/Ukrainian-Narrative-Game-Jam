@@ -1,6 +1,9 @@
-<name:Romana><music:test><expression:neutral><blue>"Нормально."
-<music:none><label:A><speed:5><red>"Повернулася, бо було складно<wait:0.3> роботу знову знайти, <speed:3><green>да і дома давно не була."
-<theme:food><speed:3><blue>"Їдять різне,<green> мені сподобалося це і оце…”
+<name:Романа>Мені буває складно налаштуватись навіть на власні думки, не кажучи вже про те що говорять інші. 
+<label:tutorial_1>Те що я чую, це просто <tutorial:start><speed:10><theme:tutorial_1><red>шум. Щось нерозбірливе, або взагалі відсутність звуку, сенсу, часу.<check_attention:tutorial_1;less;1.0><jump:tutorial_1><tutorial:next>
+<label:tutorial_2><theme:tutorial_2><green>Таке відчуття ніби слова на якійсь <red>іншій хвилі і мені треба шукати її, <green>продираючись крізь шум.<check_attention:tutorial_2;less;1.0><jump:tutorial_2>
+<tutorial:end><name:Романа><music:test><expression:neutral><blue><speed:5>"Нормально."
+<music:none><label:A><speed:15><red>"Повернулася, бо було складно<wait:0.3> роботу знову знайти, <green>да і дома давно не була."
+<theme:food><blue>"Їдять різне,<green> мені сподобалося це і оце…”
 <blue>“Люди інші, <red>але відмінності всередині групи більші, ніж відмінності між групами.<green>Ну, тобто різні траплялися.”
 <check_attention:food;less;0.4><jump:are_you_paying_attention>
 <jump:A>
