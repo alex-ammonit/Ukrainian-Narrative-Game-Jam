@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=29 format=3 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="AudioStream" uid="uid://bgbclv2w3s0j7" path="res://music/biy.mp3" id="1_6wevv"]
 [ext_resource type="FontFile" uid="uid://k04ofg0wl727" path="res://fonts/NotoSansMono-VariableFont_wdth,wght.ttf" id="1_c1pb6"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://3r7mh8mix6hj" path="res://sprites/b2.png" id="7_si52b"]
 [ext_resource type="Script" uid="uid://botgewcecp4jj" path="res://scripts/clockhand.gd" id="8_01n6w"]
 [ext_resource type="Script" uid="uid://jk1pg5org6db" path="res://scripts/polygon_spawner.gd" id="9_6u1mn"]
+[ext_resource type="Script" uid="uid://cyin5jv5ra1ur" path="res://scripts/tutorial_manager.gd" id="11_e1cbu"]
 
 [sub_resource type="GDScript" id="GDScript_e1cbu"]
 script/source = "extends Node
@@ -114,6 +115,64 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="GDScript" id="GDScript_r6p65"]
+script/source = "extends Control  # Use for UI elements
+
+@onready var anim_player = $AnimationPlayer
+
+func _on_visibility_changed():
+	if visible:
+		anim_player.play(\"tip1_fade_in\")
+"
+
+[sub_resource type="Animation" id="Animation_4w45t"]
+resource_name = "tip1_fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Step1/Tip:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 1.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r6p65"]
+resource_name = "tip2_fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Step2/Tip:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r6p65"]
+_data = {
+&"tip1_fade_in": SubResource("Animation_4w45t"),
+&"tip2_fade_in": SubResource("Animation_r6p65")
+}
+
+[sub_resource type="GDScript" id="GDScript_si52b"]
+script/source = "extends Control  # Use for UI elements
+
+@onready var anim_player = $AnimationPlayer
+
+func _on_visibility_changed():
+	if visible:
+		anim_player.play(\"tip2_fade_in\")
+"
+
 [node name="MainScene" type="Control"]
 clip_contents = true
 layout_mode = 3
@@ -162,6 +221,7 @@ color = Color(0.393086, 0.393086, 0.393085, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/ColorRect" node_paths=PackedStringArray("polygon_spawner")]
+z_index = 11
 layout_mode = 0
 offset_left = 263.0
 offset_top = 30.0
@@ -303,6 +363,7 @@ texture = ExtResource("4_mngbo")
 expand_mode = 5
 
 [node name="TextureRect2" type="TextureRect" parent="Control3/TextureRect"]
+z_index = 11
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -389,6 +450,7 @@ script = SubResource("GDScript_66tet")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Control3/Polygon2D/Area2D"]
 
 [node name="Path2D" type="Path2D" parent="Control3" node_paths=PackedStringArray("clockhand")]
+z_index = 11
 curve = SubResource("Curve2D_8mm7a")
 script = ExtResource("9_6u1mn")
 clockhand = NodePath("../TextureRect/TextureRect2")
@@ -399,9 +461,139 @@ Vector2(0.1, -0.7): Color(0, 1, 0, 1),
 Vector2(1, 0.1): Color(1, 0, 0, 1)
 })
 
+[node name="TutorialManager" type="Control" parent="." node_paths=PackedStringArray("steps")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_e1cbu")
+steps = [NodePath("Step1"), NodePath("Step2")]
+
+[node name="Step1" type="Control" parent="TutorialManager"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_r6p65")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TutorialManager/Step1"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_r6p65")
+}
+
+[node name="Shade" type="ColorRect" parent="TutorialManager/Step1"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.592157)
+
+[node name="Tip" type="ColorRect" parent="TutorialManager/Step1"]
+modulate = Color(1, 1, 1, 0)
+z_index = 12
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -551.0
+offset_top = -454.0
+offset_right = -64.0
+offset_bottom = -322.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.564706, 0.564706, 0.564706, 0.607843)
+
+[node name="TipText" type="Label" parent="TutorialManager/Step1/Tip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 3.0
+offset_right = -9.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Крути ручку прийомника за допомогою колесика  або курсора миші, щоб налаштуватись на колір зашумленного тексту "
+autowrap_mode = 3
+
+[node name="Step2" type="Control" parent="TutorialManager"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_si52b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TutorialManager/Step2"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_r6p65")
+}
+
+[node name="Shade" type="ColorRect" parent="TutorialManager/Step2"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.592157)
+
+[node name="Tip" type="ColorRect" parent="TutorialManager/Step2"]
+modulate = Color(1, 1, 1, 0)
+z_index = 12
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -833.0
+offset_top = -367.0
+offset_right = -313.0
+offset_bottom = -223.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.564706, 0.564706, 0.564706, 0.607843)
+
+[node name="TipText" type="Label" parent="TutorialManager/Step2/Tip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 3.0
+offset_right = -9.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Текст може змінювати колір і тоді треба переналаштовуватись. Кількість \"розчутого\" тексту відповідає тому, наскільки ви були уважними і впливатиме на реакцію персонажів."
+autowrap_mode = 3
+
 [connection signal="beep_signal" from="Control/ColorRect/RichTextLabel" to="Control/ColorRect/RichTextLabel/beeper" method="_on_beep_signal"]
 [connection signal="change_expression" from="Control/ColorRect/RichTextLabel" to="Control/TextureRect" method="print_expression"]
 [connection signal="change_music" from="Control/ColorRect/RichTextLabel" to="MusicManager" method="change_music"]
 [connection signal="change_name" from="Control/ColorRect/RichTextLabel" to="Control/ColorRect/RichTextLabel2" method="change_name"]
+[connection signal="tutorial" from="Control/ColorRect/RichTextLabel" to="TutorialManager" method="_on_tutorial"]
 [connection signal="mouse_entered" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_exited"]
+[connection signal="visibility_changed" from="TutorialManager/Step1" to="TutorialManager/Step1" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="TutorialManager/Step2" to="TutorialManager/Step2" method="_on_visibility_changed"]

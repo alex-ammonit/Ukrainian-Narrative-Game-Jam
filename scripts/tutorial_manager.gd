@@ -1,12 +1,14 @@
 extends Control
 
-var steps: Array[Node]
+@export var steps: Array[Node]
+
 var cur_step := 0
 var is_pause := false
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	steps = get_children()
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -20,6 +22,7 @@ func _on_tutorial(action: Variant) -> void:
 	if action == "start":
 		print("start tutotial")
 		show()
+		steps[0].show()
 	elif action == "end":
 		print("end tutotial")
 		hide()
