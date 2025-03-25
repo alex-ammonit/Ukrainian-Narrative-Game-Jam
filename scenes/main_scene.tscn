@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=45 format=4 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="AudioStream" uid="uid://bgbclv2w3s0j7" path="res://music/biy.mp3" id="1_6wevv"]
 [ext_resource type="FontFile" uid="uid://k04ofg0wl727" path="res://fonts/NotoSansMono-VariableFont_wdth,wght.ttf" id="1_c1pb6"]
@@ -15,10 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://dkoocno35o3s1" path="res://models/Scene_1_placeholder_t_grey_128x128.png" id="5_7nt27"]
 [ext_resource type="Script" uid="uid://b7a042f0iaj5u" path="res://scripts/background_manager.gd" id="6_7nt27"]
 [ext_resource type="Script" uid="uid://doo01jcpo12bp" path="res://scripts/selected_button.gd" id="6_r6p65"]
-[ext_resource type="Texture2D" uid="uid://3r7mh8mix6hj" path="res://sprites/b2.png" id="7_si52b"]
 [ext_resource type="Script" uid="uid://botgewcecp4jj" path="res://scripts/clockhand.gd" id="8_01n6w"]
 [ext_resource type="Script" uid="uid://jk1pg5org6db" path="res://scripts/polygon_spawner.gd" id="9_6u1mn"]
 [ext_resource type="Script" uid="uid://cyin5jv5ra1ur" path="res://scripts/tutorial_manager.gd" id="11_e1cbu"]
+[ext_resource type="Texture2D" uid="uid://dn47es8lxpuka" path="res://sprites/rad.png" id="16_k6f3i"]
+[ext_resource type="Texture2D" uid="uid://b7dcgpfagv7x5" path="res://sprites/rad_k.png" id="17_xdqt8"]
 
 [sub_resource type="GDScript" id="GDScript_e1cbu"]
 script/source = "extends Node
@@ -563,7 +564,7 @@ offset_right = 27.0
 offset_bottom = 34.8601
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_mngbo")
+texture = ExtResource("16_k6f3i")
 expand_mode = 5
 
 [node name="TextureRect2" type="TextureRect" parent="Control3/TextureRect"]
@@ -580,8 +581,8 @@ offset_right = 59.0
 offset_bottom = 33.5699
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(30, 40)
-texture = ExtResource("7_si52b")
+pivot_offset = Vector2(75, 90)
+texture = ExtResource("17_xdqt8")
 script = ExtResource("8_01n6w")
 wheelStep = 0.05
 
