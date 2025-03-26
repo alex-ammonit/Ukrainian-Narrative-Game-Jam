@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpl37c26eolcx"
-path.s3tc="res://.godot/imported/Shum_MC_T_MC_face_neutral.png-fbf5d4fff9e1e66b03c0ce3cc856fa6e.s3tc.ctex"
+uid="uid://8xjuxm1vslg7"
+path.s3tc="res://.godot/imported/Shum_Nelya_T_Nelya_face_neutral.png-ae264640bddc7146e6f29ae75a2638ce.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "c0571b0167cbc7ce795d7621cfbc834c"
+"md5": "4b9b9409ac78f4abd5fb1361b699667a"
 }
 
 [deps]
 
-source_file="res://models/Shum_MC_T_MC_face_neutral.png"
-dest_files=["res://.godot/imported/Shum_MC_T_MC_face_neutral.png-fbf5d4fff9e1e66b03c0ce3cc856fa6e.s3tc.ctex"]
+source_file="res://models/Nelya/Shum_Nelya_T_Nelya_face_neutral.png"
+dest_files=["res://.godot/imported/Shum_Nelya_T_Nelya_face_neutral.png-ae264640bddc7146e6f29ae75a2638ce.s3tc.ctex"]
 
 [params]
 

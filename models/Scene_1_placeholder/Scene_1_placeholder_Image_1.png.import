@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv6t8ra0jbq3s"
-path.s3tc="res://.godot/imported/Scene_1_placeholder_Image_0.png-c5590274d52526ab9df1e27729a690c7.s3tc.ctex"
+uid="uid://qjk54eefyjj1"
+path.s3tc="res://.godot/imported/Scene_1_placeholder_Image_1.png-1f7d926bcc689ccb42212b8f35b81c91.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "9a17834ad4dc00c5bc72ff75faafa9a7"
+"md5": "c0571b0167cbc7ce795d7621cfbc834c"
 }
 
 [deps]
 
-source_file="res://models/Scene_1_placeholder_Image_0.png"
-dest_files=["res://.godot/imported/Scene_1_placeholder_Image_0.png-c5590274d52526ab9df1e27729a690c7.s3tc.ctex"]
+source_file="res://models/Scene_1_placeholder/Scene_1_placeholder_Image_1.png"
+dest_files=["res://.godot/imported/Scene_1_placeholder_Image_1.png-1f7d926bcc689ccb42212b8f35b81c91.s3tc.ctex"]
 
 [params]
 

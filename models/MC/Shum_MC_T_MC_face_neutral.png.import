@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkoocno35o3s1"
-path.s3tc="res://.godot/imported/Scene_1_placeholder_t_grey_128x128.png-eb786d572ef738193a5cea9ccd92c27a.s3tc.ctex"
+uid="uid://cpl37c26eolcx"
+path.s3tc="res://.godot/imported/Shum_MC_T_MC_face_neutral.png-d2ada728480616ee20312809e1370dd1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "5dd9cf0e44f4ec0f05a2f1f2564ded09"
+"md5": "826ba4c0bce0c80974b2bdde6893deb4"
 }
 
 [deps]
 
-source_file="res://models/Scene_1_placeholder_t_grey_128x128.png"
-dest_files=["res://.godot/imported/Scene_1_placeholder_t_grey_128x128.png-eb786d572ef738193a5cea9ccd92c27a.s3tc.ctex"]
+source_file="res://models/MC/Shum_MC_T_MC_face_neutral.png"
+dest_files=["res://.godot/imported/Shum_MC_T_MC_face_neutral.png-d2ada728480616ee20312809e1370dd1.s3tc.ctex"]
 
 [params]
 
