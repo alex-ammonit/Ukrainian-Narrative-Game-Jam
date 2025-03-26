@@ -4,6 +4,8 @@ extends RichTextLabel
 @export_multiline var t:String
 @export var color_dict:Dictionary[String, Color]
 @export var polygon_spawner: PolygonSpawner
+@export var gray_noise_color := Color(0.35,0.35,0.35)
+@export var text_color_fade_time := 1.0
 var script_play
 var script_labels:Dictionary[String, int]
 var script_pickup:int=-1
@@ -181,6 +183,11 @@ func turn_to_line(line:int):
 	cur_text_pos=-1
 	cur_time=0
 	dis_text=""
+	cur_tween_colors.clear()
+	for c in cur_color_tweens:
+		if c != null:
+			c.kill()
+	cur_color_tweens.clear()
 	if (cur_tween!=null):
 		cur_tween.kill()
 
@@ -245,12 +252,18 @@ var old_text_pos:int=-1
 var cur_time=0
 var dis_text=""
 var cur_tween:Tween
+var cur_tween_colors:Array[Color]
+var cur_color_tweens:Array[Tween]
 var speed_coef=0.2
 func set_speed(speed:float):
 	speed_coef=1/speed
 var cur_wait_time=-1
 var seen_char=0
 var all_char=0
+
+func set_color_at_index(index: int, color: Color):
+	cur_tween_colors[index] = color
+	
 func exec_line():
 	var cur=script_play[script_pickup]
 	text=str(cur)
@@ -292,10 +305,23 @@ func exec_line():
 					old_text_pos=cur_text_pos
 				if (cur_text_pos==len(txt)):
 					cur_tween.kill()
-					if (d["cipher"]==false):
+					
+					if(color == "none"):
 						dis_text+=d["text"]
 					else:
-						dis_text+="[color=dark_gray]"+d["text"]+"[/color]"
+						var cur_color_tween=create_tween()
+						var cur_tween_color:Color = color
+						var index = cur_tween_colors.size()
+						cur_tween_colors.push_back(cur_tween_color)
+						
+						if (d["cipher"]==false):
+							cur_color_tween.tween_method(func(value): set_color_at_index(index, value), cur_tween_colors[index], Color.WHITE, text_color_fade_time)
+						else:
+							cur_color_tween.tween_method(func(value): set_color_at_index(index, value), cur_tween_colors[index], gray_noise_color, text_color_fade_time)
+						dis_text+="[color={color_tween" + str(index) + "}]"+d["text"]+"[/color]"
+						
+						cur_color_tweens.push_back(cur_color_tween)
+					
 					#print("AAA")
 					if (cur_theme!="none"):
 						var s_char=0
@@ -360,7 +386,11 @@ func exec_line():
 				change_name.emit(l["name"])
 				cur_command+=1
 		else:
-			text=dis_text	
+			text=dis_text
+		for i in range(0, cur_color_tweens.size()):
+			#if !clr.is_running():
+				#continue
+			text = text.format({"color_tween" + str(i) : "#" + cur_tween_colors[i].to_html()})
 	if (cur["type"]=="jump"):
 		turn_to_line(script_labels[cur["to"]])
 		#script_pickup=script_labels[cur["to"]]

@@ -23,6 +23,10 @@ WhatSelected="*res://scripts/what_selected.gd"
 
 enabled=PackedStringArray("res://addons/sprite_painter/plugin.cfg")
 
+[gui]
+
+theme/custom_font="uid://bvq22gwavieqo"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
