@@ -263,7 +263,18 @@ var can_go_next:bool
 
 func _process(delta):
 	can_go_next=text_display.can_go_next()
-	visible=can_go_next
+	if (can_go_next):
+		mouse_filter=Control.MOUSE_FILTER_STOP
+	else:
+		mouse_filter=Control.MOUSE_FILTER_IGNORE
+	var tween=create_tween()
+	var goal_modulate=modulate
+	goal_modulate.a=float(can_go_next)
+	tween.tween_property(self, \"modulate\", goal_modulate, 0.2)
+	#modulate.a=float(can_go_next)
+	#visible=can_go_next
+	#if (visible!=can_go_next):
+	#	
 	pass
 "
 
