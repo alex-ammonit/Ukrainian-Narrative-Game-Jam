@@ -260,6 +260,13 @@ func set_speed(speed:float):
 var cur_wait_time=-1
 var seen_char=0
 var all_char=0
+func can_go_next():
+	var cur=script_play[script_pickup]
+	if (cur["type"]=="line"):
+		var line=cur["line"]
+		if (cur_command==len(line)):
+			return true
+	return false
 
 func set_color_at_index(index: int, color: Color):
 	cur_tween_colors[index] = color

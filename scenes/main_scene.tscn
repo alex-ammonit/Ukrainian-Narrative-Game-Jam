@@ -1,9 +1,9 @@
-[gd_scene load_steps=44 format=4 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=45 format=4 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="AudioStream" uid="uid://bgbclv2w3s0j7" path="res://music/biy.mp3" id="1_6wevv"]
 [ext_resource type="Texture2D" uid="uid://bv6t8ra0jbq3s" path="res://models/Scene_1_placeholder_Image_0.png" id="2_01n6w"]
 [ext_resource type="Script" uid="uid://bhxok8tyjnr65" path="res://scripts/text_display.gd" id="2_6wevv"]
-[ext_resource type="Script" path="res://scripts/character_manager.gd" id="2_bcnxi"]
+[ext_resource type="Script" uid="uid://dwhp1v4veaqje" path="res://scripts/character_manager.gd" id="2_bcnxi"]
 [ext_resource type="Texture2D" uid="uid://qjk54eefyjj1" path="res://models/Scene_1_placeholder_Image_1.png" id="3_6u1mn"]
 [ext_resource type="Texture2D" uid="uid://brege0teei77a" path="res://sprites/a.png" id="3_e1cbu"]
 [ext_resource type="PackedScene" uid="uid://ci1003buhygmr" path="res://models/Shum_MC.gltf" id="4_6u1mn"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://3ijaqkcsc2dm" path="res://sprites/c.png" id="4_mngbo"]
 [ext_resource type="Texture2D" uid="uid://crqul5n3ew2wn" path="res://sprites/b.png" id="5_4w45t"]
 [ext_resource type="Texture2D" uid="uid://dkoocno35o3s1" path="res://models/Scene_1_placeholder_t_grey_128x128.png" id="5_7nt27"]
-[ext_resource type="Script" path="res://scripts/background_manager.gd" id="6_7nt27"]
+[ext_resource type="Script" uid="uid://b7a042f0iaj5u" path="res://scripts/background_manager.gd" id="6_7nt27"]
 [ext_resource type="Script" uid="uid://doo01jcpo12bp" path="res://scripts/selected_button.gd" id="6_r6p65"]
 [ext_resource type="Script" uid="uid://botgewcecp4jj" path="res://scripts/clockhand.gd" id="8_01n6w"]
 [ext_resource type="Script" uid="uid://jk1pg5org6db" path="res://scripts/polygon_spawner.gd" id="9_6u1mn"]
@@ -187,6 +187,64 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_k01fy")
 
+[sub_resource type="GDScript" id="GDScript_r6p65"]
+script/source = "extends Control  # Use for UI elements
+
+@onready var anim_player = $AnimationPlayer
+
+func _on_visibility_changed():
+	if visible:
+		anim_player.play(\"tip1_fade_in\")
+"
+
+[sub_resource type="Animation" id="Animation_4w45t"]
+resource_name = "tip1_fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Step1/Tip:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 1.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r6p65"]
+resource_name = "tip2_fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Step2/Tip:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r6p65"]
+_data = {
+&"tip1_fade_in": SubResource("Animation_4w45t"),
+&"tip2_fade_in": SubResource("Animation_r6p65")
+}
+
+[sub_resource type="GDScript" id="GDScript_si52b"]
+script/source = "extends Control  # Use for UI elements
+
+@onready var anim_player = $AnimationPlayer
+
+func _on_visibility_changed():
+	if visible:
+		anim_player.play(\"tip2_fade_in\")
+"
+
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_c1pb6"]
 buffer_length = 0.02
 
@@ -195,6 +253,18 @@ script/source = "extends RichTextLabel
 
 func change_name(new_name):
 	text=new_name
+"
+
+[sub_resource type="GDScript" id="GDScript_7nt27"]
+script/source = "extends BaseButton
+
+@export var text_display:Node
+var can_go_next:bool
+
+func _process(delta):
+	can_go_next=text_display.can_go_next()
+	visible=can_go_next
+	pass
 "
 
 [sub_resource type="GDScript" id="GDScript_c1pb6"]
@@ -257,64 +327,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 326, 247, 0, 0, 0, 0, 360, 164, 0, 0, 0, 0, 359, 88, 0, 0, 0, 0, 321, 34, 0, 0, 0, 0, 238, 13)
 }
 point_count = 5
-
-[sub_resource type="GDScript" id="GDScript_r6p65"]
-script/source = "extends Control  # Use for UI elements
-
-@onready var anim_player = $AnimationPlayer
-
-func _on_visibility_changed():
-	if visible:
-		anim_player.play(\"tip1_fade_in\")
-"
-
-[sub_resource type="Animation" id="Animation_4w45t"]
-resource_name = "tip1_fade_in"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Step1/Tip:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 1.96667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_r6p65"]
-resource_name = "tip2_fade_in"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Step2/Tip:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.96667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_r6p65"]
-_data = {
-&"tip1_fade_in": SubResource("Animation_4w45t"),
-&"tip2_fade_in": SubResource("Animation_r6p65")
-}
-
-[sub_resource type="GDScript" id="GDScript_si52b"]
-script/source = "extends Control  # Use for UI elements
-
-@onready var anim_player = $AnimationPlayer
-
-func _on_visibility_changed():
-	if visible:
-		anim_player.play(\"tip2_fade_in\")
-"
 
 [node name="MainScene" type="Control"]
 clip_contents = true
@@ -400,6 +412,132 @@ layout_mode = 2
 offset_right = 1164.0
 offset_bottom = 646.0
 
+[node name="TutorialManager" type="Control" parent="." node_paths=PackedStringArray("steps")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_e1cbu")
+steps = [NodePath("Step1"), NodePath("Step2")]
+
+[node name="Step1" type="Control" parent="TutorialManager"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_r6p65")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TutorialManager/Step1"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_r6p65")
+}
+
+[node name="Shade" type="ColorRect" parent="TutorialManager/Step1"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.592157)
+
+[node name="Tip" type="ColorRect" parent="TutorialManager/Step1"]
+modulate = Color(1, 1, 1, 0)
+z_index = 12
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -551.0
+offset_top = -454.0
+offset_right = -64.0
+offset_bottom = -322.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.564706, 0.564706, 0.564706, 0.607843)
+
+[node name="TipText" type="Label" parent="TutorialManager/Step1/Tip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 3.0
+offset_right = -9.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Крути ручку прийомника за допомогою колесика  або курсора миші, щоб налаштуватись на колір зашумленного тексту "
+autowrap_mode = 3
+
+[node name="Step2" type="Control" parent="TutorialManager"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_si52b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TutorialManager/Step2"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_r6p65")
+}
+
+[node name="Shade" type="ColorRect" parent="TutorialManager/Step2"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.592157)
+
+[node name="Tip" type="ColorRect" parent="TutorialManager/Step2"]
+modulate = Color(1, 1, 1, 0)
+z_index = 12
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -833.0
+offset_top = -367.0
+offset_right = -313.0
+offset_bottom = -223.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.564706, 0.564706, 0.564706, 0.607843)
+
+[node name="TipText" type="Label" parent="TutorialManager/Step2/Tip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 3.0
+offset_right = -9.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Текст може змінювати колір і тоді треба переналаштовуватись. Кількість \"розчутого\" тексту відповідає тому, наскільки ви були уважними і впливатиме на реакцію персонажів."
+autowrap_mode = 3
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -420,16 +558,20 @@ anchor_bottom = 1.0
 offset_top = -101.0
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(0.392157, 0.392157, 0.392157, 0.537255)
+color = Color(0.392157, 0.392157, 0.392157, 0.803922)
 metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/ColorRect" node_paths=PackedStringArray("polygon_spawner")]
 z_index = 11
-layout_mode = 0
-offset_left = 263.0
-offset_top = 30.0
-offset_right = 791.0
-offset_bottom = 196.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 42.0
+offset_top = -74.5
+offset_right = 694.0
+offset_bottom = 91.5
+grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -453,13 +595,30 @@ autoplay = true
 script = ExtResource("4_e1cbu")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Control/ColorRect"]
-layout_mode = 0
-offset_left = 295.0
-offset_top = -1.0
-offset_right = 377.0
-offset_bottom = 39.0
+layout_mode = 1
+offset_left = 65.0
+offset_right = 147.0
+offset_bottom = 40.0
 text = "NAME"
 script = SubResource("GDScript_4w45t")
+
+[node name="Button" type="Button" parent="Control/ColorRect" node_paths=PackedStringArray("text_display")]
+z_index = 11
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 127.0
+offset_top = -69.0
+offset_right = 230.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "NEXT"
+script = SubResource("GDScript_7nt27")
+text_display = NodePath("../RichTextLabel")
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 visible = false
@@ -664,133 +823,8 @@ Vector2(0.1, -0.7): Color(0, 1, 0, 1),
 Vector2(1, 0.1): Color(1, 0, 0, 1)
 })
 
-[node name="TutorialManager" type="Control" parent="." node_paths=PackedStringArray("steps")]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("11_e1cbu")
-steps = [NodePath("Step1"), NodePath("Step2")]
-
-[node name="Step1" type="Control" parent="TutorialManager"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = SubResource("GDScript_r6p65")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TutorialManager/Step1"]
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_r6p65")
-}
-
-[node name="Shade" type="ColorRect" parent="TutorialManager/Step1"]
-z_index = 10
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.592157)
-
-[node name="Tip" type="ColorRect" parent="TutorialManager/Step1"]
-modulate = Color(1, 1, 1, 0)
-z_index = 12
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -551.0
-offset_top = -454.0
-offset_right = -64.0
-offset_bottom = -322.0
-grow_horizontal = 0
-grow_vertical = 0
-color = Color(0.564706, 0.564706, 0.564706, 0.607843)
-
-[node name="TipText" type="Label" parent="TutorialManager/Step1/Tip"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 3.0
-offset_right = -9.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "Крути ручку прийомника за допомогою колесика  або курсора миші, щоб налаштуватись на колір зашумленного тексту "
-autowrap_mode = 3
-
-[node name="Step2" type="Control" parent="TutorialManager"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = SubResource("GDScript_si52b")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TutorialManager/Step2"]
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_r6p65")
-}
-
-[node name="Shade" type="ColorRect" parent="TutorialManager/Step2"]
-z_index = 10
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.592157)
-
-[node name="Tip" type="ColorRect" parent="TutorialManager/Step2"]
-modulate = Color(1, 1, 1, 0)
-z_index = 12
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -833.0
-offset_top = -367.0
-offset_right = -313.0
-offset_bottom = -223.0
-grow_horizontal = 0
-grow_vertical = 0
-color = Color(0.564706, 0.564706, 0.564706, 0.607843)
-
-[node name="TipText" type="Label" parent="TutorialManager/Step2/Tip"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 3.0
-offset_right = -9.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "Текст може змінювати колір і тоді треба переналаштовуватись. Кількість \"розчутого\" тексту відповідає тому, наскільки ви були уважними і впливатиме на реакцію персонажів."
-autowrap_mode = 3
-
+[connection signal="visibility_changed" from="TutorialManager/Step1" to="TutorialManager/Step1" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="TutorialManager/Step2" to="TutorialManager/Step2" method="_on_visibility_changed"]
 [connection signal="beep_signal" from="Control/ColorRect/RichTextLabel" to="Control/ColorRect/RichTextLabel/beeper" method="_on_beep_signal"]
 [connection signal="change_background" from="Control/ColorRect/RichTextLabel" to="SubViewportContainer/SubViewport/BackgroundManager" method="background_changed"]
 [connection signal="change_expression" from="Control/ColorRect/RichTextLabel" to="SubViewportContainer/SubViewport/CharacterManager" method="expression_changed"]
@@ -798,9 +832,8 @@ autowrap_mode = 3
 [connection signal="change_music" from="Control/ColorRect/RichTextLabel" to="MusicManager" method="change_music"]
 [connection signal="change_name" from="Control/ColorRect/RichTextLabel" to="Control/ColorRect/RichTextLabel2" method="change_name"]
 [connection signal="tutorial" from="Control/ColorRect/RichTextLabel" to="TutorialManager" method="_on_tutorial"]
+[connection signal="pressed" from="Control/ColorRect/Button" to="Control/ColorRect/RichTextLabel" method="next_line"]
 [connection signal="mouse_entered" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_exited"]
-[connection signal="visibility_changed" from="TutorialManager/Step1" to="TutorialManager/Step1" method="_on_visibility_changed"]
-[connection signal="visibility_changed" from="TutorialManager/Step2" to="TutorialManager/Step2" method="_on_visibility_changed"]
 
 [editable path="SubViewportContainer/SubViewport/CharacterManager/romana_clone"]
