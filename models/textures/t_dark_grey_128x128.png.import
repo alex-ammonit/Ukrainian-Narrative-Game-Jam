@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx4oxjuic37wi"
-path.s3tc="res://.godot/imported/T_Nelya_body.png-6604131e068cfa3a758173a43589f37e.s3tc.ctex"
+uid="uid://di02k83t03p7t"
+path.s3tc="res://.godot/imported/t_dark_grey_128x128.png-19bbff576c1ddc0d3ee8f75103e4bfa4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://models/Nelya/T_Nelya_body.png"
-dest_files=["res://.godot/imported/T_Nelya_body.png-6604131e068cfa3a758173a43589f37e.s3tc.ctex"]
+source_file="res://models/textures/t_dark_grey_128x128.png"
+dest_files=["res://.godot/imported/t_dark_grey_128x128.png-19bbff576c1ddc0d3ee8f75103e4bfa4.s3tc.ctex"]
 
 [params]
 

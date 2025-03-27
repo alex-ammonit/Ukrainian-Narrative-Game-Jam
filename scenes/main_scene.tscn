@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=50 format=4 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="AudioStream" uid="uid://bgbclv2w3s0j7" path="res://music/biy.mp3" id="1_6wevv"]
 [ext_resource type="Texture2D" uid="uid://bv6t8ra0jbq3s" path="res://models/Scene_1_placeholder/Scene_1_placeholder_Image_0.png" id="2_01n6w"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://doo01jcpo12bp" path="res://scripts/selected_button.gd" id="6_r6p65"]
 [ext_resource type="Script" uid="uid://botgewcecp4jj" path="res://scripts/clockhand.gd" id="8_01n6w"]
 [ext_resource type="Script" uid="uid://jk1pg5org6db" path="res://scripts/polygon_spawner.gd" id="9_6u1mn"]
+[ext_resource type="PackedScene" uid="uid://be8qtfcf1cjx0" path="res://models/scene_cafe_surroundings.gltf" id="9_k6f3i"]
 [ext_resource type="Script" uid="uid://cyin5jv5ra1ur" path="res://scripts/tutorial_manager.gd" id="11_e1cbu"]
 [ext_resource type="Texture2D" uid="uid://dn47es8lxpuka" path="res://sprites/rad.png" id="16_k6f3i"]
 [ext_resource type="Texture2D" uid="uid://b7dcgpfagv7x5" path="res://sprites/rad_k.png" id="17_xdqt8"]
@@ -483,6 +484,14 @@ transform = Transform3D(0.82375, 0, 0.566953, 0, 1, 0, -0.566953, 0, 0.82375, 2.
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/BackgroundManager/placeholder_clone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37697, 2.02736, 1.47201)
 
+[node name="scene_cafe_surroundings" parent="SubViewportContainer/SubViewport/BackgroundManager" instance=ExtResource("9_k6f3i")]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/BackgroundManager/scene_cafe_surroundings"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -4.04008, 0.968267, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/BackgroundManager/scene_cafe_surroundings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.55842, 2.49871, 0)
+
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 2
 offset_right = 1164.0
@@ -899,6 +908,7 @@ Vector2(0.1, -0.7): Color(0, 1, 0, 1),
 Vector2(1, 0.1): Color(1, 0, 0, 1)
 })
 
+[connection signal="send_expression" from="SubViewportContainer/SubViewport/CharacterManager" to="SubViewportContainer/SubViewport/BackgroundManager" method="expression_changed"]
 [connection signal="visibility_changed" from="TutorialManager/Step1" to="TutorialManager/Step1" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="TutorialManager/Step2" to="TutorialManager/Step2" method="_on_visibility_changed"]
 [connection signal="beep_signal" from="Control/ColorRect/RichTextLabel" to="Control/ColorRect/RichTextLabel/beeper" method="_on_beep_signal"]

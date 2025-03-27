@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx4oxjuic37wi"
-path.s3tc="res://.godot/imported/T_Nelya_body.png-6604131e068cfa3a758173a43589f37e.s3tc.ctex"
+uid="uid://cvpitba7licf1"
+path.s3tc="res://.godot/imported/Romanka_sit_animations_01_T_Nelya_body.png-c6f8320f15ec24bd3a2a5ed869bea76e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "8859f23902d2250660accce4ed7846f5"
+}
 
 [deps]
 
-source_file="res://models/Nelya/T_Nelya_body.png"
-dest_files=["res://.godot/imported/T_Nelya_body.png-6604131e068cfa3a758173a43589f37e.s3tc.ctex"]
+source_file="res://models/Romanka_sit_animations_01_T_Nelya_body.png"
+dest_files=["res://.godot/imported/Romanka_sit_animations_01_T_Nelya_body.png-c6f8320f15ec24bd3a2a5ed869bea76e.s3tc.ctex"]
 
 [params]
 

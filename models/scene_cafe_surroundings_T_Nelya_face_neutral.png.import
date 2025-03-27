@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx4oxjuic37wi"
-path.s3tc="res://.godot/imported/T_Nelya_body.png-6604131e068cfa3a758173a43589f37e.s3tc.ctex"
+uid="uid://csj5wd80o7tiv"
+path.s3tc="res://.godot/imported/scene_cafe_surroundings_T_Nelya_face_neutral.png-8b9efeee61e4ca3e6fed948d8d567929.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "4b9b9409ac78f4abd5fb1361b699667a"
+}
 
 [deps]
 
-source_file="res://models/Nelya/T_Nelya_body.png"
-dest_files=["res://.godot/imported/T_Nelya_body.png-6604131e068cfa3a758173a43589f37e.s3tc.ctex"]
+source_file="res://models/scene_cafe_surroundings_T_Nelya_face_neutral.png"
+dest_files=["res://.godot/imported/scene_cafe_surroundings_T_Nelya_face_neutral.png-8b9efeee61e4ca3e6fed948d8d567929.s3tc.ctex"]
 
 [params]
 
