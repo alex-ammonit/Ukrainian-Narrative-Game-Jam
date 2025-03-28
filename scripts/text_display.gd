@@ -146,6 +146,10 @@ func parse(string: String):
 				dictar.append({"type":"check_attention", "data":data, "to":"", "null":true})
 				#i=i+1
 				continue
+			if (type=="exit"):
+				append_line.call()
+				dictar.append({"type":"exit"})
+				continue
 			if (color_dict.has(type)):
 				activeColor=type
 			if (type=="none"):
@@ -401,6 +405,8 @@ func exec_line():
 	if (cur["type"]=="jump"):
 		turn_to_line(script_labels[cur["to"]])
 		#script_pickup=script_labels[cur["to"]]
+	if (cur["type"]=="exit"):
+		SceneManager.load_scene("menu")
 	if (cur["type"]=="check_attention"):
 		#text=str(cur)
 		var data=cur["data"]
