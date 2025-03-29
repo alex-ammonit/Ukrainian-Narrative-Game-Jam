@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=57 format=4 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="Script" uid="uid://dltt566pfnhhh" path="res://scripts/music_tuple.gd" id="1_adb74"]
 [ext_resource type="Texture2D" uid="uid://bv6t8ra0jbq3s" path="res://models/Scene_1_placeholder/Scene_1_placeholder_Image_0.png" id="2_01n6w"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://crqul5n3ew2wn" path="res://sprites/b.png" id="5_4w45t"]
 [ext_resource type="Texture2D" uid="uid://cjfmwsntm6a3f" path="res://models/Scene_1_placeholder/Scene_1_placeholder_t_dark_grey_128x128.png" id="5_7nt27"]
 [ext_resource type="PackedScene" uid="uid://ci1003buhygmr" path="res://models/MC/Shum_MC.gltf" id="5_k6f3i"]
+[ext_resource type="AudioStream" uid="uid://x7bnwuvydauj" path="res://music/noise_jam. с.mp3" id="5_to7gp"]
 [ext_resource type="Script" uid="uid://b7a042f0iaj5u" path="res://scripts/background_manager.gd" id="6_7nt27"]
 [ext_resource type="Script" uid="uid://doo01jcpo12bp" path="res://scripts/selected_button.gd" id="6_r6p65"]
 [ext_resource type="Script" uid="uid://botgewcecp4jj" path="res://scripts/clockhand.gd" id="8_01n6w"]
@@ -92,6 +93,11 @@ metadata/_custom_type_script = "uid://dltt566pfnhhh"
 [sub_resource type="Resource" id="Resource_to7gp"]
 script = ExtResource("1_adb74")
 music_a = ExtResource("4_58gk3")
+metadata/_custom_type_script = "uid://dltt566pfnhhh"
+
+[sub_resource type="Resource" id="Resource_6p3nn"]
+script = ExtResource("1_adb74")
+music_a = ExtResource("5_to7gp")
 metadata/_custom_type_script = "uid://dltt566pfnhhh"
 
 [sub_resource type="GDScript" id="GDScript_mngbo"]
@@ -478,7 +484,8 @@ script = SubResource("GDScript_e1cbu")
 polygon_spawner = NodePath("../Control3/Path2D")
 music_dic = Dictionary[String, ExtResource("1_adb74")]({
 "noise_jam a": SubResource("Resource_u0fll"),
-"noise_jam b": SubResource("Resource_to7gp")
+"noise_jam b": SubResource("Resource_to7gp"),
+"noise_jam c": SubResource("Resource_6p3nn")
 })
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MusicManager"]

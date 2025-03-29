@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://x7bnwuvydauj"
+path="res://.godot/imported/noise_jam. с.mp3-10c5236b2366b281b8014747b331b3a0.mp3str"
+
+[deps]
+
+source_file="res://music/noise_jam. с.mp3"
+dest_files=["res://.godot/imported/noise_jam. с.mp3-10c5236b2366b281b8014747b331b3a0.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
