@@ -53,6 +53,7 @@ func music_a_finished():
 		print(\"Snih\")
 		cur_music_a=cur_music_b
 		$AudioStreamPlayer.stream=cur_music_a
+		cur_music_b=null
 		$AudioStreamPlayer.play()
 	
 func _ready():
@@ -83,11 +84,14 @@ func change_music(new_music):
 func _process(delta):
 	#print($AudioStreamPlayer.volume_linear, \"  \", $AudioStreamPlayer2.volume_linear, \"  \", WhatSelected.target_color)
 	#print(cur_music_b)
-	if (cur_music_b==null or WhatSelected.target_color==Color.TRANSPARENT or WhatSelected.color==WhatSelected.target_color):
+	#if (cur_music_b==null or WhatSelected.target_color==Color.TRANSPARENT or WhatSelected.color==WhatSelected.target_color):
+	if (cur_music_b==null or WhatSelected.ciphered_text==false):
 		$AudioStreamPlayer.volume_linear=1
 		$AudioStreamPlayer2.volume_linear=0
 		return
 	#print(\"AA\")
+	if (WhatSelected.text_displaying==false):
+		return
 	var cur_freq = WhatSelected.freq
 	var target_range: Vector2 = polygon_spawner.color_to_range_dict[WhatSelected.target_color]
 	var dist_to_target = min(abs(target_range.x - cur_freq), abs(cur_freq - target_range.y))

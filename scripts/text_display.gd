@@ -277,7 +277,8 @@ func set_color_at_index(index: int, color: Color):
 	
 func exec_line():
 	var cur=script_play[script_pickup]
-	text=str(cur)
+	#text=str(cur)
+	WhatSelected.text_displaying=false
 	#print(cur_command, "  ", cur_text_pos, "  ", speed_coef, "  ", all_char, "  ", seen_char, "  ", cur_theme)
 	if (cur["type"]=="line"):
 		var line=cur["line"]
@@ -305,6 +306,8 @@ func exec_line():
 				var txt=l["text"]
 				var d=return_text(txt, color)
 				#app_text=d["open"]+d["text"]+d["close"]
+				WhatSelected.text_displaying=true
+				WhatSelected.ciphered_text=d["cipher"]
 				if (color=="none"):
 					WhatSelected.target_color=Color.TRANSPARENT
 				else:
