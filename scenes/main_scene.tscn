@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=55 format=4 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="Script" uid="uid://dltt566pfnhhh" path="res://scripts/music_tuple.gd" id="1_adb74"]
 [ext_resource type="Texture2D" uid="uid://bv6t8ra0jbq3s" path="res://models/Scene_1_placeholder/Scene_1_placeholder_Image_0.png" id="2_01n6w"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://qjk54eefyjj1" path="res://models/Scene_1_placeholder/Scene_1_placeholder_Image_1.png" id="3_6u1mn"]
 [ext_resource type="Texture2D" uid="uid://brege0teei77a" path="res://sprites/a.png" id="3_e1cbu"]
 [ext_resource type="AudioStream" uid="uid://5g84iwukmm4y" path="res://music/noise_jam. a (BAD).mp3" id="3_to7gp"]
+[ext_resource type="AudioStream" uid="uid://cl8s26p3hwfgg" path="res://music/noise_jam. b.mp3" id="4_58gk3"]
 [ext_resource type="Texture2D" uid="uid://dkoocno35o3s1" path="res://models/Scene_1_placeholder/Scene_1_placeholder_t_grey_128x128.png" id="4_bcnxi"]
 [ext_resource type="Script" uid="uid://cf763rp6uu631" path="res://scripts/beeper.gd" id="4_e1cbu"]
 [ext_resource type="Texture2D" uid="uid://3ijaqkcsc2dm" path="res://sprites/c.png" id="4_mngbo"]
@@ -86,6 +87,11 @@ func _process(delta):
 script = ExtResource("1_adb74")
 music_a = ExtResource("2_58gk3")
 music_b = ExtResource("3_to7gp")
+metadata/_custom_type_script = "uid://dltt566pfnhhh"
+
+[sub_resource type="Resource" id="Resource_to7gp"]
+script = ExtResource("1_adb74")
+music_a = ExtResource("4_58gk3")
 metadata/_custom_type_script = "uid://dltt566pfnhhh"
 
 [sub_resource type="GDScript" id="GDScript_mngbo"]
@@ -471,7 +477,8 @@ size_flags_vertical = 3
 script = SubResource("GDScript_e1cbu")
 polygon_spawner = NodePath("../Control3/Path2D")
 music_dic = Dictionary[String, ExtResource("1_adb74")]({
-"noise_jam a": SubResource("Resource_u0fll")
+"noise_jam a": SubResource("Resource_u0fll"),
+"noise_jam b": SubResource("Resource_to7gp")
 })
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MusicManager"]
