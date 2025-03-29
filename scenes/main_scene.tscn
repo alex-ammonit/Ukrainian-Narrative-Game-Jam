@@ -49,8 +49,8 @@ var cur_music_b:AudioStream
 	@export var music_b:AudioStream'''
 
 func music_a_finished():
-	print(\"Snih\")
 	if (cur_music_name==\"сніготяг\" && cur_music_b!=null):
+		print(\"Snih\")
 		cur_music_a=cur_music_b
 		$AudioStreamPlayer.stream=cur_music_a
 		$AudioStreamPlayer.play()
