@@ -11,5 +11,7 @@ var min_freq=-1.5
 	get:
 		return freq
 
+var target_color:Color=Color.TRANSPARENT
+
 #func _process(delta):
 	#print(selected_id)

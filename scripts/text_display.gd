@@ -305,6 +305,10 @@ func exec_line():
 				var txt=l["text"]
 				var d=return_text(txt, color)
 				#app_text=d["open"]+d["text"]+d["close"]
+				if (color=="none"):
+					WhatSelected.target_color=Color.TRANSPARENT
+				else:
+					WhatSelected.target_color=color
 				if (cur_text_pos==-1):
 					cur_text_pos=0
 					cur_tween=create_tween()
