@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=67 format=4 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="Script" uid="uid://dltt566pfnhhh" path="res://scripts/music_tuple.gd" id="1_adb74"]
 [ext_resource type="Texture2D" uid="uid://bv6t8ra0jbq3s" path="res://models/Scene_1_placeholder/Scene_1_placeholder_Image_0.png" id="2_01n6w"]
@@ -19,8 +19,9 @@
 [ext_resource type="Script" uid="uid://b7a042f0iaj5u" path="res://scripts/background_manager.gd" id="6_7nt27"]
 [ext_resource type="Script" uid="uid://doo01jcpo12bp" path="res://scripts/selected_button.gd" id="6_r6p65"]
 [ext_resource type="AudioStream" uid="uid://dxgj2bg5kmx08" path="res://music/noise_jam. с bad.mp3" id="6_u0fll"]
-[ext_resource type="AudioStream" uid="uid://c75ncherjoo5k" path="res://music/сніготяг.mp3" id="7_02d50"]
+[ext_resource type="AudioStream" uid="uid://cdbsdwnras53v" path="res://music/сніготяг A.mp3" id="7_pgk25"]
 [ext_resource type="Script" uid="uid://botgewcecp4jj" path="res://scripts/clockhand.gd" id="8_01n6w"]
+[ext_resource type="AudioStream" uid="uid://cn5h46b0f0vhw" path="res://music/сніготяг B.mp3" id="8_kkokr"]
 [ext_resource type="AudioStream" uid="uid://jwkxo0wf20kh" path="res://music/калюжелфі.mp3" id="8_pgk25"]
 [ext_resource type="Script" uid="uid://jk1pg5org6db" path="res://scripts/polygon_spawner.gd" id="9_6u1mn"]
 [ext_resource type="PackedScene" uid="uid://be8qtfcf1cjx0" path="res://models/scene_cafe_surroundings.gltf" id="9_k6f3i"]
@@ -38,6 +39,7 @@ script/source = "extends Node
 @export var music_dic:Dictionary[String, MusicTuple]
 #@export var mt:music_tuple
 
+var cur_music_name
 var cur_music_a:AudioStream
 var cur_music_b:AudioStream
 
@@ -46,8 +48,20 @@ var cur_music_b:AudioStream
 	@export var music_a:AudioStream
 	@export var music_b:AudioStream'''
 
+func music_a_finished():
+	print(\"Snih\")
+	if (cur_music_name==\"сніготяг\" && cur_music_b!=null):
+		cur_music_a=cur_music_b
+		$AudioStreamPlayer.stream=cur_music_a
+		$AudioStreamPlayer.play()
+	
+func _ready():
+	$AudioStreamPlayer.connect(\"finished\", music_a_finished)
+	pass
+
 func change_music(new_music):
 	
+	cur_music_name=new_music
 	if (new_music==\"none\"):
 		$AudioStreamPlayer.stop()
 		$AudioStreamPlayer2.stop()
@@ -67,7 +81,7 @@ func change_music(new_music):
 	#print(new_music)
 	#pass
 func _process(delta):
-	print($AudioStreamPlayer.volume_linear, \"  \", $AudioStreamPlayer2.volume_linear, \"  \", WhatSelected.target_color)
+	#print($AudioStreamPlayer.volume_linear, \"  \", $AudioStreamPlayer2.volume_linear, \"  \", WhatSelected.target_color)
 	#print(cur_music_b)
 	if (cur_music_b==null or WhatSelected.target_color==Color.TRANSPARENT or WhatSelected.color==WhatSelected.target_color):
 		$AudioStreamPlayer.volume_linear=1
@@ -109,7 +123,8 @@ metadata/_custom_type_script = "uid://dltt566pfnhhh"
 
 [sub_resource type="Resource" id="Resource_iav3h"]
 script = ExtResource("1_adb74")
-music_a = ExtResource("7_02d50")
+music_a = ExtResource("7_pgk25")
+music_b = ExtResource("8_kkokr")
 metadata/_custom_type_script = "uid://dltt566pfnhhh"
 
 [sub_resource type="Resource" id="Resource_womr8"]

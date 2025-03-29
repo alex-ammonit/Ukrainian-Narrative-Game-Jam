@@ -19,5 +19,7 @@ func background_changed(new_background):
 
 func expression_changed(new_expression):
 	#print(active_scene.get_node_or_null("AnimationPlayer"))
-	if (active_scene.get_node_or_null("AnimationPlayer")!=null):
-		active_scene.get_node("AnimationPlayer").play(new_expression)
+	var animation_player=active_scene.get_node_or_null("AnimationPlayer")
+	if (animation_player!=null):
+		if animation_player.has_animation(new_expression):
+			animation_player.play(new_expression)
