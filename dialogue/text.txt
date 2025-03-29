@@ -1,4 +1,4 @@
-<music:noise_jam b><background:placeholder><expression:romana:clone_disappear><expression:romana:sit_appear><name:Романа>Мені буває складно налаштуватись навіть на власні думки, не кажучи вже про те що говорять інші. 
+<music:noise_jam c><background:placeholder><expression:romana:clone_disappear><expression:romana:sit_appear><name:Романа>Мені буває складно налаштуватись навіть на власні думки, не кажучи вже про те що говорять інші. 
 <label:tutorial_1>Те що я чую, це просто <tutorial:start><speed:10><theme:tutorial_1><red>шум. Щось нерозбірливе, або взагалі відсутність звуку, сенсу, часу.
 <check_attention_null:tutorial_1;less;1.0><jump:tutorial_1><tutorial:next>
 <background:placeholder_clone><expression:romana:clone_appear><label:tutorial_2><theme_null:tutorial_2><theme:tutorial_2><green>Таке відчуття ніби слова на якійсь <red>іншій хвилі і мені треба шукати її, <green>продираючись крізь шум.
