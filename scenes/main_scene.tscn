@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=66 format=4 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="Script" uid="uid://dltt566pfnhhh" path="res://scripts/music_tuple.gd" id="1_adb74"]
 [ext_resource type="Texture2D" uid="uid://bv6t8ra0jbq3s" path="res://models/Scene_1_placeholder/Scene_1_placeholder_Image_0.png" id="2_01n6w"]
@@ -19,10 +19,15 @@
 [ext_resource type="Script" uid="uid://b7a042f0iaj5u" path="res://scripts/background_manager.gd" id="6_7nt27"]
 [ext_resource type="Script" uid="uid://doo01jcpo12bp" path="res://scripts/selected_button.gd" id="6_r6p65"]
 [ext_resource type="AudioStream" uid="uid://dxgj2bg5kmx08" path="res://music/noise_jam. с bad.mp3" id="6_u0fll"]
+[ext_resource type="AudioStream" uid="uid://c75ncherjoo5k" path="res://music/сніготяг.mp3" id="7_02d50"]
 [ext_resource type="Script" uid="uid://botgewcecp4jj" path="res://scripts/clockhand.gd" id="8_01n6w"]
+[ext_resource type="AudioStream" uid="uid://jwkxo0wf20kh" path="res://music/калюжелфі.mp3" id="8_pgk25"]
 [ext_resource type="Script" uid="uid://jk1pg5org6db" path="res://scripts/polygon_spawner.gd" id="9_6u1mn"]
 [ext_resource type="PackedScene" uid="uid://be8qtfcf1cjx0" path="res://models/scene_cafe_surroundings.gltf" id="9_k6f3i"]
+[ext_resource type="AudioStream" uid="uid://bbic8plevjl6y" path="res://music/каеСпкЇфі.mp3" id="9_kkokr"]
+[ext_resource type="AudioStream" uid="uid://dnrih0bcenepv" path="res://music/чафе.mp3" id="10_lhwp2"]
 [ext_resource type="Script" uid="uid://cyin5jv5ra1ur" path="res://scripts/tutorial_manager.gd" id="11_e1cbu"]
+[ext_resource type="AudioStream" uid="uid://b4io8o3eyihqn" path="res://music/чПце.mp3" id="11_l40q6"]
 [ext_resource type="Texture2D" uid="uid://dn47es8lxpuka" path="res://sprites/rad.png" id="16_k6f3i"]
 [ext_resource type="Texture2D" uid="uid://b7dcgpfagv7x5" path="res://sprites/rad_k.png" id="17_xdqt8"]
 
@@ -100,6 +105,23 @@ metadata/_custom_type_script = "uid://dltt566pfnhhh"
 script = ExtResource("1_adb74")
 music_a = ExtResource("5_to7gp")
 music_b = ExtResource("6_u0fll")
+metadata/_custom_type_script = "uid://dltt566pfnhhh"
+
+[sub_resource type="Resource" id="Resource_iav3h"]
+script = ExtResource("1_adb74")
+music_a = ExtResource("7_02d50")
+metadata/_custom_type_script = "uid://dltt566pfnhhh"
+
+[sub_resource type="Resource" id="Resource_womr8"]
+script = ExtResource("1_adb74")
+music_a = ExtResource("8_pgk25")
+music_b = ExtResource("9_kkokr")
+metadata/_custom_type_script = "uid://dltt566pfnhhh"
+
+[sub_resource type="Resource" id="Resource_onjth"]
+script = ExtResource("1_adb74")
+music_a = ExtResource("10_lhwp2")
+music_b = ExtResource("11_l40q6")
 metadata/_custom_type_script = "uid://dltt566pfnhhh"
 
 [sub_resource type="GDScript" id="GDScript_mngbo"]
@@ -487,7 +509,10 @@ polygon_spawner = NodePath("../Control3/Path2D")
 music_dic = Dictionary[String, ExtResource("1_adb74")]({
 "noise_jam a": SubResource("Resource_u0fll"),
 "noise_jam b": SubResource("Resource_to7gp"),
-"noise_jam c": SubResource("Resource_6p3nn")
+"noise_jam c": SubResource("Resource_6p3nn"),
+"калюжелфі": SubResource("Resource_womr8"),
+"сніготяг": SubResource("Resource_iav3h"),
+"чафе": SubResource("Resource_onjth")
 })
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MusicManager"]
