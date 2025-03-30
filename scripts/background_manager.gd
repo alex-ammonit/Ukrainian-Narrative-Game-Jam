@@ -3,6 +3,8 @@ extends Node
 var active_scene:Node
 
 func _ready():
+	#for child in get_children():
+	#	child.visible=false
 	if (SceneManager.cur_active_scene!=null):
 		active_scene=get_node(SceneManager.cur_active_scene)
 		for child in get_children():

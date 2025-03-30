@@ -10,6 +10,10 @@ var cur_theme_attention={}
 var cur_global_attention=[0, 0]
 var cur_theme="none"
 
+var cur_chars={}
+var temp_chars={}
+
+
 func load_scene(scene):
 	if (scene=="menu"):
 		get_tree().change_scene_to_file(menu)

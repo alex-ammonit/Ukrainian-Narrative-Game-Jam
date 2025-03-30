@@ -422,6 +422,7 @@ func exec_line():
 				SceneManager.cur_theme=cur_theme
 				SceneManager.cur_theme_attention=theme_attention
 				SceneManager.cur_global_attention=[all_char, seen_char]
+				SceneManager.cur_chars=SceneManager.temp_chars
 				cur_command+=1
 		else:
 			text=dis_text
