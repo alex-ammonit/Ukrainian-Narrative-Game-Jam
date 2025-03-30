@@ -1,7 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://br3ykan6pegbo"]
+[gd_scene load_steps=3 format=3 uid="uid://br3ykan6pegbo"]
 
 [sub_resource type="GDScript" id="GDScript_4h3mk"]
 script/source = "extends Button
+
+'''func _ready():
+	if SceneManager.cur_checkpoint==\"none\":
+		visible=false'''
+
+func _pressed():
+	SceneManager.cur_checkpoint=\"none\"
+	SceneManager.cur_active_scene=null
+	SceneManager.cur_theme_attention.clear()
+	SceneManager.cur_global_attention=[0,0]
+	SceneManager.load_scene(\"main_scene\")
+"
+
+[sub_resource type="GDScript" id="GDScript_yqeox"]
+script/source = "extends Button
+
+func _ready():
+	if SceneManager.cur_checkpoint==\"none\":
+		visible=false
 
 func _pressed():
 	SceneManager.load_scene(\"main_scene\")
@@ -41,3 +60,19 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "START"
 script = SubResource("GDScript_4h3mk")
+
+[node name="Button2" type="Button" parent="AspectRatioContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.5
+offset_top = 47.0
+offset_right = 116.5
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONTINUE"
+script = SubResource("GDScript_yqeox")

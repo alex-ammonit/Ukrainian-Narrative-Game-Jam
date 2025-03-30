@@ -50,16 +50,16 @@ music_a = ExtResource("5_to7gp")
 music_b = ExtResource("6_u0fll")
 metadata/_custom_type_script = "uid://dltt566pfnhhh"
 
-[sub_resource type="Resource" id="Resource_iav3h"]
-script = ExtResource("1_adb74")
-music_a = ExtResource("7_pgk25")
-music_b = ExtResource("8_kkokr")
-metadata/_custom_type_script = "uid://dltt566pfnhhh"
-
 [sub_resource type="Resource" id="Resource_womr8"]
 script = ExtResource("1_adb74")
 music_a = ExtResource("8_pgk25")
 music_b = ExtResource("9_kkokr")
+metadata/_custom_type_script = "uid://dltt566pfnhhh"
+
+[sub_resource type="Resource" id="Resource_iav3h"]
+script = ExtResource("1_adb74")
+music_a = ExtResource("7_pgk25")
+music_b = ExtResource("8_kkokr")
 metadata/_custom_type_script = "uid://dltt566pfnhhh"
 
 [sub_resource type="Resource" id="Resource_onjth"]

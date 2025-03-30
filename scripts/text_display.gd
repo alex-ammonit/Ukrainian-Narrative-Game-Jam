@@ -11,6 +11,7 @@ var script_labels:Dictionary[String, int]
 var script_pickup:int=-1
 var theme_attention:Dictionary[String, Array ]
 var cur_theme="none"
+var script_checkpoints:Dictionary[String, int]
 ##change expression
 signal change_expression(new_expression)
 signal change_background(new_background)
@@ -68,6 +69,7 @@ func parse(string: String):
 	var line_buffer=[]
 	var choice_buffer=[]
 	var labels:Dictionary[String, int]
+	var checkpoints:Dictionary[String, int]
 	var append_line= func():
 		#print(el)
 		#print(line_buffer)
@@ -103,6 +105,9 @@ func parse(string: String):
 			if (type=='label'):
 				#labels.append({data:len(dictar)})
 				labels[data]=len(dictar)
+			if (type=='checkpoint'):
+				line_buffer.append({"type":"checkpoint", "checkpoint":data})
+				checkpoints[data]=len(dictar)
 			if (type=="jump"):
 				if (len(choice_buffer)>0):
 					choice_buffer[len(choice_buffer)-1]["to"]=data
@@ -159,7 +164,7 @@ func parse(string: String):
 			line_buffer.append(text)
 		if el["type"]=="new_line":
 			append_line.call()
-	return {"script":dictar, "labels":labels}
+	return {"script":dictar, "labels":labels, "checkpoints":checkpoints}
 
 func _ready():
 	set_speed(initial_speed)
@@ -173,13 +178,21 @@ func _ready():
 	print(p["labels"])
 	script_labels=p["labels"]
 	script_play=p["script"]
+	script_checkpoints=p["checkpoints"]
 	cur_theme="none"
 	#script_pickup=0
 	#print(p, len(p))
 	for i in len(commands):
 		print(i,":", commands[i])
 	#exec_line()
-	turn_to_line(0)
+	if (SceneManager.cur_checkpoint=="none" or not script_checkpoints.has(SceneManager.cur_checkpoint)):
+		turn_to_line(0)
+	else:
+		cur_theme=SceneManager.cur_theme
+		theme_attention=SceneManager.cur_theme_attention
+		all_char=SceneManager.cur_global_attention[0]
+		seen_char=SceneManager.cur_global_attention[1]
+		turn_to_line(script_checkpoints[SceneManager.cur_checkpoint])
 
 func turn_to_line(line:int):
 	script_pickup=line
@@ -402,6 +415,13 @@ func exec_line():
 				cur_command+=1
 			if l["type"]=="name":
 				change_name.emit(l["name"])
+				cur_command+=1
+			if l["type"]=="checkpoint":
+				SceneManager.cur_checkpoint=l["checkpoint"]
+				SceneManager.cur_active_scene=SceneManager.temp_active_scene
+				SceneManager.cur_theme=cur_theme
+				SceneManager.cur_theme_attention=theme_attention
+				SceneManager.cur_global_attention=[all_char, seen_char]
 				cur_command+=1
 		else:
 			text=dis_text
