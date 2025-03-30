@@ -3,6 +3,7 @@ extends Node
 signal send_expression(new_expression)
 @export var characters:Dictionary[String, Node]
 @export var faces:Dictionary[String, CompressedTexture2D]
+@export var default_anim:Dictionary[String, String]
 
 func _ready():
 	if (SceneManager.cur_checkpoint!="none"):
@@ -13,6 +14,19 @@ func _ready():
 			var animation_player=characters[k].get_node_or_null("AnimationPlayer")
 			if (animation_player!=null and c.has("animation") and c["animation"]!=""):
 				animation_player.play(c["animation"])
+	for char in default_anim.keys():
+		var animation_player=characters[char].get_node_or_null("AnimationPlayer")
+		if (animation_player!=null):
+			#var anim_ended=func():
+			#	animation_ended(char)
+			animation_player.connect("animation_finished", func(name):animation_ended(char))
+
+func animation_ended(character):
+	print("END")
+	var animation_player=characters[character].get_node_or_null("AnimationPlayer")
+	if (animation_player!=null):
+		animation_player.play(default_anim[character])
+	pass
 
 func expression_changed(new_expression):
 	#send_expression.emit(new_expression)
