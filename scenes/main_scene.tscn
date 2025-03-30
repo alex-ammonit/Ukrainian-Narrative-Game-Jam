@@ -712,6 +712,24 @@ offset_right = 1405.0
 offset_bottom = 472.0
 texture = ExtResource("3_e1cbu")
 
+[node name="black" type="Control" parent="SubViewportContainer/SubViewport/BackgroundManager"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/BackgroundManager/black"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.082575, 0.0405, 0.09, 1)
+
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 2
 offset_right = 1164.0
