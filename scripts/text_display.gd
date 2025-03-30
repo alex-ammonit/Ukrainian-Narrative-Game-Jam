@@ -221,7 +221,10 @@ func next_line():
 func _input(event):
 	if (script_pickup==-1):
 		return
-	if (event is InputEventKey and event.is_pressed()):
+	'''if (event is InputEventAction and event.is_action("ui_accept")):
+		if (can_go_next()):
+			next_line()'''
+	'''if (event is InputEventKey and event.is_pressed()):
 		#print(event.as_text_keycode())
 		if (event.as_text_keycode()=="Left"):
 			back_line()
@@ -231,7 +234,7 @@ func _input(event):
 			next_line()
 			#script_pickup=clamp(script_pickup+1, 0, len(script_play)-1)
 			#script_pickup+=1
-			#print("R")
+			#print("R")'''
 
 func return_text(text:String, color:String="none"):
 	var d={"open":"", "text":"", "close":"","cipher":false}
