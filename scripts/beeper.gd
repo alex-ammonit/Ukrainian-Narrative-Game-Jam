@@ -15,17 +15,19 @@ func _on_beep_signal(char, ciphered):
 	#print(char, ciphered)
 	var increment=pulse_hz/sample_hz
 	var frames_available=playback.get_frames_available()
-	if (ciphered): pitch_scale=0.1
-	else: pitch_scale=2.0
+	#if (ciphered): pitch_scale=0.1
+	#else: pitch_scale=2.0
 	for i in range(frames_available):
 		var bchar=char.to_utf8_buffer()
-		var bif=bchar[0]
+		var bif=bchar[bchar.size()/2]
 		#print(bif)
 		var new_frame
-		if (ciphered):
-			new_frame=Vector2.ONE* (sin(phase*TAU*(bif/50)* i ) + sin(phase*TAU*(bif/50) ))/2
-		else:
-			new_frame=Vector2.ONE*sin(phase*TAU*(bif/50)/i )
+		#if (ciphered):
+			#new_frame=Vector2.ONE* (sin(phase*TAU*(bif/50)* i ) + sin(phase*TAU*(bif/50) ))/2
+		#else:
+		# new_frame=Vector2.ONE*sin(phase*TAU*(bif/50)/i )
+		var window = 0.5 * (1 - cos(TAU * i / frames_available)) 
+		new_frame = Vector2.ONE * sin(phase * TAU * (bif/100)) * window
 		#var new_frame=Vector2.ONE*sin(phase*TAU*(bif/50) )
 		#var new_frame=Vector2.ONE*sin(phase*TAU)
 		playback.push_frame(new_frame)

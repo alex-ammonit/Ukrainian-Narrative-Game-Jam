@@ -273,7 +273,7 @@ var cur_tween_colors:Array[Color]
 var cur_color_tweens:Array[Tween]
 var speed_coef=0.2
 func set_speed(speed:float):
-	speed_coef=1/(speed*4)
+	speed_coef=1/(speed*3)
 var cur_wait_time=-1
 var seen_char=0
 var all_char=0
