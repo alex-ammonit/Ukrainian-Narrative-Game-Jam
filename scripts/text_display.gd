@@ -240,7 +240,7 @@ func return_text(text:String, color:String="none"):
 		d["close"]="[/color]"
 		is_cipher_shown = false
 		var is_color_correct=color_dict[color].to_html()==WhatSelected.color.to_html()
-		print(color_dict[color].to_html() ,"  ", WhatSelected.color.to_html(), "  ", is_color_correct)
+		#print(color_dict[color].to_html() ,"  ", WhatSelected.color.to_html(), "  ", is_color_correct)
 		if (not is_color_correct):
 			#print("decip")
 			d["cipher"]=true
@@ -336,7 +336,7 @@ func exec_line():
 				app_text=d["open"]+d["text"].substr(0, cur_text_pos)+d["close"]
 				text=dis_text+app_text
 				if (cur_text_pos!=-1 and cur_text_pos<len(txt) and cur_text_pos!=old_text_pos):
-					print(d["text"], cur_text_pos)
+					#print(d["text"], cur_text_pos)
 					beep_signal.emit(d["text"][cur_text_pos], d["cipher"])
 					old_text_pos=cur_text_pos
 				if (cur_text_pos==len(txt)):

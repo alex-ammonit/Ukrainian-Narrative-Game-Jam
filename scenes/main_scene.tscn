@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=79 format=4 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="Script" uid="uid://dltt566pfnhhh" path="res://scripts/music_tuple.gd" id="1_adb74"]
 [ext_resource type="Script" uid="uid://cnkutfrywyaqd" path="res://scripts/music_manager.tres.gd" id="1_kkokr"]
@@ -29,8 +29,15 @@
 [ext_resource type="AudioStream" uid="uid://dnrih0bcenepv" path="res://music/чафе.mp3" id="10_lhwp2"]
 [ext_resource type="Script" uid="uid://cyin5jv5ra1ur" path="res://scripts/tutorial_manager.gd" id="11_e1cbu"]
 [ext_resource type="AudioStream" uid="uid://b4io8o3eyihqn" path="res://music/чПце.mp3" id="11_l40q6"]
+[ext_resource type="Texture2D" uid="uid://ncjqhhp7waib" path="res://models/character_faces/T_Nelya_face_laugh.png" id="15_iav3h"]
+[ext_resource type="Texture2D" uid="uid://0hrrotjumsll" path="res://models/character_faces/T_Nelya_face_neutral.png" id="16_cn4eu"]
+[ext_resource type="Texture2D" uid="uid://cgrg1kigaqk5b" path="res://models/character_faces/T_Nelya_face_sad.png" id="17_0wyf6"]
 [ext_resource type="PackedScene" uid="uid://d1ddod1c176ut" path="res://models/character_animations_final/MC_animations.gltf" id="18_l40q6"]
+[ext_resource type="Texture2D" uid="uid://4xntacciumfq" path="res://models/character_faces/Nelya_face_awkward.png" id="18_xp01v"]
 [ext_resource type="PackedScene" uid="uid://bvjn1ruir15in" path="res://models/character_animations_final/Nelya_animations.gltf" id="19_iav3h"]
+[ext_resource type="Texture2D" uid="uid://swwv8p6vtfo1" path="res://models/character_faces/T_MC_face_neutral.png" id="19_jix7a"]
+[ext_resource type="Texture2D" uid="uid://cxlc2756x6m6o" path="res://models/character_faces/T_MC_face_o.png" id="20_segjr"]
+[ext_resource type="Texture2D" uid="uid://dwtndbjgxjcg8" path="res://models/character_faces/T_MC_face_smile.png" id="21_beobj"]
 [ext_resource type="PackedScene" uid="uid://3qv2c6q0yqtb" path="res://models/char_animations_separate_test/scene_cafe_separate_test.gltf" id="21_lhwp2"]
 [ext_resource type="Texture2D" uid="uid://bwghu03a38eu2" path="res://sprites/radio/radio.png" id="31_l40q6"]
 [ext_resource type="Texture2D" uid="uid://vpmir0ab2thd" path="res://sprites/radio/radio_pipka_cut.png" id="32_iav3h"]
@@ -543,6 +550,15 @@ characters = {
 "Nelya": NodePath("Nelya_animations"),
 "Romana": NodePath("MC_animations")
 }
+faces = Dictionary[String, CompressedTexture2D]({
+"nelya_awkward": ExtResource("18_xp01v"),
+"nelya_laugh": ExtResource("15_iav3h"),
+"nelya_neutral": ExtResource("16_cn4eu"),
+"nelya_sad": ExtResource("17_0wyf6"),
+"romana_neutral": ExtResource("19_jix7a"),
+"romana_o": ExtResource("20_segjr"),
+"romana_smile": ExtResource("21_beobj")
+})
 
 [node name="romana_sit" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/CharacterManager"]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)

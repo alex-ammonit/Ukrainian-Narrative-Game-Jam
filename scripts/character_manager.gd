@@ -2,6 +2,7 @@ extends Node
 
 signal send_expression(new_expression)
 @export var characters:Dictionary[String, Node]
+@export var faces:Dictionary[String, CompressedTexture2D]
 
 func _ready():
 	if (SceneManager.cur_checkpoint!="none"):
@@ -36,6 +37,21 @@ func expression_changed(new_expression):
 				return
 			if (post_colon=="disappear"):
 				characters[pre_colon].visible=false
+				return
+			if (post_colon.substr(0, 4)=="face"):
+				var s_colon=post_colon.find(':')
+				if (s_colon!=-1):
+					var post_post=post_colon.substr(colon)
+					print("AAAAAAA")
+					var mesh=characters[pre_colon].get_child(0).get_child(0).get_child(0)
+					print(mesh is MeshInstance3D)
+					var new_material=mesh.mesh.surface_get_material(1)
+					new_material.albedo_texture=faces[post_post]
+					#mesh.mesh.surface_set_material(1, new_material)
+					#mesh.set_surface_override_material(1, new_material)
+					print(new_material)
+					#new_
+					#mesh.set_surface_override_material(1, new StandardMaterial3D())
 				return
 			var animation_player=characters[pre_colon].get_node_or_null("AnimationPlayer")
 			if (animation_player!=null):
