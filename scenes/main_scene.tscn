@@ -29,11 +29,11 @@
 [ext_resource type="AudioStream" uid="uid://dnrih0bcenepv" path="res://music/чафе.mp3" id="10_lhwp2"]
 [ext_resource type="Script" uid="uid://cyin5jv5ra1ur" path="res://scripts/tutorial_manager.gd" id="11_e1cbu"]
 [ext_resource type="AudioStream" uid="uid://b4io8o3eyihqn" path="res://music/чПце.mp3" id="11_l40q6"]
-[ext_resource type="Texture2D" uid="uid://dn47es8lxpuka" path="res://sprites/rad.png" id="16_k6f3i"]
-[ext_resource type="Texture2D" uid="uid://b7dcgpfagv7x5" path="res://sprites/rad_k.png" id="17_xdqt8"]
 [ext_resource type="PackedScene" uid="uid://dyxncpl74ac7" path="res://models/char_animations_separate_test/MC_animation_separate_test.gltf" id="18_iav3h"]
 [ext_resource type="PackedScene" uid="uid://bfige7iotw1u0" path="res://models/char_animations_separate_test/Nelya_animation_separate_test.gltf" id="19_womr8"]
 [ext_resource type="PackedScene" uid="uid://3qv2c6q0yqtb" path="res://models/char_animations_separate_test/scene_cafe_separate_test.gltf" id="21_lhwp2"]
+[ext_resource type="Texture2D" uid="uid://bwghu03a38eu2" path="res://sprites/radio/radio.png" id="31_l40q6"]
+[ext_resource type="Texture2D" uid="uid://vpmir0ab2thd" path="res://sprites/radio/radio_pipka_cut.png" id="32_iav3h"]
 
 [sub_resource type="Resource" id="Resource_u0fll"]
 script = ExtResource("1_adb74")
@@ -772,9 +772,10 @@ script = SubResource("GDScript_iav3h")
 [node name="RichTextLabel2" type="RichTextLabel" parent="Control/DialogContainer/CharNameBg"]
 z_index = 2
 layout_mode = 1
-offset_left = 19.0
-offset_right = 179.0
-offset_bottom = 35.0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 162.0
+offset_bottom = 39.0
 theme_override_font_sizes/normal_font_size = 27
 text = "NAME"
 horizontal_alignment = 1
@@ -941,7 +942,7 @@ offset_right = 27.0
 offset_bottom = 34.8601
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("16_k6f3i")
+texture = ExtResource("31_l40q6")
 expand_mode = 5
 
 [node name="TextureRect2" type="TextureRect" parent="Control3/TextureRect"]
@@ -952,19 +953,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -43.4301
-offset_right = 59.0
-offset_bottom = 33.5699
+offset_left = -72.9998
+offset_top = -73.4301
+offset_right = 112.0
+offset_bottom = 79.5699
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(75, 90)
-texture = ExtResource("17_xdqt8")
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(92.0002, 75.0001)
+texture = ExtResource("32_iav3h")
 script = ExtResource("8_01n6w")
 wheelStep = 0.05
 
 [node name="RayCast2D" type="RayCast2D" parent="Control3/TextureRect/TextureRect2"]
-position = Vector2(0, 43)
+position = Vector2(-3.99976, 76.0001)
 target_position = Vector2(200, 0)
 collide_with_areas = true
 collide_with_bodies = false
