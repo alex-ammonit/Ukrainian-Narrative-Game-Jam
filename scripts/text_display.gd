@@ -221,9 +221,10 @@ func next_line():
 func _input(event):
 	if (script_pickup==-1):
 		return
-	'''if (event is InputEventAction and event.is_action("ui_accept")):
+	if (event.is_action("ui_accept")):
+		print("ACTION")
 		if (can_go_next()):
-			next_line()'''
+			next_line()
 	'''if (event is InputEventKey and event.is_pressed()):
 		#print(event.as_text_keycode())
 		if (event.as_text_keycode()=="Left"):
