@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/коскос.mp3-09b6adcafa264288d2a754209a8b
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
