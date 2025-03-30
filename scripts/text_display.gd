@@ -239,7 +239,10 @@ func return_text(text:String, color:String="none"):
 		d["open"]="[color=#"+color_dict[color].to_html()+"]"
 		d["close"]="[/color]"
 		is_cipher_shown = false
-		if (color_dict[color]!=WhatSelected.color):
+		var is_color_correct=color_dict[color].to_html()==WhatSelected.color.to_html()
+		print(color_dict[color].to_html() ,"  ", WhatSelected.color.to_html(), "  ", is_color_correct)
+		if (not is_color_correct):
+			#print("decip")
 			d["cipher"]=true
 			is_cipher_shown = true
 			var app_text=""
@@ -258,7 +261,7 @@ func return_text(text:String, color:String="none"):
 				app_text += flicker_text(text, i, color_dict[color])
 				
 			d["text"]=app_text
-	if (color=="none" or color_dict[color]==WhatSelected.color):
+	if (color=="none" or color_dict[color].to_html()==WhatSelected.color.to_html()):
 		d["text"]=text
 	return d
 
@@ -324,7 +327,8 @@ func exec_line():
 				if (color=="none"):
 					WhatSelected.target_color=Color.TRANSPARENT
 				else:
-					WhatSelected.target_color=color
+					WhatSelected.target_color=color_dict[color]
+					print(color)
 				if (cur_text_pos==-1):
 					cur_text_pos=0
 					cur_tween=create_tween()
@@ -332,6 +336,7 @@ func exec_line():
 				app_text=d["open"]+d["text"].substr(0, cur_text_pos)+d["close"]
 				text=dis_text+app_text
 				if (cur_text_pos!=-1 and cur_text_pos<len(txt) and cur_text_pos!=old_text_pos):
+					print(d["text"], cur_text_pos)
 					beep_signal.emit(d["text"][cur_text_pos], d["cipher"])
 					old_text_pos=cur_text_pos
 				if (cur_text_pos==len(txt)):
@@ -341,7 +346,7 @@ func exec_line():
 						dis_text+=d["text"]
 					else:
 						var cur_color_tween=create_tween()
-						var cur_tween_color:Color = color
+						var cur_tween_color:Color = color_dict[color]
 						var index = cur_tween_colors.size()
 						cur_tween_colors.push_back(cur_tween_color)
 						
@@ -511,7 +516,8 @@ func update_flicker_chars(delta):
 
 func flicker_text(text: String, i: int, target_color: Color):
 	var cur_freq = WhatSelected.freq
-	var target_range: Vector2 = polygon_spawner.color_to_range_dict[target_color]
+	#print(target_color, target_color.to_html())
+	var target_range: Vector2 = polygon_spawner.color_to_range_dict[target_color.to_html()]
 	var dist_to_target = min(abs(target_range.x - cur_freq), abs(cur_freq - target_range.y))
 	if randf() < dist_to_target:
 		return flicker_arr[i % flicker_arr.size()]

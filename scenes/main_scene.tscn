@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=73 format=4 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="Script" uid="uid://dltt566pfnhhh" path="res://scripts/music_tuple.gd" id="1_adb74"]
 [ext_resource type="Script" uid="uid://cnkutfrywyaqd" path="res://scripts/music_manager.tres.gd" id="1_kkokr"]
@@ -385,6 +385,17 @@ func _on_visibility_changed():
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_c1pb6"]
 buffer_length = 0.02
 
+[sub_resource type="GDScript" id="GDScript_iav3h"]
+script/source = "extends ColorRect
+
+func _process(delta):
+	#visible=$RichTextLabel2.visible
+	if $RichTextLabel2.text==\"\":
+		visible=false
+	else:
+		visible=true
+"
+
 [sub_resource type="GDScript" id="GDScript_4w45t"]
 script/source = "extends RichTextLabel
 
@@ -759,7 +770,7 @@ anchor_bottom = 1.0
 offset_top = -101.0
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(0.365862, 0.408605, 0.338788, 0.894118)
+color = Color(0.146, 0.138, 0.15, 0.831373)
 metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/ColorRect" node_paths=PackedStringArray("polygon_spawner")]
@@ -784,23 +795,42 @@ t = "<blue>\"Нормально.\"
 <blue>“Люди інші, <red>але відмінності всередині групи більші, ніж відмінності між групами.<green>Ну, тобто різні траплялися.”
 <jump:A>"
 color_dict = Dictionary[String, Color]({
-"blue": Color(0, 0, 1, 1),
-"green": Color(0, 1, 0, 1),
-"red": Color(1, 0, 0, 1)
+"blue": Color(0.133333, 0.435294, 0.619608, 1),
+"green": Color(0.419608, 0.701961, 0.176471, 1),
+"red": Color(0.780392, 0.4, 0.392157, 1)
 })
 polygon_spawner = NodePath("../../../Control3/Path2D")
+gray_noise_color = Color(0.380392, 0.360784, 0.392157, 1)
 
 [node name="beeper" type="AudioStreamPlayer" parent="Control/ColorRect/RichTextLabel"]
 stream = SubResource("AudioStreamGenerator_c1pb6")
 autoplay = true
 script = ExtResource("4_e1cbu")
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Control/ColorRect"]
+[node name="ColorRect" type="ColorRect" parent="Control/ColorRect"]
 layout_mode = 1
-offset_left = 65.0
-offset_right = 147.0
-offset_bottom = 40.0
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -33.0
+offset_right = -954.0
+offset_bottom = -214.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.145098, 0.137255, 0.14902, 0.831373)
+script = SubResource("GDScript_iav3h")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/ColorRect/ColorRect"]
+z_index = 2
+layout_mode = 1
+offset_left = 19.0
+offset_right = 179.0
+offset_bottom = 35.0
+theme_override_font_sizes/normal_font_size = 27
 text = "NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
 script = SubResource("GDScript_4w45t")
 
 [node name="Button" type="Button" parent="Control/ColorRect" node_paths=PackedStringArray("text_display")]
@@ -817,7 +847,7 @@ offset_right = 230.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "NEXT"
+text = "Далі"
 script = SubResource("GDScript_7nt27")
 text_display = NodePath("../RichTextLabel")
 
@@ -1019,9 +1049,9 @@ script = ExtResource("9_6u1mn")
 clockhand = NodePath("../TextureRect/TextureRect2")
 colors = Array[Color]([Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)])
 color_dict = Dictionary[Vector2, Color]({
-Vector2(-0.7, -1.5): Color(0, 0, 1, 1),
-Vector2(0.1, -0.7): Color(0, 1, 0, 1),
-Vector2(1, 0.1): Color(1, 0, 0, 1)
+Vector2(-0.7, -1.5): Color(0.133333, 0.435294, 0.619608, 1),
+Vector2(0.1, -0.7): Color(0.419608, 0.701961, 0.176471, 1),
+Vector2(1, 0.1): Color(0.780392, 0.4, 0.392157, 1)
 })
 
 [connection signal="send_expression" from="SubViewportContainer/SubViewport/CharacterManager" to="SubViewportContainer/SubViewport/BackgroundManager" method="expression_changed"]
@@ -1032,7 +1062,7 @@ Vector2(1, 0.1): Color(1, 0, 0, 1)
 [connection signal="change_expression" from="Control/ColorRect/RichTextLabel" to="SubViewportContainer/SubViewport/CharacterManager" method="expression_changed"]
 [connection signal="change_expression" from="Control/ColorRect/RichTextLabel" to="Control/TextureRect" method="print_expression"]
 [connection signal="change_music" from="Control/ColorRect/RichTextLabel" to="MusicManager" method="change_music"]
-[connection signal="change_name" from="Control/ColorRect/RichTextLabel" to="Control/ColorRect/RichTextLabel2" method="change_name"]
+[connection signal="change_name" from="Control/ColorRect/RichTextLabel" to="Control/ColorRect/ColorRect/RichTextLabel2" method="change_name"]
 [connection signal="tutorial" from="Control/ColorRect/RichTextLabel" to="TutorialManager" method="_on_tutorial"]
 [connection signal="pressed" from="Control/ColorRect/Button" to="Control/ColorRect/RichTextLabel" method="next_line"]
 [connection signal="mouse_entered" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_entered"]

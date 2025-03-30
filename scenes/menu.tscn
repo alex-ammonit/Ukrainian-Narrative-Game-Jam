@@ -96,17 +96,17 @@ alignment = 1
 
 [node name="Button" type="Button" parent="AspectRatioContainer/Control/VBoxContainer"]
 layout_mode = 2
-text = "START"
+text = "ПОЧАТИ ГРУ"
 script = SubResource("GDScript_4h3mk")
 
 [node name="Button2" type="Button" parent="AspectRatioContainer/Control/VBoxContainer"]
 layout_mode = 2
-text = "CONTINUE"
+text = "ПРОДОВЖИТИ"
 script = SubResource("GDScript_yqeox")
 
 [node name="Button3" type="Button" parent="AspectRatioContainer/Control/VBoxContainer"]
 layout_mode = 2
-text = "QUIT"
+text = "ВИЙТИ"
 script = SubResource("GDScript_vjb58")
 
 [node name="Node" type="Node" parent="."]

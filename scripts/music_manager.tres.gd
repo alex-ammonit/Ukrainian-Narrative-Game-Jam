@@ -58,7 +58,8 @@ func _process(delta):
 	if (WhatSelected.text_displaying==false):
 		return
 	var cur_freq = WhatSelected.freq
-	var target_range: Vector2 = polygon_spawner.color_to_range_dict[WhatSelected.target_color]
+	print(WhatSelected.target_color)
+	var target_range: Vector2 = polygon_spawner.color_to_range_dict[WhatSelected.target_color.to_html()]
 	var dist_to_target = min(abs(target_range.x - cur_freq), abs(cur_freq - target_range.y))
 	if (dist_to_target==0):
 		$AudioStreamPlayer.volume_linear=1

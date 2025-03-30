@@ -8,7 +8,7 @@ extends Path2D
 @export var colors: Array[Color]
 @export var color_dict:Dictionary[Vector2, Color]
 
-var color_to_range_dict:Dictionary[Color, Vector2]
+var color_to_range_dict:Dictionary[String, Vector2]
 '''@export_tool_button("generate polygons")
 var generate_pols:
 	get: return func():
@@ -18,7 +18,8 @@ var generate_pols:
 
 func _ready():
 	for key in color_dict:
-		color_to_range_dict.set(color_dict[key], key)
+		#print(color_dict[key])
+		color_to_range_dict.set(color_dict[key].to_html(), key)
 	generate_polygons()
 	pass
 
