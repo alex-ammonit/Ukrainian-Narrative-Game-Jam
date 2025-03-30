@@ -1,4 +1,4 @@
-<background:scene_cafe><music:чафе><expression:Nelya:sit_idle><expression:Romana:MC_sit_idle>
+<background:scene_cafe><music:чафе><expression:Nelya:sit_idle><expression:Romana:MC_idle>
 <name:Романа>Мені буває складно налаштуватись навіть на власні думки, не кажучи вже про те що говорять інші. 
 <label:tutorial_1>Те що я чую, це просто <tutorial:start><speed:10><theme:tutorial_1><red>шум. Щось нерозбірливе, або взагалі відсутність звуку, сенсу, часу.
 <check_attention_null:tutorial_1;less;0.0><jump:tutorial_1><tutorial:next>

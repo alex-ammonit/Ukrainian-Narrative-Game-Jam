@@ -29,8 +29,8 @@
 [ext_resource type="AudioStream" uid="uid://dnrih0bcenepv" path="res://music/чафе.mp3" id="10_lhwp2"]
 [ext_resource type="Script" uid="uid://cyin5jv5ra1ur" path="res://scripts/tutorial_manager.gd" id="11_e1cbu"]
 [ext_resource type="AudioStream" uid="uid://b4io8o3eyihqn" path="res://music/чПце.mp3" id="11_l40q6"]
-[ext_resource type="PackedScene" uid="uid://dyxncpl74ac7" path="res://models/char_animations_separate_test/MC_animation_separate_test.gltf" id="18_iav3h"]
-[ext_resource type="PackedScene" uid="uid://bfige7iotw1u0" path="res://models/char_animations_separate_test/Nelya_animation_separate_test.gltf" id="19_womr8"]
+[ext_resource type="PackedScene" uid="uid://d1ddod1c176ut" path="res://models/character_animations_final/MC_animations.gltf" id="18_l40q6"]
+[ext_resource type="PackedScene" uid="uid://bvjn1ruir15in" path="res://models/character_animations_final/Nelya_animations.gltf" id="19_iav3h"]
 [ext_resource type="PackedScene" uid="uid://3qv2c6q0yqtb" path="res://models/char_animations_separate_test/scene_cafe_separate_test.gltf" id="21_lhwp2"]
 [ext_resource type="Texture2D" uid="uid://bwghu03a38eu2" path="res://sprites/radio/radio.png" id="31_l40q6"]
 [ext_resource type="Texture2D" uid="uid://vpmir0ab2thd" path="res://sprites/radio/radio_pipka_cut.png" id="32_iav3h"]
@@ -540,8 +540,8 @@ render_target_update_mode = 4
 [node name="CharacterManager" type="Node" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("characters")]
 script = ExtResource("2_bcnxi")
 characters = {
-"Nelya": NodePath("Nelya_animation_separate_test"),
-"Romana": NodePath("MC_animation_separate_test")
+"Nelya": NodePath("Nelya_animations"),
+"Romana": NodePath("MC_animations")
 }
 
 [node name="romana_sit" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/CharacterManager"]
@@ -554,9 +554,9 @@ skeleton = NodePath("")
 transform = Transform3D(0.83906, 0, 0.544039, 0, 1, 0, -0.544039, 0, 0.83906, 0.677084, 0, 0.336429)
 visible = false
 
-[node name="MC_animation_separate_test" parent="SubViewportContainer/SubViewport/CharacterManager" instance=ExtResource("18_iav3h")]
+[node name="MC_animations" parent="SubViewportContainer/SubViewport/CharacterManager" instance=ExtResource("18_l40q6")]
 
-[node name="Nelya_animation_separate_test" parent="SubViewportContainer/SubViewport/CharacterManager" instance=ExtResource("19_womr8")]
+[node name="Nelya_animations" parent="SubViewportContainer/SubViewport/CharacterManager" instance=ExtResource("19_iav3h")]
 
 [node name="BackgroundManager" type="Node" parent="SubViewportContainer/SubViewport"]
 script = ExtResource("6_7nt27")
@@ -592,7 +592,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37697, 2.02736, 1.47201)
 [node name="scene_cafe" parent="SubViewportContainer/SubViewport/BackgroundManager" instance=ExtResource("21_lhwp2")]
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/BackgroundManager/scene_cafe"]
-transform = Transform3D(-0.0689904, 0.0946468, -0.993117, 0, 0.995489, 0.0948728, 0.997617, 0.00654531, -0.0686792, -1.92814, 1.26872, 0.296975)
+transform = Transform3D(-0.0689904, 0.0946468, -0.993118, 0, 0.995489, 0.0948729, 0.997617, 0.00654532, -0.0686792, -1.92814, 1.26872, 0.296975)
 current = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/BackgroundManager/scene_cafe"]
