@@ -556,7 +556,86 @@ visible = false
 
 [node name="MC_animations" parent="SubViewportContainer/SubViewport/CharacterManager" instance=ExtResource("18_l40q6")]
 
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/CharacterManager/MC_animations/MC_Armature" index="0"]
+bones/1/rotation = Quaternion(-0.130096, 0.573086, 0.167373, 0.791602)
+bones/2/rotation = Quaternion(0.191719, 0.0675099, -0.056952, 0.977467)
+bones/3/rotation = Quaternion(-0.0746682, -0.116848, -0.0175388, 0.990184)
+bones/4/rotation = Quaternion(0.139573, -0.0293797, -0.000340645, 0.989776)
+bones/5/rotation = Quaternion(-0.0283614, 0.0584522, -0.00302135, 0.997883)
+bones/6/rotation = Quaternion(0.9979, -0.000253067, -6.39237e-05, -0.064767)
+bones/7/rotation = Quaternion(0.146915, 0.0791491, 0.0755344, 0.98308)
+bones/8/rotation = Quaternion(0.999283, 0.0267726, 0.0267725, -0.000717283)
+bones/9/rotation = Quaternion(0.999283, -0.0267726, -0.0267725, -0.000717284)
+bones/10/rotation = Quaternion(0.950039, 0.0683895, 0.257957, -0.161887)
+bones/11/rotation = Quaternion(-0.67437, 0.00838989, -0.0520364, 0.73651)
+bones/12/rotation = Quaternion(-0.159442, 0.165634, -0.344046, 0.910371)
+bones/13/rotation = Quaternion(-0.0840766, -0.206597, 0.149319, 0.963303)
+bones/14/rotation = Quaternion(0.04944, -0.146929, 0.329796, 0.931237)
+bones/15/rotation = Quaternion(-0.241459, -0.263504, 0.000129084, 0.933951)
+bones/16/rotation = Quaternion(0.890143, -0.197751, -0.40885, 0.0371639)
+bones/17/rotation = Quaternion(-0.618685, -0.00630595, -0.125296, 0.775558)
+bones/18/rotation = Quaternion(-0.291541, -0.0775138, 0.26775, 0.915044)
+bones/19/rotation = Quaternion(-0.0753868, 0.233841, -0.174516, 0.953509)
+bones/20/rotation = Quaternion(0.113273, 0.221161, -0.274622, 0.928892)
+bones/21/rotation = Quaternion(-0.157235, 0.11323, -0.0913459, 0.976787)
+bones/22/rotation = Quaternion(0.817254, 0.215714, 0.00711556, 0.534333)
+bones/23/rotation = Quaternion(0.747271, 0.00599662, 0.160123, 0.644911)
+bones/24/rotation = Quaternion(-0.0395771, -0.250206, 0.0769581, 0.964318)
+bones/25/rotation = Quaternion(0.793143, -0.194966, -0.000934707, 0.576985)
+bones/26/rotation = Quaternion(0.595631, -0.00860026, -0.282111, 0.75204)
+bones/27/rotation = Quaternion(0.13266, 0.0255096, 0.109686, 0.984744)
+bones/29/position = Vector3(-0.110532, -0.486632, -0.177248)
+bones/30/rotation = Quaternion(0.784626, 0.0257507, -0.618752, 0.0290635)
+bones/31/position = Vector3(-0.218412, -0.444121, -0.151981)
+bones/32/position = Vector3(0.486302, 0.752119, -0.319961)
+bones/32/rotation = Quaternion(0.525231, 0.0925036, 0.244691, 0.809754)
+bones/34/position = Vector3(0.361606, 0.785911, -0.322646)
+bones/34/rotation = Quaternion(0.471812, -0.115332, -0.190479, 0.853117)
+
 [node name="Nelya_animations" parent="SubViewportContainer/SubViewport/CharacterManager" instance=ExtResource("19_iav3h")]
+
+[node name="Nelya_Armature" parent="SubViewportContainer/SubViewport/CharacterManager/Nelya_animations" index="0"]
+transform = Transform3D(0.94977, 0, -0.31295, 0, 1, 0, 0.31295, 0, 0.94977, 0.295146, 0, -0.772421)
+
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/CharacterManager/Nelya_animations/Nelya_Armature" index="0"]
+bones/1/position = Vector3(-0.28148, 0.533696, 7.33827e-08)
+bones/1/rotation = Quaternion(-0.0296604, 0.706484, 0.0296604, 0.706484)
+bones/2/rotation = Quaternion(-0.00934888, -0.000363144, 0.000153222, 0.999956)
+bones/3/rotation = Quaternion(0.16444, -0.000792312, -0.000127938, 0.986387)
+bones/4/rotation = Quaternion(0.0621565, -0.0797912, 0.024756, 0.994564)
+bones/5/rotation = Quaternion(-0.100418, -0.178628, 0.0275436, 0.978392)
+bones/6/rotation = Quaternion(0.927527, -0.00736864, -0.371381, 0.041421)
+bones/7/rotation = Quaternion(0.925223, 0.0316335, 0.37551, 0.0442074)
+bones/8/rotation = Quaternion(0.904508, 0.181078, 0.38374, 0.0426561)
+bones/9/rotation = Quaternion(-0.270714, 0.0117882, -0.119387, 0.955155)
+bones/10/rotation = Quaternion(-0.475754, -0.308181, -0.337304, 0.751604)
+bones/11/rotation = Quaternion(0.0144113, 0.0457409, 0.109838, 0.992792)
+bones/12/position = Vector3(-0.00561879, 0.0093417, 0.137355)
+bones/12/rotation = Quaternion(0.999243, 0.0284647, 0.000742801, -0.0265183)
+bones/13/rotation = Quaternion(0.929309, -0.12962, -0.336173, -0.0810623)
+bones/14/rotation = Quaternion(-0.562612, -0.0290816, 0.325063, 0.759576)
+bones/15/rotation = Quaternion(-0.448436, -0.276548, 0.31293, 0.790254)
+bones/16/rotation = Quaternion(0.0357274, -0.00753325, -0.173165, 0.984216)
+bones/17/rotation = Quaternion(0.728449, -0.107258, -0.0287882, 0.67604)
+bones/18/rotation = Quaternion(0.49706, 0.0125214, -0.243511, 0.832753)
+bones/19/rotation = Quaternion(0.062974, 0.159321, 0.106785, 0.979412)
+bones/20/rotation = Quaternion(0.724108, 0.0654726, 0.0177231, 0.686343)
+bones/21/rotation = Quaternion(0.551399, -0.0120911, 0.0875131, 0.829551)
+bones/22/rotation = Quaternion(0.207112, -0.159958, -0.0343993, 0.964539)
+bones/23/position = Vector3(0.27935, 0.187008, -0.141797)
+bones/23/rotation = Quaternion(0.728652, 0.123112, -0.66294, 0.120085)
+bones/24/position = Vector3(-0.157471, -0.403312, -0.240319)
+bones/25/position = Vector3(0.270433, 0.175503, 0.0709035)
+bones/25/rotation = Quaternion(-0.606702, -0.000550119, 0.794929, -0.00041986)
+bones/26/position = Vector3(0.0131219, -0.433314, -0.236872)
+bones/27/position = Vector3(0.211829, 0.583722, -0.21295)
+bones/27/rotation = Quaternion(0.625884, 0.104762, 0.0482471, 0.771341)
+bones/28/position = Vector3(0.312728, -0.232881, -0.0500896)
+bones/28/rotation = Quaternion(0.623827, 0.018685, 0.442805, 0.643751)
+bones/29/position = Vector3(-0.17636, 0.68173, -0.200612)
+bones/29/rotation = Quaternion(0.220898, -0.321506, -0.450561, 0.803015)
+bones/30/position = Vector3(-0.428195, -0.4603, -0.217017)
+bones/30/rotation = Quaternion(0.717597, -0.155275, 0.0323178, 0.678159)
 
 [node name="BackgroundManager" type="Node" parent="SubViewportContainer/SubViewport"]
 script = ExtResource("6_7nt27")
@@ -1061,3 +1140,6 @@ Vector2(1, 0.1): Color(0.780392, 0.4, 0.392157, 1)
 [connection signal="pressed" from="Control/DialogContainer/DialogBox/Button" to="Control/DialogContainer/DialogBox/RichTextLabel" method="next_line"]
 [connection signal="mouse_entered" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_exited"]
+
+[editable path="SubViewportContainer/SubViewport/CharacterManager/MC_animations"]
+[editable path="SubViewportContainer/SubViewport/CharacterManager/Nelya_animations"]
