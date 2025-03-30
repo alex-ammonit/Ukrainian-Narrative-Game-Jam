@@ -33,6 +33,21 @@ func background_changed(new_background):
 func expression_changed(new_expression):
 	#print(active_scene.get_node_or_null("AnimationPlayer"))
 	var animation_player=active_scene.get_node_or_null("AnimationPlayer")
-	if (animation_player!=null):
+	if (animation_player==null):
+		return
+	var colon=new_expression.find(':')
+	#if (animation_player!=null):
+	if colon==-1:
 		if animation_player.has_animation(new_expression):
 			animation_player.play(new_expression)
+	else:
+		var pre_colon=new_expression.substr(0, colon)
+		var post_colon=new_expression.substr(colon+1)
+		#var loc_player=
+		if active_scene.get_node_or_null("AnimationPlayer_"+pre_colon)!=null:
+			active_scene.get_node_or_null("AnimationPlayer_"+pre_colon).play(post_colon)
+		else:
+			var loc_player=animation_player.duplicate()
+			loc_player.name="AnimationPlayer_"+pre_colon
+			active_scene.add_child(loc_player)
+			loc_player.play(post_colon)
