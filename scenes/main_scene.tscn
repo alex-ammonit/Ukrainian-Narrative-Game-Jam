@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=4 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=72 format=4 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="Script" uid="uid://dltt566pfnhhh" path="res://scripts/music_tuple.gd" id="1_adb74"]
 [ext_resource type="Script" uid="uid://cnkutfrywyaqd" path="res://scripts/music_manager.tres.gd" id="1_kkokr"]
@@ -85,6 +85,43 @@ func play_sound(sound):
 	$AudioStreamPlayer.play()
 	pass
 "
+
+[sub_resource type="Shader" id="Shader_iav3h"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+/*float rand(float n)
+{
+	return fract(sin(n)*123351.1);
+}*/
+float rand(vec2 uv)
+{
+	return fract(sin( dot(uv, vec2(120431.45, 154321.64))* 54.0 ) );
+}
+
+void fragment() {
+	vec2 uv=UV;
+	vec4 color=COLOR;
+	float noise_coef=0.3;
+	color=color*rand(uv*cos(TIME))*noise_coef+color*(1.0-noise_coef);
+	//COLOR.r=(rand(COLOR.r*TIME+TIME)*0.01+COLOR.r)/2.0;
+	//COLOR.g=(rand(COLOR.g*TIME+0.5)*0.01+COLOR.g)/2.0;
+	//COLOR.b=(rand(COLOR.b*TIME+TIME*0.01)*0.4+COLOR.b)/2.0;
+	COLOR=color;
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_womr8"]
+shader = SubResource("Shader_iav3h")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_krlle"]
 resource_name = "body"
@@ -475,6 +512,7 @@ script = SubResource("GDScript_mngbo")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundManager"]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_womr8")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
