@@ -105,7 +105,7 @@ float rand(vec2 uv)
 void fragment() {
 	vec2 uv=UV;
 	vec4 color=COLOR;
-	float noise_coef=0.3;
+	float noise_coef=0.1;
 	color=color*rand(uv*cos(TIME))*noise_coef+color*(1.0-noise_coef);
 	//COLOR.r=(rand(COLOR.r*TIME+TIME)*0.01+COLOR.r)/2.0;
 	//COLOR.g=(rand(COLOR.g*TIME+0.5)*0.01+COLOR.g)/2.0;
