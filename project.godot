@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Ukrainian Narrative Game Jam (l)"
-run/main_scene="uid://cgdwc4g3km056"
+run/main_scene="uid://br3ykan6pegbo"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 WhatSelected="*res://scripts/what_selected.gd"
+SceneManager="*res://scripts/scene_manager.gd"
 
 [editor_plugins]
 
