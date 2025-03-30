@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=4 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=81 format=4 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="Script" uid="uid://dltt566pfnhhh" path="res://scripts/music_tuple.gd" id="1_adb74"]
 [ext_resource type="Script" uid="uid://cnkutfrywyaqd" path="res://scripts/music_manager.tres.gd" id="1_kkokr"]
@@ -41,6 +41,8 @@
 [ext_resource type="PackedScene" uid="uid://3qv2c6q0yqtb" path="res://models/char_animations_separate_test/scene_cafe_separate_test.gltf" id="21_lhwp2"]
 [ext_resource type="Texture2D" uid="uid://bwghu03a38eu2" path="res://sprites/radio/radio.png" id="31_l40q6"]
 [ext_resource type="Texture2D" uid="uid://vpmir0ab2thd" path="res://sprites/radio/radio_pipka_cut.png" id="32_iav3h"]
+[ext_resource type="Texture2D" uid="uid://bj0s1s1agbdho" path="res://sprites/selfi_scene/selfi.png" id="32_xp01v"]
+[ext_resource type="Texture2D" uid="uid://d2skvnv8m5yge" path="res://sprites/selfi_scene/selfi_scene.png" id="33_jix7a"]
 
 [sub_resource type="Resource" id="Resource_u0fll"]
 script = ExtResource("1_adb74")
@@ -712,6 +714,60 @@ offset_right = 1405.0
 offset_bottom = 472.0
 texture = ExtResource("3_e1cbu")
 
+[node name="selfi" type="Control" parent="SubViewportContainer/SubViewport/BackgroundManager"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/BackgroundManager/selfi"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -49.0
+offset_top = -317.0
+offset_right = 1176.0
+offset_bottom = 908.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("32_xp01v")
+
+[node name="selfi_scene" type="Control" parent="SubViewportContainer/SubViewport/BackgroundManager"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/BackgroundManager/selfi_scene"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0980392, 0.0941176, 0.133333, 1)
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/BackgroundManager/selfi_scene"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 76.0
+offset_top = -190.0
+offset_right = 844.0
+offset_bottom = 1082.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.527814, 0.527814)
+texture = ExtResource("33_jix7a")
+
 [node name="black" type="Control" parent="SubViewportContainer/SubViewport/BackgroundManager"]
 visible = false
 layout_mode = 3
@@ -728,7 +784,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.082575, 0.0405, 0.09, 1)
+color = Color(0.08129, 0.0781, 0.11, 1)
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 2
@@ -924,7 +980,7 @@ theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 script = ExtResource("2_6wevv")
-file_path = "res://dialogue/test_text.txt"
+file_path = "res://dialogue/text.txt"
 t = "<blue>\"Нормально.\"
 <label:A><red>\"Повернулася, бо було складно роботу знову знайти, <green>да і дома давно не була.\"
 <blue>\"Їдять різне,<green> мені сподобалося це і оце…”
