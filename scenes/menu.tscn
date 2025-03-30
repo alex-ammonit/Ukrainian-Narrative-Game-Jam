@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://br3ykan6pegbo"]
+[gd_scene load_steps=7 format=3 uid="uid://br3ykan6pegbo"]
+
+[ext_resource type="AudioStream" uid="uid://cdbsdwnras53v" path="res://music/сніготяг A.mp3" id="1_vjb58"]
+[ext_resource type="AudioStream" uid="uid://cn5h46b0f0vhw" path="res://music/сніготяг B.mp3" id="2_con2f"]
 
 [sub_resource type="GDScript" id="GDScript_4h3mk"]
 script/source = "extends Button
@@ -35,6 +38,26 @@ func _ready():
 
 func _pressed():
 	get_tree().quit()
+"
+
+[sub_resource type="GDScript" id="GDScript_con2f"]
+script/source = "extends Node
+
+@export var music:Array[AudioStream]
+var cur_music_id:int=0
+
+func music_finished():
+	if (cur_music_id+1<len(music)):
+		cur_music_id+=1
+		$AudioStreamPlayer.stream=music[cur_music_id]
+		$AudioStreamPlayer.play()
+	pass
+
+func _ready():
+	$AudioStreamPlayer.connect(\"finished\", music_finished)
+	$AudioStreamPlayer.stream=music[cur_music_id]
+	$AudioStreamPlayer.play()
+	pass
 "
 
 [node name="Menu" type="Control"]
@@ -85,3 +108,9 @@ script = SubResource("GDScript_yqeox")
 layout_mode = 2
 text = "QUIT"
 script = SubResource("GDScript_vjb58")
+
+[node name="Node" type="Node" parent="."]
+script = SubResource("GDScript_con2f")
+music = Array[AudioStream]([ExtResource("1_vjb58"), ExtResource("2_con2f")])
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Node"]
