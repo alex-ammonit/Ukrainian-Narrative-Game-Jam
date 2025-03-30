@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://b17pn38noim2o"
+path.s3tc="res://.godot/imported/Nelya_animation_separate_test_T_Nelya_body.png-a72a2dcce2431c6f1197567213a3677d.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "8859f23902d2250660accce4ed7846f5"
+}
+
+[deps]
+
+source_file="res://models/char_animations_separate_test/Nelya_animation_separate_test_T_Nelya_body.png"
+dest_files=["res://.godot/imported/Nelya_animation_separate_test_T_Nelya_body.png-a72a2dcce2431c6f1197567213a3677d.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

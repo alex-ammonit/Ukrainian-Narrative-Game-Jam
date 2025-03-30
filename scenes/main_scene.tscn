@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=70 format=4 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="Script" uid="uid://dltt566pfnhhh" path="res://scripts/music_tuple.gd" id="1_adb74"]
 [ext_resource type="Script" uid="uid://cnkutfrywyaqd" path="res://scripts/music_manager.tres.gd" id="1_kkokr"]
@@ -32,6 +32,9 @@
 [ext_resource type="AudioStream" uid="uid://b4io8o3eyihqn" path="res://music/чПце.mp3" id="11_l40q6"]
 [ext_resource type="Texture2D" uid="uid://dn47es8lxpuka" path="res://sprites/rad.png" id="16_k6f3i"]
 [ext_resource type="Texture2D" uid="uid://b7dcgpfagv7x5" path="res://sprites/rad_k.png" id="17_xdqt8"]
+[ext_resource type="PackedScene" uid="uid://dyxncpl74ac7" path="res://models/char_animations_separate_test/MC_animation_separate_test.gltf" id="18_iav3h"]
+[ext_resource type="PackedScene" uid="uid://bfige7iotw1u0" path="res://models/char_animations_separate_test/Nelya_animation_separate_test.gltf" id="19_womr8"]
+[ext_resource type="PackedScene" uid="uid://3qv2c6q0yqtb" path="res://models/char_animations_separate_test/scene_cafe_separate_test.gltf" id="21_lhwp2"]
 
 [sub_resource type="Resource" id="Resource_u0fll"]
 script = ExtResource("1_adb74")
@@ -485,16 +488,26 @@ handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="CharacterManager" type="Node" parent="SubViewportContainer/SubViewport"]
+[node name="CharacterManager" type="Node" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("characters")]
 script = ExtResource("2_bcnxi")
+characters = {
+"Nelya": NodePath("Nelya_animation_separate_test"),
+"Romana": NodePath("MC_animation_separate_test")
+}
 
 [node name="romana_sit" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/CharacterManager"]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_xcbf2")
 skeleton = NodePath("")
 
 [node name="romana_clone" parent="SubViewportContainer/SubViewport/CharacterManager" instance=ExtResource("5_k6f3i")]
 transform = Transform3D(0.83906, 0, 0.544039, 0, 1, 0, -0.544039, 0, 0.83906, 0.677084, 0, 0.336429)
+visible = false
+
+[node name="MC_animation_separate_test" parent="SubViewportContainer/SubViewport/CharacterManager" instance=ExtResource("18_iav3h")]
+
+[node name="Nelya_animation_separate_test" parent="SubViewportContainer/SubViewport/CharacterManager" instance=ExtResource("19_womr8")]
 
 [node name="BackgroundManager" type="Node" parent="SubViewportContainer/SubViewport"]
 script = ExtResource("6_7nt27")
@@ -526,7 +539,17 @@ transform = Transform3D(0.82375, 0, 0.566953, 0, 1, 0, -0.566953, 0, 0.82375, 2.
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/BackgroundManager/placeholder_clone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37697, 2.02736, 1.47201)
 
+[node name="scene_cafe" parent="SubViewportContainer/SubViewport/BackgroundManager" instance=ExtResource("21_lhwp2")]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/BackgroundManager/scene_cafe"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -4.04008, 0.968267, 0)
+current = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/BackgroundManager/scene_cafe"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81237, 3.04569, 0.0200252)
+
 [node name="scene_cafe_surroundings" parent="SubViewportContainer/SubViewport/BackgroundManager" instance=ExtResource("9_k6f3i")]
+visible = false
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/BackgroundManager/scene_cafe_surroundings"]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -4.04008, 0.968267, 0)
@@ -703,7 +726,7 @@ theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 script = ExtResource("2_6wevv")
-file_path = "res://dialogue/text.txt"
+file_path = "res://dialogue/test_text.txt"
 t = "<blue>\"Нормально.\"
 <label:A><red>\"Повернулася, бо було складно роботу знову знайти, <green>да і дома давно не була.\"
 <blue>\"Їдять різне,<green> мені сподобалося це і оце…”
