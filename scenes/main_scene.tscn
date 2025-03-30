@@ -581,7 +581,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37697, 2.02736, 1.47201)
 [node name="scene_cafe" parent="SubViewportContainer/SubViewport/BackgroundManager" instance=ExtResource("21_lhwp2")]
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/BackgroundManager/scene_cafe"]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -4.04008, 0.968267, 0)
+transform = Transform3D(-0.0689904, 0.0946468, -0.993117, 0, 0.995489, 0.0948728, 0.997617, 0.00654531, -0.0686792, -1.92814, 1.26872, 0.296975)
 current = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/BackgroundManager/scene_cafe"]
