@@ -1,0 +1,15 @@
+<music:чафе><background:placeholder><expression:romana:clone_disappear><expression:romana:sit_appear><name:Романа>Мені буває складно налаштуватись навіть на власні думки, не кажучи вже про те що говорять інші. 
+<label:tutorial_1>Те що я чую, це просто <tutorial:start><speed:10><theme:tutorial_1><red>шум. Щось нерозбірливе, або взагалі відсутність звуку, сенсу, часу.
+<check_attention_null:tutorial_1;less;1.0><jump:tutorial_1><tutorial:next>
+<background:placeholder_clone><expression:romana:clone_appear><label:tutorial_2><theme_null:tutorial_2><theme:tutorial_2><green>Таке відчуття ніби слова на якійсь <red>іншій хвилі і мені треба шукати її, <green>продираючись крізь шум.
+<check_attention:tutorial_2;less;1.0><jump:tutorial_2>
+<expression:romana:sit_disappear><expression:romana:clone_disappear><tutorial:end>
+<background:scene_cafe_surroundings><expression:sit_idle>
+<checkpoint:norm><name:Романа><expression:neutral><blue><speed:5>"Нормально."
+<exit>
+<music:none><label:A><speed:15><red>"Повернулася, бо було складно<wait:0.3> роботу знову знайти, <green>да і дома давно не була."
+<theme:food><blue>"Їдять різне,<green> мені сподобалося це і оце…”
+<blue>“Люди інші, <red>але відмінності всередині групи більші, ніж відмінності між групами.<green>Ну, тобто різні траплялися.”
+<check_attention:food;less;0.4><jump:are_you_paying_attention>
+<jump:A>
+<label:are_you_paying_attention>Ти що, взагалі не звертаєшь на мене увагу?

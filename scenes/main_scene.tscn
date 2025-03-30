@@ -349,7 +349,10 @@ buffer_length = 0.02
 script/source = "extends RichTextLabel
 
 func change_name(new_name):
-	text=new_name
+	if (new_name!=\"none\"):
+		text=new_name
+	else:
+		text=\"\"
 "
 
 [sub_resource type="GDScript" id="GDScript_7nt27"]
@@ -682,7 +685,7 @@ anchor_bottom = 1.0
 offset_top = -101.0
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(0.392157, 0.392157, 0.392157, 0.803922)
+color = Color(0.365862, 0.408605, 0.338788, 0.894118)
 metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/ColorRect" node_paths=PackedStringArray("polygon_spawner")]
