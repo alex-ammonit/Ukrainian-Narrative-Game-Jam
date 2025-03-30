@@ -664,6 +664,7 @@ bones/30/rotation = Quaternion(0.717597, -0.155275, 0.0323178, 0.678159)
 script = ExtResource("6_7nt27")
 
 [node name="placeholder" type="Node3D" parent="SubViewportContainer/SubViewport/BackgroundManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.578106, -0.0209264, -0.406981)
 visible = false
 
 [node name="train" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/BackgroundManager/placeholder"]
@@ -923,6 +924,7 @@ gray_noise_color = Color(0.380392, 0.360784, 0.392157, 1)
 stream = SubResource("AudioStreamGenerator_c1pb6")
 volume_db = -10.0
 autoplay = true
+playback_type = 2
 script = ExtResource("4_e1cbu")
 
 [node name="Button" type="Button" parent="Control/DialogContainer/DialogBox" node_paths=PackedStringArray("text_display")]
