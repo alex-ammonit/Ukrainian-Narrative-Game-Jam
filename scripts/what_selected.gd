@@ -15,5 +15,6 @@ var target_color:Color=Color.TRANSPARENT
 var ciphered_text:bool=false
 var text_displaying:bool=false
 
+
 #func _process(delta):
 	#print(selected_id)

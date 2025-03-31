@@ -225,6 +225,8 @@ func _input(event):
 		print("ACTION")
 		if (can_go_next()):
 			next_line()
+	if (event.is_action("ui_cancel")):
+		SceneManager.load_scene("menu")
 	'''if (event is InputEventKey and event.is_pressed()):
 		#print(event.as_text_keycode())
 		if (event.as_text_keycode()=="Left"):
@@ -280,7 +282,8 @@ var cur_tween_colors:Array[Color]
 var cur_color_tweens:Array[Tween]
 var speed_coef=0.2
 func set_speed(speed:float):
-	speed_coef=1/(speed*3)
+	#speed_coef=1/(speed*3)
+	speed_coef=1/(speed*SceneManager.text_speed)
 var cur_wait_time=-1
 var seen_char=0
 var all_char=0

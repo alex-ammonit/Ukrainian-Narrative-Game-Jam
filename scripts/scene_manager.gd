@@ -13,6 +13,7 @@ var cur_theme="none"
 var cur_chars={}
 var temp_chars={}
 
+var text_speed=3
 
 func load_scene(scene):
 	if (scene=="menu"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://br3ykan6pegbo"]
+[gd_scene load_steps=8 format=3 uid="uid://br3ykan6pegbo"]
 
 [ext_resource type="AudioStream" uid="uid://dylhxva2jo1rp" path="res://music/коскос (+ гітара).mp3" id="1_yqeox"]
 
@@ -66,6 +66,16 @@ func _ready():
 
 func _pressed():
 	get_tree().quit()
+"
+
+[sub_resource type="GDScript" id="GDScript_4ytvr"]
+script/source = "extends HSlider
+
+func _ready():
+	value=SceneManager.text_speed
+
+func _value_changed(new_value):
+	SceneManager.text_speed=new_value
 "
 
 [sub_resource type="GDScript" id="GDScript_con2f"]
@@ -168,6 +178,36 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = " Вйити "
 script = SubResource("GDScript_vjb58")
+
+[node name="HSlider" type="HSlider" parent="AspectRatioContainer/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -166.0
+offset_top = -71.0
+offset_right = 165.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+min_value = 1.0
+max_value = 15.0
+step = 0.5
+value = 3.0
+script = SubResource("GDScript_4ytvr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="AspectRatioContainer/Control/HSlider"]
+layout_mode = 0
+offset_left = -150.0
+offset_top = -17.0
+offset_right = -10.0
+offset_bottom = 39.0
+theme_override_font_sizes/normal_font_size = 22
+text = "Швидкість тексту"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Node" type="Node" parent="."]
 script = SubResource("GDScript_con2f")
