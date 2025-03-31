@@ -918,7 +918,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81237, 3.04569, 0.0200252)
 visible = false
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/BackgroundManager/cafe_street"]
-transform = Transform3D(0.0419278, 0, -0.999121, -0.346091, 0.938089, -0.0145236, 0.937264, 0.346395, 0.039332, -1.86509, 1.39813, 1.28073)
+transform = Transform3D(0.510423, 0.175277, -0.841871, -0.220512, 0.97295, 0.0688721, 0.831169, 0.150489, 0.535267, -2.24327, 1.5674, 1.80238)
 current = true
 
 [node name="image" type="Control" parent="SubViewportContainer/SubViewport/BackgroundManager"]
