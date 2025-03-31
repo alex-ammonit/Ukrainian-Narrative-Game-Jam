@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dylhxva2jo1rp"
+path="res://.godot/imported/коскос (+ гітара).mp3-ce9178d0c551b694e0c5ed42375771c6.mp3str"
+
+[deps]
+
+source_file="res://music/коскос (+ гітара).mp3"
+dest_files=["res://.godot/imported/коскос (+ гітара).mp3-ce9178d0c551b694e0c5ed42375771c6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

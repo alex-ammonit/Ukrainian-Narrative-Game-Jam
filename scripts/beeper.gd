@@ -26,7 +26,7 @@ func _on_beep_signal(char, ciphered):
 			#new_frame=Vector2.ONE* (sin(phase*TAU*(bif/50)* i ) + sin(phase*TAU*(bif/50) ))/2
 		#else:
 		# new_frame=Vector2.ONE*sin(phase*TAU*(bif/50)/i )
-		var window = 0.5 * (1 - cos(TAU * i / frames_available)) 
+		var window = 0.4 * (1 - cos(TAU * i / frames_available)) 
 		new_frame = Vector2.ONE * sin(phase * TAU * (bif/100)) * window
 		#var new_frame=Vector2.ONE*sin(phase*TAU*(bif/50) )
 		#var new_frame=Vector2.ONE*sin(phase*TAU)

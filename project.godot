@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 WhatSelected="*res://scripts/what_selected.gd"
 SceneManager="*res://scripts/scene_manager.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/sprite_painter/plugin.cfg")
