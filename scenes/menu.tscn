@@ -170,7 +170,7 @@ script = SubResource("GDScript_4h3mk")
 [node name="Button2" type="Button" parent="AspectRatioContainer/Control/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = " Продовжити "
+text = "Продовжити з чекпоінту"
 script = SubResource("GDScript_yqeox")
 
 [node name="Button3" type="Button" parent="AspectRatioContainer/Control/VBoxContainer"]
@@ -180,8 +180,8 @@ text = " Вйити "
 script = SubResource("GDScript_vjb58")
 
 [node name="HSlider" type="HSlider" parent="AspectRatioContainer/Control"]
-layout_mode = 1
-anchors_preset = 7
+visible = false
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -214,3 +214,5 @@ script = SubResource("GDScript_con2f")
 music = Array[AudioStream]([ExtResource("1_yqeox"), ExtResource("1_yqeox")])
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Node"]
+
+[connection signal="value_changed" from="AspectRatioContainer/Control/HSlider" to="AspectRatioContainer/Control/HSlider" method="_value_changed"]

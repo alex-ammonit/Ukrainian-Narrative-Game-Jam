@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=4 uid="uid://cgdwc4g3km056"]
+[gd_scene load_steps=99 format=4 uid="uid://cgdwc4g3km056"]
 
 [ext_resource type="Script" uid="uid://dltt566pfnhhh" path="res://scripts/music_tuple.gd" id="1_adb74"]
 [ext_resource type="Script" uid="uid://cnkutfrywyaqd" path="res://scripts/music_manager.tres.gd" id="1_kkokr"]
@@ -36,9 +36,9 @@
 [ext_resource type="Texture2D" uid="uid://swwv8p6vtfo1" path="res://models/character_faces/T_MC_face_neutral.png" id="19_jix7a"]
 [ext_resource type="Texture2D" uid="uid://cxlc2756x6m6o" path="res://models/character_faces/T_MC_face_o.png" id="20_segjr"]
 [ext_resource type="Texture2D" uid="uid://dwtndbjgxjcg8" path="res://models/character_faces/T_MC_face_smile.png" id="21_beobj"]
-[ext_resource type="PackedScene" uid="uid://3qv2c6q0yqtb" path="res://models/char_animations_separate_test/scene_cafe_separate_test.gltf" id="21_lhwp2"]
 [ext_resource type="PackedScene" uid="uid://l1ce1c6b2pi8" path="res://models/hug_animations/MC_animations.gltf" id="25_267kh"]
 [ext_resource type="PackedScene" uid="uid://bufjhcsbkiody" path="res://models/hug_animations/Nelya_animations.gltf" id="26_86meh"]
+[ext_resource type="PackedScene" uid="uid://cktufaxbcw3du" path="res://models/scene_cafe/scene_cafe.gltf" id="28_86meh"]
 [ext_resource type="Texture2D" uid="uid://dipi2r1bux1b1" path="res://models/train_noise_and_broken_people/landscape_circle_02_perlin_noise_01_dark.png" id="28_beobj"]
 [ext_resource type="Texture2D" uid="uid://clxaani3hmpuu" path="res://models/train/train_new_train_texture.png" id="28_jix7a"]
 [ext_resource type="Texture2D" uid="uid://bpvajfk7n4mlv" path="res://models/train_noise_and_broken_people/landscape_circle_01_perlin_noise_01.png" id="29_267kh"]
@@ -604,6 +604,16 @@ func _pressed():
 		text_display.next_line()
 "
 
+[sub_resource type="GDScript" id="GDScript_4ytvr"]
+script/source = "extends HSlider
+
+func _ready():
+	value=SceneManager.text_speed
+
+func _value_changed(new_value):
+	SceneManager.text_speed=new_value
+"
+
 [sub_resource type="GDScript" id="GDScript_c1pb6"]
 script/source = "extends TextureRect
 
@@ -747,105 +757,86 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373487, 0, 0)
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/CharacterManager/MC_animations/MC_Armature" index="0"]
-bones/0/position = Vector3(0.399344, 0.00144359, -0.022903)
+bones/0/position = Vector3(0, 0.00144359, 0)
 bones/0/rotation = Quaternion(0, -0.707107, 0, 0.707107)
-bones/1/position = Vector3(-0.356599, 0.639543, -0.0407171)
-bones/1/rotation = Quaternion(-0.130096, 0.573086, 0.167373, 0.791603)
-bones/2/rotation = Quaternion(0.211796, 0.0227303, -0.066585, 0.974778)
-bones/3/rotation = Quaternion(-0.129518, -0.116237, -0.0257929, 0.984403)
-bones/4/rotation = Quaternion(0.16939, 0.0101794, 0.00342161, 0.985491)
-bones/5/rotation = Quaternion(-0.0390175, 0.105267, -0.00625945, 0.993658)
-bones/6/rotation = Quaternion(0.997375, -9.31323e-08, -7.31088e-08, -0.0724042)
-bones/7/rotation = Quaternion(0.165157, 0.0776194, 0.0776194, 0.98014)
-bones/8/rotation = Quaternion(0.999283, 0.0267726, 0.0267725, -0.000717274)
-bones/9/rotation = Quaternion(0.999283, -0.0267726, -0.0267725, -0.000717273)
-bones/10/rotation = Quaternion(0.951193, 0.0532175, 0.22995, -0.198802)
-bones/11/rotation = Quaternion(-0.689856, 0.00849978, -0.0686897, 0.720631)
-bones/12/rotation = Quaternion(-0.134628, 0.175386, -0.342065, 0.913294)
+bones/1/position = Vector3(0.0641887, 1.04095, -8.3819e-09)
+bones/1/rotation = Quaternion(0.00705741, 0.707072, -0.00705739, 0.707072)
+bones/2/rotation = Quaternion(-0.163472, -4.77303e-09, -1.54832e-08, 0.986548)
+bones/3/rotation = Quaternion(0.0304378, 1.55997e-08, 2.52621e-08, 0.999537)
+bones/4/rotation = Quaternion(0.123469, -1.58325e-08, -1.01281e-08, 0.992348)
+bones/5/rotation = Quaternion(7.45058e-09, -4.65661e-10, 2.32831e-10, 1)
+bones/7/rotation = Quaternion(0.0878621, 0.0862153, 0.0668676, 0.990139)
+bones/8/rotation = Quaternion(0.986411, 0.007671, 0.0254228, 0.162135)
 bones/13/rotation = Quaternion(-0.0851596, -0.202111, 0.148967, 0.964214)
-bones/14/rotation = Quaternion(0.0620989, -0.133665, 0.301739, 0.941929)
-bones/15/rotation = Quaternion(-0.22954, -0.2162, -0.0249153, 0.948656)
-bones/16/rotation = Quaternion(0.886735, -0.190277, -0.417178, 0.0588165)
-bones/17/rotation = Quaternion(-0.592715, -0.00640355, -0.158777, 0.789581)
-bones/18/rotation = Quaternion(-0.302936, -0.0661106, 0.250397, 0.917148)
-bones/19/rotation = Quaternion(-0.0851595, 0.202111, -0.148967, 0.964214)
+bones/14/rotation = Quaternion(0.0983948, -0.179692, 0.365407, 0.908023)
 bones/20/rotation = Quaternion(0.125699, 0.202493, -0.235972, 0.942079)
-bones/21/rotation = Quaternion(-0.170639, 0.132656, -0.116646, 0.96937)
-bones/22/rotation = Quaternion(0.817286, 0.215369, 0.00710513, 0.534425)
-bones/23/rotation = Quaternion(0.747347, 0.00599391, 0.159771, 0.644911)
-bones/24/rotation = Quaternion(-0.0395404, -0.249945, 0.0774538, 0.964347)
-bones/25/rotation = Quaternion(0.793163, -0.195333, -0.00093198, 0.576834)
-bones/26/rotation = Quaternion(0.595449, -0.00860278, -0.282494, 0.752039)
-bones/27/rotation = Quaternion(0.132814, 0.0257583, 0.10994, 0.984688)
-bones/28/position = Vector3(-0.0112744, 0.137159, -0.210282)
-bones/28/rotation = Quaternion(-0.569755, 0, 0.821814, -2.79397e-09)
-bones/29/position = Vector3(-0.110863, -0.486607, -0.177187)
-bones/30/position = Vector3(0.110966, 0.15609, 0.169323)
-bones/30/rotation = Quaternion(-0.784626, -0.0257507, 0.618752, -0.0290635)
-bones/31/position = Vector3(-0.218822, -0.444088, -0.152158)
-bones/32/position = Vector3(0.483381, 0.754553, -0.310194)
-bones/32/rotation = Quaternion(0.525583, 0.0926525, 0.244884, 0.80945)
-bones/33/position = Vector3(0.342662, -0.402901, 0.0401215)
-bones/33/rotation = Quaternion(0.909082, 0.243688, -0.0538314, 0.333601)
-bones/34/position = Vector3(0.358605, 0.788456, -0.312903)
-bones/34/rotation = Quaternion(0.471812, -0.115332, -0.190479, 0.853117)
-bones/35/position = Vector3(-0.223671, -0.235624, -0.064049)
-bones/35/rotation = Quaternion(0.83805, -0.402252, -0.0890491, 0.357681)
+bones/25/rotation = Quaternion(0.99263, -0.00172994, 0.0123669, 0.120539)
+bones/28/position = Vector3(0, 0.112625, -0.0878911)
+bones/28/rotation = Quaternion(-0.707107, 4.65661e-10, 0.707106, 4.65661e-10)
+bones/30/position = Vector3(7.45058e-09, 0.112625, 0.0878911)
+bones/30/rotation = Quaternion(-0.707106, 4.65661e-10, 0.707107, 0)
+bones/31/position = Vector3(-0.00911364, -0.529969, -0.143072)
+bones/32/position = Vector3(0.394812, 1.0494, -0.0473005)
+bones/32/rotation = Quaternion(0.896131, 0.31359, 0.31359, -0.0164828)
+bones/33/position = Vector3(-0.0271507, -0.247684, 0.0470822)
+bones/33/rotation = Quaternion(0.629263, 0.00384222, 0.430834, 0.646835)
+bones/34/position = Vector3(-0.394812, 1.0494, -0.0473005)
+bones/34/rotation = Quaternion(0.896131, -0.31359, -0.31359, -0.0164828)
+bones/35/position = Vector3(0.0271507, -0.247684, 0.0470822)
 
 [node name="Nelya_animations" parent="SubViewportContainer/SubViewport/CharacterManager" instance=ExtResource("26_86meh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373487, 0, 0)
 visible = false
 
 [node name="Nelya_Armature" parent="SubViewportContainer/SubViewport/CharacterManager/Nelya_animations" index="0"]
-transform = Transform3D(0.94977, 0, -0.31295, 0, 1, 0, 0.31295, 0, 0.94977, 0.295146, 0, -0.772421)
+transform = Transform3D(0.473698, 0, -0.880688, 0, 1, 0, 0.880688, 0, 0.473698, -0.4897, 1.49012e-08, 1.11414)
 
 [node name="Skeleton3D" parent="SubViewportContainer/SubViewport/CharacterManager/Nelya_animations/Nelya_Armature" index="0"]
-bones/0/position = Vector3(0, 0.00144359, 0)
-bones/0/rotation = Quaternion(0, -0.707107, 0, 0.707107)
-bones/1/position = Vector3(-0.28148, 0.533696, 7.45058e-08)
-bones/1/rotation = Quaternion(-0.0296604, 0.706484, 0.0296604, 0.706484)
-bones/2/rotation = Quaternion(-0.0094184, 2.35857e-07, -1.89757e-08, 0.999956)
-bones/3/rotation = Quaternion(0.167091, -1.10245e-07, 5.02914e-08, 0.985942)
-bones/4/rotation = Quaternion(0.0646775, -0.0802627, 0.0246484, 0.994368)
-bones/5/rotation = Quaternion(-0.104049, -0.177198, 0.0421708, 0.977751)
-bones/6/rotation = Quaternion(0.927527, -0.00736865, -0.371381, 0.041421)
-bones/7/rotation = Quaternion(0.925223, 0.0316335, 0.37551, 0.0442074)
-bones/8/rotation = Quaternion(0.903641, 0.182114, 0.384847, 0.0464875)
-bones/9/rotation = Quaternion(-0.266143, 0.011757, -0.117675, 0.956652)
-bones/10/rotation = Quaternion(-0.478602, -0.308759, -0.337635, 0.749407)
-bones/11/rotation = Quaternion(0.0146925, 0.0459941, 0.109144, 0.992853)
-bones/12/position = Vector3(-0.00561879, 0.0093417, 0.137355)
-bones/12/rotation = Quaternion(0.999243, 0.0284647, 0.000742801, -0.0265183)
-bones/13/rotation = Quaternion(0.929512, -0.129182, -0.335684, -0.0814613)
-bones/14/rotation = Quaternion(-0.562859, -0.0288875, 0.327061, 0.758542)
-bones/15/rotation = Quaternion(-0.448759, -0.276128, 0.314039, 0.789778)
-bones/16/rotation = Quaternion(0.0362846, -0.00746567, -0.174444, 0.98397)
-bones/17/rotation = Quaternion(0.728576, -0.108814, -0.0291937, 0.675637)
-bones/18/rotation = Quaternion(0.496232, 0.0125296, -0.245869, 0.832553)
-bones/19/rotation = Quaternion(0.0673948, 0.160619, 0.108879, 0.978675)
-bones/20/rotation = Quaternion(0.724024, 0.061869, 0.0175437, 0.68677)
-bones/21/rotation = Quaternion(0.552339, -0.0120822, 0.0814103, 0.829547)
-bones/22/rotation = Quaternion(0.20719, -0.154393, -0.0324408, 0.965496)
-bones/23/position = Vector3(0.279023, 0.186848, -0.141681)
-bones/23/rotation = Quaternion(-0.729381, -0.118602, 0.663225, -0.118613)
-bones/24/position = Vector3(-0.160516, -0.406737, -0.233701)
-bones/25/position = Vector3(0.270433, 0.175503, 0.0709035)
-bones/25/rotation = Quaternion(0.60932, 0.000548731, -0.792924, 0.000421672)
-bones/26/position = Vector3(0.0124575, -0.43333, -0.225409)
-bones/27/position = Vector3(0.212263, 0.582987, -0.21284)
-bones/27/rotation = Quaternion(0.625884, 0.104762, 0.0482471, 0.771341)
-bones/28/position = Vector3(0.312728, -0.232881, -0.0500896)
+bones/1/position = Vector3(0.417868, 0.89632, -0.118598)
+bones/1/rotation = Quaternion(0.0665487, 0.924637, -0.112112, 0.357838)
+bones/2/rotation = Quaternion(-0.0618397, 0.0280385, -0.0481763, 0.996528)
+bones/3/rotation = Quaternion(0.00940417, -0.209277, -0.0440406, 0.976819)
+bones/4/rotation = Quaternion(0.0480272, 0.0281879, -0.00953706, 0.998403)
+bones/5/rotation = Quaternion(-0.0469123, -0.0172284, -0.00897776, 0.99871)
+bones/6/rotation = Quaternion(0.90617, 0.193477, -0.376059, -0.00169463)
+bones/7/rotation = Quaternion(0.923267, 0.117974, 0.346632, -0.116215)
+bones/8/rotation = Quaternion(0.684488, 0.491384, 0.456297, 0.286027)
+bones/9/rotation = Quaternion(-0.469916, 0.00669628, -0.522786, 0.711216)
+bones/10/rotation = Quaternion(0.22307, -0.670144, 0.0845967, 0.702845)
+bones/11/rotation = Quaternion(-0.0766014, -0.0877349, 0.357956, 0.926446)
+bones/12/rotation = Quaternion(0.999112, -0.0231465, 0.0061695, -0.0346496)
+bones/13/rotation = Quaternion(0.861248, -0.33151, -0.362114, 0.131253)
+bones/14/rotation = Quaternion(-0.333376, -0.00318369, 0.54343, 0.770412)
+bones/15/rotation = Quaternion(-0.0708051, 0.714257, -0.112587, 0.68713)
+bones/16/rotation = Quaternion(-0.117275, 0.0391667, -0.365645, 0.922506)
+bones/17/rotation = Quaternion(0.964671, -0.0251246, -0.043401, 0.258642)
+bones/18/rotation = Quaternion(0.00403836, 0.0139345, -0.00209435, 0.999893)
+bones/19/rotation = Quaternion(0.104742, 0.248021, -0.00917392, 0.963032)
+bones/20/rotation = Quaternion(0.982114, -0.0229054, 0.00384387, 0.186849)
+bones/21/rotation = Quaternion(0.217803, -0.0128951, -0.0469212, 0.974779)
+bones/22/rotation = Quaternion(-0.188735, 0.491604, -0.0365166, 0.849336)
+bones/25/rotation = Quaternion(0.771632, 0.0253934, -0.635448, 0.0120429)
+bones/27/rotation = Quaternion(0.559392, 0.26881, -0.197812, 0.758744)
 bones/28/rotation = Quaternion(0.623827, 0.018685, 0.442805, 0.643751)
-bones/29/position = Vector3(-0.176543, 0.681796, -0.200878)
-bones/29/rotation = Quaternion(0.220898, -0.321506, -0.450561, 0.803015)
-bones/30/position = Vector3(-0.428195, -0.4603, -0.217017)
-bones/30/rotation = Quaternion(0.717597, -0.155275, 0.0323178, 0.678159)
+bones/29/rotation = Quaternion(0.484403, 0.409178, -0.371826, 0.677991)
+bones/30/rotation = Quaternion(0.623827, -0.018685, -0.442805, 0.643751)
 
 [node name="BackgroundManager" type="Node" parent="SubViewportContainer/SubViewport"]
 script = ExtResource("6_7nt27")
 
+[node name="scene_cafe" parent="SubViewportContainer/SubViewport/BackgroundManager" instance=ExtResource("28_86meh")]
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/BackgroundManager/scene_cafe"]
+transform = Transform3D(-0.0689904, 0.0946468, -0.993118, 0, 0.995489, 0.0948729, 0.997617, 0.00654532, -0.0686792, -1.92814, 1.26872, 0.296975)
+current = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/BackgroundManager/scene_cafe"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81237, 3.04569, 0.0200252)
+
 [node name="placeholder" type="Node3D" parent="SubViewportContainer/SubViewport/BackgroundManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.578106, -0.0209264, -0.406981)
+visible = false
 
 [node name="landscape_circle_022" type="Node3D" parent="SubViewportContainer/SubViewport/BackgroundManager/placeholder"]
 
@@ -903,16 +894,6 @@ transform = Transform3D(0.82375, 0, 0.566953, 0, 1, 0, -0.566953, 0, 0.82375, 2.
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/BackgroundManager/placeholder_clone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37697, 2.02736, 1.47201)
-
-[node name="scene_cafe" parent="SubViewportContainer/SubViewport/BackgroundManager" instance=ExtResource("21_lhwp2")]
-visible = false
-
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/BackgroundManager/scene_cafe"]
-transform = Transform3D(-0.0689904, 0.0946468, -0.993118, 0, 0.995489, 0.0948729, 0.997617, 0.00654532, -0.0686792, -1.92814, 1.26872, 0.296975)
-current = true
-
-[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/BackgroundManager/scene_cafe"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81237, 3.04569, 0.0200252)
 
 [node name="cafe_street" parent="SubViewportContainer/SubViewport/BackgroundManager" instance=ExtResource("34_duuju")]
 visible = false
@@ -1189,10 +1170,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 42.0
-offset_top = -74.5
-offset_right = 694.0
-offset_bottom = 91.5
+offset_left = 34.0
+offset_top = -97.0
+offset_right = 686.0
+offset_bottom = 69.0
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
@@ -1237,6 +1218,33 @@ grow_vertical = 0
 text = "Далі"
 script = SubResource("GDScript_7nt27")
 text_display = NodePath("../RichTextLabel")
+
+[node name="HSlider" type="HSlider" parent="Control/DialogContainer/DialogBox"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 168.0
+offset_top = -37.0
+offset_right = 499.0
+offset_bottom = -21.0
+grow_vertical = 0
+min_value = 1.0
+max_value = 15.0
+step = 0.5
+value = 3.0
+script = SubResource("GDScript_4ytvr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/DialogContainer/DialogBox/HSlider"]
+layout_mode = 0
+offset_left = -150.0
+offset_top = -17.0
+offset_right = -10.0
+offset_bottom = 39.0
+theme_override_font_sizes/normal_font_size = 22
+text = "Швидкість тексту"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 visible = false
@@ -1455,6 +1463,7 @@ Vector2(1, 0.1): Color(0.780392, 0.4, 0.392157, 1)
 [connection signal="change_music" from="Control/DialogContainer/DialogBox/RichTextLabel" to="MusicManager" method="change_music"]
 [connection signal="change_name" from="Control/DialogContainer/DialogBox/RichTextLabel" to="Control/DialogContainer/CharNameBg/RichTextLabel2" method="change_name"]
 [connection signal="tutorial" from="Control/DialogContainer/DialogBox/RichTextLabel" to="TutorialManager" method="_on_tutorial"]
+[connection signal="value_changed" from="Control/DialogContainer/DialogBox/HSlider" to="Control/DialogContainer/DialogBox/HSlider" method="_value_changed"]
 [connection signal="mouse_entered" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Control3/TextureRect/TextureRect2" to="Control3/TextureRect/TextureRect2" method="_on_mouse_exited"]
 

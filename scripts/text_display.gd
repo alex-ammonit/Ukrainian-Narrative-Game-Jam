@@ -225,8 +225,8 @@ func _input(event):
 		print("ACTION")
 		if (can_go_next()):
 			next_line()
-	if (event.is_action("ui_cancel")):
-		SceneManager.load_scene("menu")
+	# if (event.is_action("ui_cancel")):
+	# 	SceneManager.load_scene("menu")
 	'''if (event is InputEventKey and event.is_pressed()):
 		#print(event.as_text_keycode())
 		if (event.as_text_keycode()=="Left"):
@@ -281,9 +281,11 @@ var cur_tween:Tween
 var cur_tween_colors:Array[Color]
 var cur_color_tweens:Array[Tween]
 var speed_coef=0.2
+var text_speed: float
 func set_speed(speed:float):
+	text_speed = speed
 	#speed_coef=1/(speed*3)
-	speed_coef=1/(speed*SceneManager.text_speed)
+	# speed_coef=1/(speed*SceneManager.text_speed)
 var cur_wait_time=-1
 var seen_char=0
 var all_char=0
@@ -339,6 +341,7 @@ func exec_line():
 				if (cur_text_pos==-1):
 					cur_text_pos=0
 					cur_tween=create_tween()
+					speed_coef=1/(text_speed*SceneManager.text_speed)
 					cur_tween.tween_property(self, "cur_text_pos", len(d["text"]), len(d["text"])*speed_coef)
 				app_text=d["open"]+d["text"].substr(0, cur_text_pos)+d["close"]
 				text=dis_text+app_text
