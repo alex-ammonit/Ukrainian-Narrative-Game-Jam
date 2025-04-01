@@ -26,7 +26,8 @@ func _ready():
 	pass
 
 func change_music(new_music):
-	
+	if cur_music_name == new_music:
+		return
 	cur_music_name=new_music
 	if (new_music=="none"):
 		$AudioStreamPlayer.stop()

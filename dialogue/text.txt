@@ -103,7 +103,7 @@
 #Кінцівка 1: Пустий шум.#
 <exit>
 
-<checkpoint:2><label:past><theme:past><name:Романка><none><speed:5><expression:Romana:MC_sit_uncomfy>Мм… Якщо чесно, я все ще звикаюся із поверненням. Поки все як в тумані, складно зібрати думки.
+<checkpoint:2><music:чафе><label:past><theme:past><name:Романка><none><speed:5><expression:Romana:MC_sit_uncomfy>Мм… Якщо чесно, я все ще звикаюся із поверненням. Поки все як в тумані, складно зібрати думки.
 Але все нічого.<expression:Romana:MC_sit_idle>
 <name:Неля><green><expression:Nelya:face:nelya_awkward>Як це я не подумала!<red> Точно, ти ж втомилася з подорожі.<expression:Nelya:face:nelya_neutral> Мабуть ще й погано спала цієї ночі?
 <name:Романка><none>Не знаю. Мабуть нормально.
@@ -133,7 +133,7 @@
 <name:Неля><blue><expression:Nelya:sit_hands_emote>Ти гарна подруга.
 <name:none><none><expression:Romana:MC_headshake>Вона бреше. Мені складно впізнавати нещирість, але тут же все ясно. Я була жахливою подругою.
 
-<check_attention:past;less;0.95><jump:end_lying>
+<check_attention:past;less;0.85><jump:end_lying>
 <jump:work_life>
 
 <label:end_lying><name:none><none><speed:5>Я не знаю, скільки в наших стосунках було побудовано на брехні.
@@ -148,7 +148,7 @@
 #Кінцівка 2: Брехня.#
 <exit>
 
-<checkpoint:3><label:work_life><theme:work_life><name:none><none><speed:5><expression:Romana:MC_sit_uncomfy>Після того, як ми посварилися, Неля іноді писала мені привітання. Питала, як справи. Я вважала, що це просто ввічливість, щоб не відчувати вину. Щоб розійтися із легким серцем. Хіба не безглуздо писати людині, в якій бачиш бездушну машину та егоїстку?
+<checkpoint:3><music:чафе><label:work_life><theme:work_life><name:none><none><speed:5><expression:Romana:MC_sit_uncomfy>Після того, як ми посварилися, Неля іноді писала мені привітання. Питала, як справи. Я вважала, що це просто ввічливість, щоб не відчувати вину. Щоб розійтися із легким серцем. Хіба не безглуздо писати людині, в якій бачиш бездушну машину та егоїстку?
 І тому я ніколи не підживлювала переписку. Я глушила її. Це була просто ввічливість.
 Чи не так?
 <name:Неля><none><speed:2>Ну…<green><speed:5> <expression:Nelya:face:nelya_laugh>давай про щось веселе!
@@ -194,7 +194,7 @@
 <name:none>Я не звикла казати речі так, у такому тоні. Але Неля посміхається.<expression:Nelya:face:nelya_neutral> Може, їй важливо було почути щось отаке.
 <jump:flatmates>
 
-<checkpoint4:><label:flatmates><theme:flatmates><none>
+<checkpoint4:><music:чафе><label:flatmates><theme:flatmates><none>
 <name:Неля>Дякую. А ти як, теж шукаєш роботу?
 Чи спочатку потусиш із рідним містом, відпочинеш, купиш свою антену?
 <name:Романка>Ну як мінімум для останньої з цих речей треба гроші.
@@ -225,7 +225,7 @@
 Вона дуже довго залучала мене у розмови, які здавалися просто шумом. Вона пробивалася крізь мої глушилки, і змогла пробитися.
 А мені здавалося працею просто не глушити її частоту.
 
-<check_attention:flatmates;less;0.92><jump:end_too_different>
+<check_attention:flatmates;less;0.9><jump:end_too_different>
 <jump:remember>
 
 <label:end_too_different><name:none><none><speed:5>І, якщо відверто, все ще здається складним<speed:0.5>… <speed:3>спілкуватися з нею.
